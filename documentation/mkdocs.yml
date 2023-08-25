@@ -1,0 +1,63 @@
+site_name: Secure Landing Zone in GCP
+nav:
+  - Home: index.md
+  - Secure Landing Zone:
+      - Folders Core: slz-folders-core.md
+      - IAM Groups: slz-groups-iam.md
+      - Organizational Policies: slz-org-policy.md
+      - Billing Projects: slz-projects-billing.md
+      - CI/CD Projects: slz-projects-cicd.md
+      - Shared VPC Projects: slz-projects-sharedvpc.md
+      - FAQs: slz-faqs.md
+  - Bussiness Unit Configurations:
+      - Folders: bu-folders.md
+      - Groups: bu-groups.md
+      - Projects: bu-projects.md
+      - FAQs: bu-faqs.md
+      - Terraform State Buckets: tfstate-buckets.md
+
+theme:
+  name: 'material' # mkdocs, readthedocs material
+  language: en
+  logo: img/logo.png
+  favicon: img/logo.png
+  font:
+    text: Roboto
+  # icon:
+  #   previous: fontawesome/solid/angle-left
+  #   next: fontawesome/solid/angle-right
+  # features:
+  #   - toc.integrate
+
+  palette:
+    # Palette toggle for automatic mode
+    - media: '(prefers-color-scheme)'
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+  - search
+  # - blog
+  # - privacy
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.betterem
+# extra:
+#   version:
+#     provider: mike
+

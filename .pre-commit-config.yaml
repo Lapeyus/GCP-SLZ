@@ -1,0 +1,285 @@
+#aicommits hook install
+#pre-commit install
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-added-large-files
+        name: check for added large files
+        description: prevents giant files from being committed.
+        entry: check-added-large-files
+        language: python
+        stages: [commit, push, manual]
+    -   id: check-json
+        name: check json
+        description: checks json files for parseable syntax.
+        entry: check-json
+        language: python
+        types: [json]
+    -   id: check-shebang-scripts-are-executable
+        name: check that scripts with shebangs are executable
+        description: ensures that (non-binary) files with a shebang are executable.
+        entry: check-shebang-scripts-are-executable
+        language: python
+        types: [text]
+        stages: [commit, push, manual]
+    -   id: pretty-format-json
+        name: pretty format json
+        description: sets a standard for formatting json files.
+        entry: pretty-format-json
+        language: python
+        types: [json]
+    -   id: check-merge-conflict
+        name: check for merge conflicts
+        description: checks for files that contain merge conflict strings.
+        entry: check-merge-conflict
+        language: python
+        types: [text]
+    -   id: check-symlinks
+        name: check for broken symlinks
+        description: checks for symlinks which do not point to anything.
+        entry: check-symlinks
+        language: python
+        types: [symlink]
+    -   id: check-yaml
+        name: check yaml
+        description: checks yaml files for parseable syntax.
+        entry: check-yaml
+        language: python
+        types: [yaml]
+    -   id: destroyed-symlinks
+        name: detect destroyed symlinks
+        description: detects symlinks which are changed to regular files with a content of a path which that symlink was pointing to.
+        entry: destroyed-symlinks
+        language: python
+        types: [file]
+    -   id: detect-private-key
+        name: detect private key
+        description: detects the presence of private keys.
+        entry: detect-private-key
+        language: python
+        types: [text]
+    -   id: double-quote-string-fixer
+        name: fix double quoted strings
+        description: replaces double quoted strings with single quoted strings.
+        entry: double-quote-string-fixer
+        language: python
+        types: [python]
+    -   id: end-of-file-fixer
+        name: fix end of files
+        description: ensures that a file is either empty, or ends with one newline.
+        entry: end-of-file-fixer
+        language: python
+        types: [text]
+        stages: [commit, push, manual]
+    -   id: fix-byte-order-marker
+        name: fix utf-8 byte order marker
+        description: removes utf-8 byte order marker.
+        entry: fix-byte-order-marker
+        language: python
+        types: [text]
+    -   id: mixed-line-ending
+        name: mixed line ending
+        description: replaces or checks mixed line ending.
+        entry: mixed-line-ending
+        language: python
+        types: [text]
+    -   id: no-commit-to-branch
+        name: "don't commit to branch"
+        entry: no-commit-to-branch
+        language: python
+        pass_filenames: false
+        always_run: true
+    -   id: sort-simple-yaml
+        name: sort simple yaml files
+        description: sorts simple yaml files which consist only of top-level keys, preserving comments and blocks.
+        language: python
+        entry: sort-simple-yaml
+        files: '^$'
+    -   id: trailing-whitespace
+        name: trim trailing whitespace
+        description: trims trailing whitespace.
+        entry: trailing-whitespace-fixer
+        language: python
+        types: [text]
+        stages: [commit, push, manual]
+-   repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.82.0 
+    hooks:
+      - id: terraform_fmt
+    #   - id: terraform_tflint
+#         args:
+#           - --args=--reprojectbsive
+#       - id: terraform_providers_lock
+#       - id: terraform_docs
+#       - id: terraform_checkov
+#         args:
+#         - --args=--config-file '__GIT_WORKING_DIR__/.github/checkov.yml'
+#         - --args=--framework terraform
+    #   - id: terraform_wrapper_module_for_each
+    #     args:
+    #       - --args=--module-dir=.   # Process only root module
+    #       - --args=--dry-run        # No files will be created/updated
+    #       - --args=--verbose        # Verbose output
+    #   - id: terrascan
+    #     args:
+    #       - --args=--non-reprojectbsive # avoids scan errors on subdirectories without Terraform config files
+    #       - --args=--verbose
+        #   - --args=--policy-type=gcp
+        #   - --args=--iac_dir=bootstrap/
+    #   - id: terraform_tfsec
+    #   - id: terraform_validate
+    #     args:
+    #       - --args=-json
+    #       - --args=-no-color
+    #       - --hook-config=--retry-once-with-cleanup=true 
+-   repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0
+    hooks:
+      - id: prettier
+        types_or:
+          - yaml
+          - markdown
+        additional_dependencies:
+          - prettier
+        minimum_pre_commit_version: 2.9.0
+        exclude: ^locale
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.10.1
+    hooks:
+      - id: pyupgrade
+        args:
+          - --py38-plus
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+        name: trailing-whitespace
+      - id: end-of-file-fixer
+        name: end-of-file-fixer
+      - id: double-quote-string-fixer
+        name: double-quote-string-fixer
+      - id: debug-statements
+        name: debug-statements
+-   repo: https://github.com/asottile/add-trailing-comma
+    rev: v3.0.1
+    hooks:
+      - id: add-trailing-comma
+        name: add-trailing-comma
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v2.0.2
+    hooks:
+      - id: autopep8
+-   repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort-src
+        alias: isort-src
+        files: ^src
+        args:
+          - --add-import
+          - from __future__ import annotations
+      - id: isort
+        name: isort-meta
+        alias: isort-meta
+        files: ^(docs|tests)
+-   repo: https://github.com/mondeja/mdpo
+    rev: v1.1.3
+    hooks:
+      - id: md2po2md
+        files: ^README\.md
+        args:
+          - -l
+          - es
+          - -l
+          - fr
+          - -o
+          - locale/{lang}
+          - --no-location
+-   repo: https://github.com/mondeja/pre-commit-po-hooks
+    rev: v1.7.3
+    hooks:
+      - id: obsolete-messages
+      - id: unprojectclated-messages
+      - id: remove-metadata
+-   repo: https://github.com/adrienverge/yamllint
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        files: .+\.(yml|yaml)
+        args:
+          - -c
+          - .github/.yamllint.yaml
+-   repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.8.1
+    hooks:
+      - id: markdownlint-cli2
+        name: markdownlint-readme
+        files: ^README.md
+-   repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 2.7.2
+    hooks:
+      - id: editorconfig-checker
+        name: editorconfig-checker
+        alias: ec
+-   repo: https://github.com/myint/autoflake
+    rev: v2.2.0
+    hooks:
+      - id: autoflake
+        args:
+          - --in-place
+          - --remove-all-unused-imports
+          - --remove-unused-variables
+          - --remove-duplicate-keys
+          - --ignore-init-module-imports
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.4.1
+    hooks:
+      - id: mypy
+        files: ^src
+        additional_dependencies:
+          - mkdocs
+          - platformdirs
+          - wcmatch
+-   repo: https://github.com/tcort/markdown-link-check
+    rev: v3.11.2
+    hooks:
+      - id: markdown-link-check
+        name: markdown-link-check
+        files: ^README\.md$
+        args:
+          - --config
+          - .markdown-link-check.json
+-   repo: https://github.com/flakeheaven/flakeheaven
+    rev: 3.3.0
+    hooks:
+      - id: flakeheaven
+        additional_dependencies:
+          - flake8-builtins
+          - flake8-comprehensions
+          - flake8-docstrings
+          - flake8-executable
+          - flake8-implicit-str-concat
+          - flake8-print
+          - flake8-printf-formatting
+          - flake8-pytest-style
+          - flake8-bugbear
+          - flake8-encodings
+          - flake8-no-pep420
+          - flake8-absolute-import
+          - flake8-slots
+          - flake8-unused-arguments
+          - dlint
+          - pysetenv
+        entry: pysetenv FLAKEHEAVEN_CACHE_TIMEOUT=0 flakeheaven lint
+  # - repo: https://github.com/mondeja/project-config
+  #   rev: v0.8.0
+  #   hooks:
+  #     - id: project-config
+  # - repo: meta
+  #   hooks:
+  #     - id: check-hooks-apply
+  #       name: check-hooks-apply
+  #     - id: check-useless-excludes
+  #       name: check-useless-excludes

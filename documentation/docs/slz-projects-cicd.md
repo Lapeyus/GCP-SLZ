@@ -1,0 +1,61 @@
+# CI/CD Module
+
+This module sets up a CI/CD pipeline using Google Cloud services, integrated within the Service Level Zones (SLZ) architecture.
+
+## Requirements
+
+- Terraform 0.14 or higher
+- Google Cloud Platform account
+- Billing account associated with the organization
+
+## Modules
+
+### `cicd`
+
+Defines the CI/CD project in GCP.
+
+- `name`: Name of the CI/CD project.
+- `random_project_id`: Generates a random project ID.
+- `random_project_id_length`: Length of the random project ID.
+- `org_id`: Organization ID.
+- `billing_account`: Billing account.
+- `folder_id`: Folder ID for shared resources.
+- `svpc_host_project_id`: Shared VPC host project ID.
+- `activate_apis`: APIs to be activated for CI/CD.
+- `labels`: Labels, such as `terraform_managed`.
+
+### `artifact-registry-repository-iam-bindings`
+
+Manages IAM bindings for the Artifact Registry repository.
+
+- `repositories`: List of Artifact Registry repositories.
+- `location`: Region of the repositories.
+- `mode`: IAM mode, typically `additive`.
+- `bindings`: IAM roles and members.
+
+### `cloudbuild-iam-bindings`
+
+Manages IAM bindings for Cloud Build.
+
+- `projects`: List of projects.
+- `mode`: IAM mode, typically `additive`.
+- `bindings`: IAM roles and members.
+
+## Resources
+
+### `google_artifact_registry_repository`
+
+Defines the Docker Artifact Registry repository.
+
+- `location`: Location of the repository.
+- `repository_id`: ID of the repository.
+- `description`: Description of the repository.
+- `format`: Format of the repository, usually `DOCKER`.
+
+## Compliance with SLZ
+
+The configuration adheres to SLZ principles by ensuring appropriate separation of concerns, permissions, and integration within the overall architecture.
+
+## Usage
+
+Include this module in your existing Terraform configuration and provide the necessary variables.

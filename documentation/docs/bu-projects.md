@@ -1,0 +1,67 @@
+# Altus Project Modules Documentation
+
+This document explains the Terraform code responsible for managing Altus ingest, curated, and transformation projects within Google Cloud Platform.
+
+## Overview
+
+The code snippet consists of three distinct modules that handle the creation of projects under filtered folders for ingest, curated, and transformation. Each module uses the Google Project Factory module and filters out specific folders by name.
+
+## Local Variables
+
+The code starts by defining local variables that filter out folders based on their names.
+
+```hcl
+locals {
+  filtered_ingest_folders  = { for k, v in module.ingest_folders.id : k => v if k != "Altus-Ingest" }
+  filtered_curated_folders = { for k, v in module.curated_folders.id : k => v if k != "Altus-Cur" }
+  filtered_trans_folders   = { for k, v in module.trans_folders.id : k => v if k != "Altus-Trans" }
+}
+```
+
+## Altus Ingest Projects Module
+
+This module handles the creation of ingest projects using the filtered ingest folders.
+
+```hcl
+module "altus_ingest_projects" {
+  for_each                 = local.filtered_ingest_folders
+  source                   = "terraform-google-modules/project-factory/google"
+  version                  = "14.2.0"
+  ...
+  labels = {
+    terraform_managed = true
+  }
+}
+```
+
+## Altus Curated Projects Module
+
+Similar to the ingest module, this module creates curated projects based on the filtered curated folders.
+
+```hcl
+module "altus_curated_projects" {
+  for_each                 = local.filtered_curated_folders
+  ...
+  labels = {
+    terraform_managed = true
+  }
+}
+```
+
+## Altus Transformation Projects Module
+
+This module is responsible for the transformation projects, created under the filtered transformation folders.
+
+```hcl
+module "altus_trans_projects" {
+  for_each                 = local.filtered_trans_folders
+  ...
+  labels = {
+    terraform_managed = true
+  }
+}
+```
+
+## Usage
+
+Apply this code to manage Altus ingest, curated, and transformation projects within your Google Cloud Platform organization.

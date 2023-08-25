@@ -1,0 +1,57 @@
+# Google Folders and Project Groups Management
+
+This document explains the Terraform code responsible for managing Google folders and project groups within your organization.
+
+## Overview
+
+The code consists of two main parts:
+1. Retrieving the Google folders related to a specific project.
+2. Creating project groups for various roles (developers, devops, admins) within those folders.
+
+### Google Folders
+
+The `google_folders` data block is responsible for retrieving the folders related to the project identified by `module.folders.id["Altus"]`.
+
+```hcl
+data "google_folders" "my_prj_folders" {
+  parent_id = module.folders.id["Altus"]
+}
+```
+
+A local variable `child_folders` is used to store these folders.
+
+### Group Combinations
+
+The `locals` block creates combinations of folders and groups (developers, devops, admins) and specific members for each group.
+
+```hcl
+locals {
+  child_folders = [for folder in data.google_folders.my_prj_folders.folders : folder]
+  groups        = ["developers", "devops", "admins"]
+  folder_group_combinations = flatten([...])
+  members = {...}
+}
+```
+
+### Project Groups Module
+
+The `project_groups` module is responsible for creating the Google groups for each folder and group type combination. The source for this module is the Terraform Google Modules group.
+
+```hcl
+module "project_groups" {
+  for_each     = {...}
+  source       = "terraform-google-modules/group/google"
+  version      = "0.4.0"
+  id           = "${each.value.display_name}-${each.value.group_type}@${data.google_organization.org.domain}"
+  display_name = "${each.value.display_name}-${each.value.group_type}"
+  description  = "Group for ${each.value.display_name} ${each.value.group_type}"
+  domain       = data.google_organization.org.domain
+  managers     = []
+  members      = local.members["${each.value.display_name}-${each.value.group_type}"]
+  owners       = []
+}
+```
+
+## Usage
+
+Apply this code to manage folders and group permissions within your Google Cloud Platform organization.
