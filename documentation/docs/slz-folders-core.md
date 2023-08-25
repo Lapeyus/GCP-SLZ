@@ -6,6 +6,33 @@ This code snippet defines a hierarchical folder structure within Google Cloud Pl
 
 ## Folder Structure
 
+
+![Folder Structure](img/slz-folders-core.png)
+
+
+### Description:
+
+- **Organizations**: The root level, representing your organization on Google Cloud Platform.
+- **Core**: A foundational folder containing critical organizational resources. It includes subfolders:
+  - **Billing**: Managing billing accounts and related information.
+  - **Logging-Monitoring**: Segregating logging and monitoring resources.
+  - **Security**: Holds security-related configurations and policies.
+  - **Network**: For managing network-related resources.
+- **Shared**: A folder hosting shared resources with subfolders for production and non-production environments.
+- **BussinesUnits**: Businnes Unit. this folder or folders holds all projects.
+
+
+### Secure Landing Zone Context
+
+The design emphasizes security by:
+
+- **Isolating Responsibilities**: By segregating resources into dedicated folders, you minimize the risk of unintended access or modifications.
+- **Scalable Organization**: This structure allows for expandable management and the easy addition of more departments, projects, or environmental divisions.
+- **Hierarchical Access Control**: Implementing IAM policies at different folder levels provides fine-grained control, supporting the principle of least privilege.
+- **Auditability**: The Logging and Monitoring folder can be configured to centralize logs, improving visibility and compliance.
+
+## Module: Folders
+
 ```
 Organizations
 ├── Seed
@@ -20,35 +47,8 @@ Organizations
 │   ├── Shared-Prod
 │   └── Shared-NonProd
 │
-└── BussinesUnit/*
+└── BussinesUnits/*
 ```
-
-![Folder Structure](/documentation/docs/img/slz-folders-core.png)
-
-
-### Description:
-
-- **Organizations**: The root level, representing your organization on Google Cloud Platform.
-- **Core**: A foundational folder containing critical organizational resources. It includes subfolders:
-  - **Billing**: Managing billing accounts and related information.
-  - **Logging-Monitoring**: Segregating logging and monitoring resources.
-  - **Security**: Holds security-related configurations and policies.
-  - **Network**: For managing network-related resources.
-- **Shared**: A folder hosting shared resources with subfolders for production and non-production environments.
-- **BussinesUnit**: Businnes Unit. this folder or folders holds all projects.
-
-
-### Secure Landing Zone Context
-
-The design emphasizes security by:
-
-- **Isolating Responsibilities**: By segregating resources into dedicated folders, you minimize the risk of unintended access or modifications.
-- **Scalable Organization**: This structure allows for expandable management and the easy addition of more departments, projects, or environmental divisions.
-- **Hierarchical Access Control**: Implementing IAM policies at different folder levels provides fine-grained control, supporting the principle of least privilege.
-- **Auditability**: The Logging and Monitoring folder can be configured to centralize logs, improving visibility and compliance.
-
-## Module: Folders
-
 The `module "folders"` imports the defined structure from a source module, associating it with the specific organization.
 
 ### Usage

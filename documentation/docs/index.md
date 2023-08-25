@@ -12,7 +12,6 @@ Welcome to the documentation for setting up a Se Landing Zone (SLZ) in Google Cl
 - [CI/CD Projects](./slz-projects-cicd.md)
 - [Shared VPC Projects](./slz-projects-sharedvpc.md)
 - [FAQs](./slz-faqs.md)
-- [Additional Resources](#additional-resources)
 
 ## Bussiness Unit Resources
 - [Bussiness Unit FAQs](./bu-faqs.md)
@@ -25,3 +24,5 @@ Welcome to the documentation for setting up a Se Landing Zone (SLZ) in Google Cl
 - [Variable substitution](./tfstate-buckets.md)
 - [Secret substitution](./tfstate-buckets.md)
 
+## Resources
+- [Seed project concept](./additional-resources.md#seed)

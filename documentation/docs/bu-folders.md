@@ -2,33 +2,15 @@
 
 This project provides a flexible and scalable folder structure for organizing resources within the Google Cloud Platform.
 
+![Bussines Unit Folder Structure](img/slz-folders-core.png)
+
 ## Modules
 
-### Ingest Folders
-The `ingest_folders` module is responsible for managing the folder hierarchy related to data ingestion.
+### Folders
+The `proj_folders` module is responsible for managing the folder hierarchy related to data projion.
 Example usage:
 ```hcl
-module "ingest_folders" {
-  source = "../modules/google_folder"
-  // configuration details
-}
-```
-
-### Curated Folders
-The `curated_folders` module is responsible for managing the folder hierarchy for curated datasets.
-Example usage:
-```hcl
-module "curated_folders" {
-  source = "../modules/google_folder"
-  // configuration details
-}
-```
-
-### Transformation Folders
-The `trans_folders` module is responsible for managing the folder hierarchy for data transformation.
-Example usage:
-```hcl
-module "trans_folders" {
+module "proj_folders" {
   source = "../modules/google_folder"
   // configuration details
 }

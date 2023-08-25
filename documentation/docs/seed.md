@@ -4,6 +4,20 @@
 
 This Terraform code is designed to provision the foundational setup for Google Cloud Platform (GCP) project, services, and service accounts required for Terraform. It also handles the roles and permissions for the Terraform service account.
 
+
+## Seed Project Concept
+
+### What is a Seed Project?
+A seed project is essentially a starting point for your infrastructure. It sets up the basic resources and permissions you need to build out your environments. This includes setting up IAM roles and Federation to run run code.
+
+### Why is it Important?
+The seed project is crucial because it lays the foundation for all your future projects and configurations. It ensures that you have a secure, scalable, and maintainable infrastructure.
+
+### Key Components
+- **IAM Roles**
+- **Service Accounts**
+- **State**
+ 
 ### Usage
 
 1. **Initialization**: An admin user needs to login using the CLI or manually apply the code.

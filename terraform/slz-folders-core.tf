@@ -10,8 +10,8 @@ module "folders" {
     "Shared"             = { external_parent_id = "organizations/${var.org_id}" },
     "Shared-Prod"        = { parent_entry_key = "Shared" },
     "Shared-NonProd"     = { parent_entry_key = "Shared" },
-    "BussinesUnit" = {
-      name               = "BussinesUnit"
+    "BussinesUnits" = {
+      name               = "BussinesUnits"
       external_parent_id = "organizations/${var.org_id}"
     },
   }
