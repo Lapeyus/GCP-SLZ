@@ -2,7 +2,7 @@
 
 This project provides a flexible and scalable folder structure for organizing resources within the Google Cloud Platform.
 
-![Bussines Unit Folder Structure](img/slz-folders-core.png)
+![Bussines Unit Folder Structure](img/bu-folders.png)
 
 ## Modules
 
