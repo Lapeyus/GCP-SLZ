@@ -1,6 +1,3 @@
-# branch: main
-# check:
-#   - CKV_DOCKER_1
 compact: false
 directory:
   - ../
@@ -10,7 +7,6 @@ external-modules-download-path: .external_modules
 framework: all
 output: cli
 quiet: false
-repo-id: altus-seed
 skip-check:
   - CKV_TF_1 # "Ensure Terraform module sources use a commit hash"
   - CKV_GCP_45 # "Ensure no roles that enable to impersonate and manage all service accounts are used at an organization level"

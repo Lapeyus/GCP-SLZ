@@ -2,6 +2,7 @@ site_name: Secure Landing Zone in GCP
 nav:
   - Home: index.md
   - Secure Landing Zone:
+      - The Seed Project: seed.md
       - Folders Core: slz-folders-core.md
       - IAM Groups: slz-groups-iam.md
       - Organizational Policies: slz-org-policy.md
