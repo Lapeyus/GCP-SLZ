@@ -3,7 +3,7 @@
 #   - CKV_DOCKER_1
 compact: false
 directory:
-  - ../terraform
+  - ../
 download-external-modules: false
 evaluate-variables: true
 external-modules-download-path: .external_modules
