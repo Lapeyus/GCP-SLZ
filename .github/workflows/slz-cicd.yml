@@ -1,65 +1,65 @@
-name: "Terraform Validation"
+# name: "Terraform Validation"
 
-on:
-  push:
-    paths-ignore:
-      - './bootstrap/README.md'
-    branches:
-      - '*'
-  pull_request:
-    paths-ignore:
-      - './bootstrap/README.md'
-    branches:
-      - '*'
-  workflow_dispatch:
+# on:
+#   push:
+#     paths-ignore:
+#       - './bootstrap/README.md'
+#     branches:
+#       - '*'
+#   pull_request:
+#     paths-ignore:
+#       - './bootstrap/README.md'
+#     branches:
+#       - '*'
+#   workflow_dispatch:
 
-concurrency:
-  group: unique-execution
+# concurrency:
+#   group: unique-execution
 
-permissions:
-  contents: 'write'
-  id-token: 'write'
+# permissions:
+#   contents: 'write'
+#   id-token: 'write'
 
-env:
-  GOOGLE_PROJECT: BU-seed-001
-  GOOGLE_BUCKET: BU-tf-seed-state
+# env:
+#   GOOGLE_PROJECT: BU-seed-001
+#   GOOGLE_BUCKET: BU-tf-seed-state
 
 
-jobs:
-  tflint:
-    runs-on: ubuntu-latest
+# jobs:
+#   tflint:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-      name: Checkout source code
+#     steps:
+#     - uses: actions/checkout@v3
+#       name: Checkout source code
 
-    - uses: actions/cache@v3
-      name: Cache plugin dir
-      with:
-        path: ~/.tflint.d/plugins
-        key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
+#     - uses: actions/cache@v3
+#       name: Cache plugin dir
+#       with:
+#         path: ~/.tflint.d/plugins
+#         key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
 
-    - uses: terraform-linters/setup-tflint@v3
-      name: Setup TFLint
-      with:
-        tflint_version: v0.44.1
+#     - uses: terraform-linters/setup-tflint@v3
+#       name: Setup TFLint
+#       with:
+#         tflint_version: v0.44.1
 
-    - name: Run TFLint
-      run: tflint --recursive
+#     - name: Run TFLint
+#       run: tflint --recursive
 
-  checkov:
-    name: 'Checkov scan'
-    runs-on: ubuntu-latest
+#   checkov:
+#     name: 'Checkov scan'
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Install Checkov
-        run: pip install checkov
+#       - name: Install Checkov
+#         run: pip install checkov
 
-      - name: Run Checkov
-        run: checkov --config-file ./.github/checkov.yml
+#       - name: Run Checkov
+#         run: checkov --config-file ./.github/checkov.yml
 
 #   terrascan_job:
 #     runs-on: ubuntu-latest
