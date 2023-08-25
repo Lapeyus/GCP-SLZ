@@ -20,10 +20,10 @@ Organizations
 │   ├── Shared-Prod
 │   └── Shared-NonProd
 │
-└── BussinesUnits/
+└── BussinesUnit/*
 ```
 
-![Image description](/documentation/docs/img/slz-folders-core.png)
+![Folder Structure](/documentation/docs/img/slz-folders-core.png)
 
 
 ### Description:
@@ -35,7 +35,7 @@ Organizations
   - **Security**: Holds security-related configurations and policies.
   - **Network**: For managing network-related resources.
 - **Shared**: A folder hosting shared resources with subfolders for production and non-production environments.
-- **BussinesUnits**: Businnes Unit. this folder holds all projects.
+- **BussinesUnit**: Businnes Unit. this folder or folders holds all projects.
 
 
 ### Secure Landing Zone Context
