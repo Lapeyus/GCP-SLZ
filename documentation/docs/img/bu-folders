@@ -1,0 +1,67 @@
+digraph G {
+	node [shape=folder style=filled]
+	"owner-projecta" [color=mediumaquamarine]
+	"owner-projecta-dev" [color=mediumaquamarine]
+	"owner-projecta" -> "owner-projecta-dev"
+	"owner-projecta" [color=lightblue]
+	"owner-projecta-stage" [color=lightblue]
+	"owner-projecta" -> "owner-projecta-stage"
+	"owner-projecta" [color=lightgreen]
+	"owner-projecta-qa" [color=lightgreen]
+	"owner-projecta" -> "owner-projecta-qa"
+	"owner-projecta" [color=yellow]
+	"owner-projecta-prodfix" [color=yellow]
+	"owner-projecta" -> "owner-projecta-prodfix"
+	"owner-projecta" [color=lightcoral]
+	"owner-projecta-prod" [color=lightcoral]
+	"owner-projecta" -> "owner-projecta-prod"
+	"owner-projecta" [color=mediumaquamarine]
+	"owner-projecta-dr" [color=mediumaquamarine]
+	"owner-projecta" -> "owner-projecta-dr"
+	"owner-projectb" [color=lightblue]
+	"owner-projectb-dev" [color=lightblue]
+	"owner-projectb" -> "owner-projectb-dev"
+	"owner-projectb" [color=lightgreen]
+	"owner-projectb-stage" [color=lightgreen]
+	"owner-projectb" -> "owner-projectb-stage"
+	"owner-projectb" [color=yellow]
+	"owner-projectb-qa" [color=yellow]
+	"owner-projectb" -> "owner-projectb-qa"
+	"owner-projectb" [color=lightcoral]
+	"owner-projectb-prodfix" [color=lightcoral]
+	"owner-projectb" -> "owner-projectb-prodfix"
+	"owner-projectb" [color=mediumaquamarine]
+	"owner-projectb-prod" [color=mediumaquamarine]
+	"owner-projectb" -> "owner-projectb-prod"
+	"owner-projectb" [color=lightblue]
+	"owner-projectb-dr" [color=lightblue]
+	"owner-projectb" -> "owner-projectb-dr"
+	"owner-projectc" [color=lightgreen]
+	"owner-projectc-dev" [color=lightgreen]
+	"owner-projectc" -> "owner-projectc-dev"
+	"owner-projectc" [color=yellow]
+	"owner-projectc-stage" [color=yellow]
+	"owner-projectc" -> "owner-projectc-stage"
+	"owner-projectc" [color=lightcoral]
+	"owner-projectc-qa" [color=lightcoral]
+	"owner-projectc" -> "owner-projectc-qa"
+	"owner-projectc" [color=mediumaquamarine]
+	"owner-projectc-prodfix" [color=mediumaquamarine]
+	"owner-projectc" -> "owner-projectc-prodfix"
+	"owner-projectc" [color=lightblue]
+	"owner-projectc-prod" [color=lightblue]
+	"owner-projectc" -> "owner-projectc-prod"
+	"owner-projectc" [color=lightgreen]
+	"owner-projectc-dr" [color=lightgreen]
+	"owner-projectc" -> "owner-projectc-dr"
+	"module.folders.id[owner]" [color=lightsalmon shape=house]
+	"owner-projecta" [color=lightsalmon]
+	"module.folders.id[owner]" -> "owner-projecta"
+	"module.folders.id[owner]" [color=lightsalmon shape=house]
+	"owner-projectb" [color=lightsalmon]
+	"module.folders.id[owner]" -> "owner-projectb"
+	"module.folders.id[owner]" [color=lightsalmon shape=house]
+	"owner-projectc" [color=lightsalmon]
+	"module.folders.id[owner]" -> "owner-projectc"
+	rankdir=TB size="10,10"
+}
