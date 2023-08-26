@@ -8,7 +8,7 @@ This Terraform code is designed to provision the foundational setup for Google C
 ## Seed Project Concept
 
 ### What is a Seed Project?
-A seed project is essentially a starting point for your infrastructure. It sets up the basic resources and permissions you need to build out your environments. This includes setting up IAM roles and Federation to run run code.
+A seed project is essentially a starting point for your infrastructure. It sets up the basic resources and permissions you need to build out your environments. This includes setting up IAM roles and Federation to run code.
 
 ### Why is it Important?
 The seed project is crucial because it lays the foundation for all your future projects and configurations. It ensures that you have a secure, scalable, and maintainable infrastructure.
