@@ -10,17 +10,21 @@ This Terraform code is designed to provision the foundational setup for Google C
 ### What is a Seed Project?
 A seed project is essentially a starting point for your infrastructure. It sets up the basic resources and permissions you need to build out your environments. This includes setting up IAM roles and Federation to run code.
 
+The service account created here is used by the CICD pipeline agents through impersonation to create and manage GCP resources.
+
 ### Why is it Important?
-The seed project is crucial because it lays the foundation for all your future projects and configurations. It ensures that you have a secure, scalable, and maintainable infrastructure.
+The seed project is crucial because it lays the foundation for all your future projects and configurations. It ensures that you have a secure, scalable, and maintainable infrastructure by delegating this roles to an impersonatable agent.
 
 ### Key Components
-- **IAM Roles**
-- **Service Accounts**
-- **State**
+- **GCP Seed project**
+- **Terraform service Account**
+- **IAM Roles at Organization level**
+- **IAM Roles at Seed Project level**
+- **Workload Identity federation**
  
 ### Usage
 
-1. **Initialization**: An admin user needs to login using the CLI or manually apply the code.
+1. **Initialization**: An admin user needs to login using the CLI or manually apply the code in this file.
 2. **State Migration**: After the initial implementation, the state for the code is stored in a cloud storage bucket.
 
 ### Requisites
@@ -36,7 +40,6 @@ The seed project is crucial because it lays the foundation for all your future p
 4. **Roles Assignment**: Set up the roles for the Terraform service account on the organization and project levels.
 5. **Workload Identity Federation**: Setup Workload Identity Federation for GitHub actions.
 6. **Workload Identity Binding**: Apply the identity binding.
-7. **State Files Setup**: Create a storage bucket for Terraform seed state files.
 
 ### Logic
 
@@ -45,18 +48,6 @@ The seed project is crucial because it lays the foundation for all your future p
 - The `resource "google_service_account"` creates the service account.
 - IAM roles are managed through modules `"terraform_sa_organization_iam_bindings"` and `"terraform_sa_project_iam_bindings"`.
 - Workload Identity Federation and binding are handled with specific resources.
-- The Terraform state is managed through `module "tf_state"`.
-
-### Pros
-
-- Automation of Project and Service Account creation.
-- Easy management of IAM roles and permissions.
-- Workload Identity Federation integration.
-
-### Cons
-
-- Manual initialization required for the first run.
-- Specific configuration might be required based on the use case.
 
 ### Notes
 
