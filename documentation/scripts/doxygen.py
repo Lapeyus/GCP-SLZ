@@ -1,24 +1,18 @@
 import os
 import sys
-from typing import List, Optional
+import argparse
+from typing import List, Iterator, Optional
 
-def capture_comment_block(lines: iter, start_line: str, end_line: str) -> str:
-    block_lines = []  # Initialize empty; skip adding the start_line
-    for line in lines:
-        stripped_line = line.strip()
-        if end_line in stripped_line:
-            return "\n".join(block_lines).strip()  # Return without including the end_line
-        block_lines.append(stripped_line)
-
-
-def capture_code_block(lines: iter, end_line: str, title: str) -> str:
-    block_lines = [title]  # Add the first line
+def capture_block(lines: Iterator[str], end_line: str, include_start: bool, include_end: bool) -> str:
+    block_lines = []
     for line in lines:
         stripped_line = line.strip()
         if stripped_line == end_line:
-            block_lines.append(stripped_line)  # Add the last line
-            return "```hcl\n" + "\n".join(block_lines) + "\n```"
-        block_lines.append(stripped_line)
+            if include_end:
+                block_lines.append(stripped_line)
+            return "\n".join(block_lines).strip()
+        if include_start or block_lines:
+            block_lines.append(stripped_line)
 
 def parse_tf_file_with_resources(lines: List[str]) -> List[str]:
     lines_iter = iter(lines)
@@ -28,12 +22,12 @@ def parse_tf_file_with_resources(lines: List[str]) -> List[str]:
         stripped_line = line.strip()
 
         if "/*" in stripped_line:
-            comment_block = capture_comment_block(lines_iter, stripped_line, "*/")
+            comment_block = capture_block(lines_iter, "*/", False, False)
             merged_content.append(comment_block)
             continue
 
         if any(keyword in stripped_line for keyword in ["resource", "module", "locals", "data"]):
-            code_block = capture_code_block(lines_iter, "}", stripped_line)
+            code_block = f"```hcl\n{capture_block(lines_iter, '}', True, True)}\n```"
             merged_content.append(code_block)
             continue
 
@@ -54,10 +48,9 @@ def main(file_path: str, output_directory: Optional[str] = None) -> None:
     generate_markdown_with_resources(doc_lines_with_resources, output_file_path)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python script.py <Terraform_file_path> [output_directory]")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description='Process Terraform files.')
+    parser.add_argument('file_path', help='Path to the Terraform file')
+    parser.add_argument('--output_directory', help='Directory to save the output', default=None)
+    args = parser.parse_args()
 
-    terraform_file_path = sys.argv[1]
-    output_directory = sys.argv[2] if len(sys.argv) > 2 else None
-    main(terraform_file_path, output_directory)
+    main(args.file_path, args.output_directory)
