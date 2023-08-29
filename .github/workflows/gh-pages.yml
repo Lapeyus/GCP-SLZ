@@ -50,7 +50,7 @@ jobs:
         git config --local user.name "GitHub Action"
 
     - name: Graph the GCP folders
-      run: python documentation/scripts/generate_folder_digraph.py './terraform/slz-folders-core.tf' './terraform/bu-folders.tf'
+      run: python documentation/scripts/generate_folder_digraph.py './terraform/slz-folders-core.tf'
 
     - name: Commit and push generated image
       run: |
@@ -73,6 +73,7 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs
       - run: pip install mkdocs-material
+      - run: pip install mkdocs-macros-plugin
       - run: mkdocs gh-deploy --config-file documentation/mkdocs.yml  --force --clean --verbose
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
