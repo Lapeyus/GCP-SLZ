@@ -15,6 +15,7 @@ Welcome to the documentation for setting up a Secure Landing Zone (SLZ) in Googl
 - [L&M](./slz-projects-log-monitor.md)
 - [Terraform State Buckets](./tfstate-buckets.md)
 - [FAQs](./slz-faqs.md)
+- [Terraform Docs](./tfdocs.md)
 
 ## Business Unit Resources
 - [Business Unit FAQs](./bu-faqs.md)

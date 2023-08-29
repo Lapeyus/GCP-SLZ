@@ -13,7 +13,7 @@ data "google_folders" "prj_folders" {
 - `folder_group_combinations` creates a combination of each folder with each group and sets their display name and group type, and `members` is a map that initializes empty lists for each project-group combination.
 */
 locals {
-  child_folders = [for folder in data.google_folders.my_prj_folders.folders : folder]
+  child_folders = [for folder in data.google_folders.prj_folders.folders : folder]
   groups        = ["developers", "devops", "admins"]
   folder_group_combinations = flatten([
     for folder in local.child_folders : [
