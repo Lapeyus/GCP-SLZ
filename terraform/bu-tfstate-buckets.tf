@@ -1,4 +1,3 @@
-/* ---------------------  Terraform Seed state files -------------------- */
 module "tf_state" {
   source                   = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
   version                  = "~> 4.0"
@@ -14,7 +13,6 @@ module "tf_state" {
   ]
 }
 
-/* ---------------------  Terraform cicd state files -------------------- */
 module "cicd_tf_state" {
   source                   = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
   version                  = "~> 4.0"
@@ -30,7 +28,6 @@ module "cicd_tf_state" {
   ]
 }
 
-/* ---------------------  Projects: Terraform state files -------------------- */
 locals {
   filtered_projecta_buckets  = { for k, v in module.projecta_folders.id : k => v if k != "owner-projecta" }
   filtered_curated_buckets = { for k, v in module.curated_folders.id : k => v if k != "owner-Cur" }

@@ -1,0 +1,60 @@
+```hcl
+module "billing_project" {
+source                   = "terraform-google-modules/project-factory/google"
+version                  = "14.2.0"
+name                     = "owner-cor-billing"
+random_project_id        = true
+random_project_id_length = 3
+org_id                   = var.org_id
+folder_id                = module.folders.id["Billing"]
+billing_account          = var.billing_account
+budget_amount            = "1000"
+default_service_account  = "disable"
+
+activate_apis = var.activate_apis["Billing"]
+labels = {
+"env" : "prod"
+}
+```
+```hcl
+resource "google_pubsub_topic" "prod_budget" {
+name    = "owner-prod-budget-topic-${random_string.suffix.result}"
+project = module.billing_project.project_id
+}
+```
+```hcl
+module "budget_prod_projects" {
+source                 = "terraform-google-modules/project-factory/google//modules/budget"
+version                = "14.3.0"
+billing_account        = var.billing_account
+projects               = [module.billing_project.project_id]
+amount                 = "1000"
+display_name           = "Budget for ${module.billing_project.project_id}"
+alert_spent_percents   = [0.5, 0.7, 1.0]
+credit_types_treatment = "INCLUDE_ALL_CREDITS"
+alert_pubsub_topic     = "projects/${module.billing_project.project_id}/topics/${google_pubsub_topic.prod_budget.name}"
+labels = {
+"env" : "prod"
+}
+```
+```hcl
+resource "google_pubsub_topic" "preprod_budget" {
+name    = "owner-preprod-budget-topic-${random_string.suffix.result}"
+project = module.billing_project.project_id
+}
+```
+```hcl
+module "budget_preprod_projects" {
+source                 = "terraform-google-modules/project-factory/google//modules/budget"
+version                = "14.3.0"
+billing_account        = var.billing_account
+projects               = [module.billing_project.project_id]
+amount                 = "1000"
+display_name           = "Budget for ${module.billing_project.project_id}"
+alert_spent_percents   = [0.5, 0.7, 1.0]
+credit_types_treatment = "INCLUDE_ALL_CREDITS"
+alert_pubsub_topic     = "projects/${module.billing_project.project_id}/topics/${google_pubsub_topic.preprod_budget.name}"
+labels = {
+"env" : "prod"
+}
+```

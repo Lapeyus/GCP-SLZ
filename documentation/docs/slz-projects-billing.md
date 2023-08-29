@@ -52,3 +52,8 @@ Include this module in your existing Terraform configuration and provide the nec
 ## Compliance with SLZ
 
 This configuration is aligned with the specific Service Level Zones requirements, ensuring that the appropriate policies and constraints are enforced.
+
+
+# Code
+
+{% include 'slz-projects-billing.code' %}

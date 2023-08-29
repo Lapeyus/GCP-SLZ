@@ -26,3 +26,6 @@ Welcome to the documentation for setting up a Se Landing Zone (SLZ) in Google Cl
 
 ## Resources
 - [Seed project concept](./additional-resources.md#seed)
+
+# Version 
+{{ git.short_commit}} ({{ git.date}}) by {{ git.author}}

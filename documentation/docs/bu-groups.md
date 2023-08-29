@@ -55,3 +55,8 @@ module "project_groups" {
 ## Usage
 
 Apply this code to manage folders and group permissions within your Google Cloud Platform organization.
+
+
+# Code
+
+{% include 'bu-groups.code' %}

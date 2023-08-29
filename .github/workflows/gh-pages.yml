@@ -49,8 +49,8 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
 
-    - name: Graph the root slz folders
-      run: python terraform/modules/generate_folder_digraph.py './terraform/slz-folders-core.tf' './terraform/bu-folders.tf'
+    - name: Graph the GCP folders
+      run: python documentation/scripts/generate_folder_digraph.py './terraform/slz-folders-core.tf' './terraform/bu-folders.tf'
 
     - name: Commit and push generated image
       run: |

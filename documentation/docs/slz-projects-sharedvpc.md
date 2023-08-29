@@ -65,3 +65,9 @@ To utilize these modules, simply include them in your Terraform project, providi
 ## SLZ Considerations
 
 This module aligns with the principles of the Service Landing Zone (SLZ) to provide a secure and scalable network infrastructure, ensuring the separation of preproduction and production environments, while maintaining accessibility for managed services like VertexAI, CloudSQL, CloudBuild, etc.
+
+
+
+# Code
+
+{% include 'slz-projects-sharedvpc.code' %}

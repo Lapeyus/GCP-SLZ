@@ -2,7 +2,6 @@
 
 This project provides a flexible and scalable folder structure for organizing resources within the Google Cloud Platform.
 
-![Bussines Unit Folder Structure](img/bu-folders.png)
 
 ## Modules
 
@@ -24,3 +23,8 @@ The resources provided in this code create a multi-layer folder structure within
 
 - Terraform v0.12 or higher
 - Google Cloud Platform account with necessary permissions
+
+
+# Code
+
+{% include 'bu-folders.code' %}

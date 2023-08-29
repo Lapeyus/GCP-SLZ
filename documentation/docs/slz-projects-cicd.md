@@ -59,3 +59,9 @@ The configuration adheres to SLZ principles by ensuring appropriate separation o
 ## Usage
 
 Include this module in your existing Terraform configuration and provide the necessary variables.
+
+
+
+# Code
+
+{% include 'slz-projects-cicd.code' %}

@@ -1,0 +1,126 @@
+## Local Variables
+The Seed project needs to have all the APIs defined in var.activate_apis enabled
+not only for the project itself but for every child project
+
+- add all APIs
+- remove duplicates
+```hcl
+locals {
+activate_apis_all = toset(flatten(values(var.activate_apis)))
+}
+```
+## Module: Org Seed Project
+This module creates a GCP project with various settings. uses a GCP mamaged module
+```hcl
+module "org_seed_project" {
+source                  = "terraform-google-modules/project-factory/google"
+version                 = "14.2.0"
+random_project_id       = "false"
+default_service_account = "delete"
+create_project_sa       = false
+name                    = "${var.owner}-seed-prj"
+org_id                  = var.org_id
+billing_account         = var.billing_account
+auto_create_network     = false
+activate_apis           = local.activate_apis_all
+labels = {
+terraform_managed = true
+}
+```
+## Resource: Google Service Account
+This resource creates a Google Service Account within the project.
+```hcl
+resource "google_service_account" "tf_seed_sa" {
+account_id   = "tf_seed_sa"
+display_name = "Terraform Service Account"
+project      = module.org_seed_project.project_id
+}
+```
+## Resource: Google Service Account Key
+This resource creates a key for the Google Service Account.
+```hcl
+resource "google_service_account_key" "account_key" {
+service_account_id = google_service_account.service_account.name
+}
+```
+## Module: Org IAM Bindings
+This module sets up IAM bindings at the organization level.
+```hcl
+module "tf_seed_sa_organization_iam_bindings" {
+source        = "terraform-google-modules/iam/google//modules/organizations_iam"
+version       = "7.6.0"
+organizations = [var.org_id]
+mode          = "additive"
+
+bindings = {
+"roles/resourcemanager.organizationAdmin" = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/resourcemanager.projectCreator"    = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/resourcemanager.folderAdmin"       = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/compute.xpnAdmin"                  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/serviceusage.serviceUsageAdmin"    = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/billing.user"                      = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/iam.serviceAccountAdmin"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+}
+```
+## Module: Project IAM Bindings
+This module sets up IAM bindings at the project level.
+```hcl
+module "tf_seed_sa_project_iam_bindings" {
+source   = "terraform-google-modules/iam/google//modules/projects_iam"
+version  = "7.6.0"
+projects = [module.org_seed_project.project_id]
+mode     = "additive"
+
+bindings = {
+"roles/serviceusage.serviceUsageAdmin" = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/iam.serviceAccountKeyAdmin"     = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/iam.serviceAccountAdmin"        = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/iam.serviceAccountTokenCreator" = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/iam.workloadIdentityUser"       = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/iam.workloadIdentityPoolAdmin"  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/storage.objectCreator"          = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/storage.objectViewer"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+"roles/storage.admin"                  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+}
+```
+## Identity Pool
+This resource sets up a workload identity pool.
+```hcl
+resource "google_iam_workload_identity_pool" "idp_pool" {
+workload_identity_pool_id = "github-terraformer"
+project                   = module.org_seed_project.project_id
+}
+```
+## Resource: Google IAM Workload Identity Pool Provider
+This resource sets up a workload identity pool provider.
+```hcl
+resource "google_iam_workload_identity_pool_provider" "gh_provider" {
+workload_identity_pool_id          = "github-terraformer"
+workload_identity_pool_provider_id = "gh-actions"
+display_name                       = "gh-actions"
+oidc {
+allowed_audiences = []
+issuer_uri        = "https://token.actions.githubusercontent.com"
+}
+```
+## Google Service Account IAM Binding:
+member repos can impersonate the terraform SA via github actions.
+When possible add one repo at a time, or:
+
+- Uncomment A to allow all client repos to impersonate the terraform SA
+- Uncomment B to use Use Workload Identity with Google Kubernetes Engine, once for each namespace
+```hcl
+resource "google_service_account_iam_binding" "workload_identity_binding" {
+service_account_id = google_service_account.service_account.id
+role               = "roles/iam.workloadIdentityUser"
+members = [
+"principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-slz",
+"principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-shared-infra",
+"principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projecta-infra",
+"principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projectc-infra",
+"principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projectb-infra",
+# A: "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository_${var.owner}/${var.owner}-Power",
+# B: "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
+]
+}
+```

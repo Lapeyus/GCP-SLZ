@@ -4,6 +4,7 @@ nav:
   - Secure Landing Zone:
       - The Seed Project: seed.md
       - Folders Core: slz-folders-core.md
+      - Groups: slz-groups.md
       - IAM Groups: slz-groups-iam.md
       - Organizational Policies: slz-org-policy.md
       - Billing Projects: slz-projects-billing.md
@@ -16,7 +17,7 @@ nav:
       - Projects: bu-projects.md
       - FAQs: bu-faqs.md
       - Terraform State Buckets: tfstate-buckets.md
-
+  - additional-resources.md
 theme:
   name: 'material' # mkdocs, readthedocs material
   language: en
@@ -24,11 +25,11 @@ theme:
   favicon: img/logo.png
   font:
     text: Roboto
-  # icon:
-  #   previous: fontawesome/solid/angle-left
-  #   next: fontawesome/solid/angle-right
-  # features:
-  #   - toc.integrate
+ 
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate 
 
   palette:
     # Palette toggle for automatic mode
@@ -51,14 +52,17 @@ theme:
 
 plugins:
   - search
-  # - blog
-  # - privacy
-
+  - macros
+ 
 markdown_extensions:
   - admonition
-  - codehilite
-  - pymdownx.betterem
-# extra:
-#   version:
-#     provider: mike
-
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+#   - codehilite
+#   - pymdownx.betterem

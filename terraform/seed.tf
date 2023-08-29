@@ -1,14 +1,19 @@
-/*
-* # GCP Terraform seed
-*
-* This code provisions the project, services and service account used by Terraform and grants the roles  for that service account to work.
-* To use this code, an admin user for GCP needs to login using the CLI or manually applies the code and then migrates the state. after the initial implementation state for the code is in a cloud storage bucket
-*
+/* 
+## Local Variables
+The Seed project needs to have all the APIs defined in var.activate_apis enabled
+not only for the project itself but for every child project
+
+- add all APIs
+- remove duplicates
 */
 locals {
   activate_apis_all = toset(flatten(values(var.activate_apis)))
 }
 
+/* 
+## Module: Org Seed Project
+This module creates a GCP project with various settings. uses a GCP mamaged module
+*/
 module "org_seed_project" {
   source                  = "terraform-google-modules/project-factory/google"
   version                 = "14.2.0"
@@ -24,20 +29,27 @@ module "org_seed_project" {
     terraform_managed = true
   }
 }
-
-/* ------------------------------ Create the SA ----------------------------- */
+/* 
+## Resource: Google Service Account
+This resource creates a Google Service Account within the project.
+*/
 resource "google_service_account" "tf_seed_sa" {
   account_id   = "tf_seed_sa"
   display_name = "Terraform Service Account"
   project      = module.org_seed_project.project_id
 }
 
-#  this key it's only used during initial manual bootstrapping
-# resource "google_service_account_key" "account_key" {
-#   service_account_id = google_service_account.service_account.name
-# }
-
-/* --------------------------- Terraform service account Roles -------------------------- */
+/* 
+## Resource: Google Service Account Key
+This resource creates a key for the Google Service Account.
+*/
+resource "google_service_account_key" "account_key" {
+  service_account_id = google_service_account.service_account.name
+}
+/* 
+## Module: Org IAM Bindings
+This module sets up IAM bindings at the organization level.
+*/
 module "tf_seed_sa_organization_iam_bindings" {
   source        = "terraform-google-modules/iam/google//modules/organizations_iam"
   version       = "7.6.0"
@@ -54,7 +66,10 @@ module "tf_seed_sa_organization_iam_bindings" {
     "roles/iam.serviceAccountAdmin"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
   }
 }
-
+/* 
+## Module: Project IAM Bindings
+This module sets up IAM bindings at the project level.
+*/
 module "tf_seed_sa_project_iam_bindings" {
   source   = "terraform-google-modules/iam/google//modules/projects_iam"
   version  = "7.6.0"
@@ -74,12 +89,18 @@ module "tf_seed_sa_project_iam_bindings" {
   }
 }
 
-/* ------------------- Workload Identity Federation for github actions --------- */
+/* 
+## Identity Pool
+This resource sets up a workload identity pool.
+*/
 resource "google_iam_workload_identity_pool" "idp_pool" {
   workload_identity_pool_id = "github-terraformer"
   project                   = module.org_seed_project.project_id
 }
-
+/* 
+## Resource: Google IAM Workload Identity Pool Provider
+This resource sets up a workload identity pool provider.
+*/
 resource "google_iam_workload_identity_pool_provider" "gh_provider" {
   workload_identity_pool_id          = "github-terraformer"
   workload_identity_pool_provider_id = "gh-actions"
@@ -95,23 +116,25 @@ resource "google_iam_workload_identity_pool_provider" "gh_provider" {
   }
 }
 
-/* --------------------- Apply Workload Identity Binding -------------------- */
+/* 
+## Google Service Account IAM Binding: 
+member repos can impersonate the terraform SA via github actions.
+When possible add one repo at a time, or:
+
+- Uncomment A to allow all client repos to impersonate the terraform SA
+- Uncomment B to use Use Workload Identity with Google Kubernetes Engine, once for each namespace
+*/
+
 resource "google_service_account_iam_binding" "workload_identity_binding" {
   service_account_id = google_service_account.service_account.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    # Workload Identity Federation for github actions
-    # one repo at a time
-    "principalSet://iam.googleapis.com/projects/734894532576/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}-Power/${var.owner}-slz",
-    "principalSet://iam.googleapis.com/projects/734894532576/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}-Power/${var.owner}-shared-infra",
-    "principalSet://iam.googleapis.com/projects/734894532576/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}-Power/${var.owner}-projecta-infra",
-    "principalSet://iam.googleapis.com/projects/734894532576/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}-Power/${var.owner}-projectc-infra",
-    "principalSet://iam.googleapis.com/projects/734894532576/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}-Power/${var.owner}-projectb-infra",
-
-    # uncomment to allow all client repos to impersonate the terraform SA
-    # "principalSet://iam.googleapis.com/projects/734894532576/locations/global/workloadIdentityPools/github-terraformer/attribute.repository_${var.owner}/${var.owner}-Power",
-
-    # uncomment to use Use Workload Identity with Google Kubernetes Engine, once for each namespace
-    # "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
+    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-slz",
+    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-shared-infra",
+    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projecta-infra",
+    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projectc-infra",
+    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projectb-infra",
+    # A: "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository_${var.owner}/${var.owner}-Power",
+    # B: "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
   ]
 }

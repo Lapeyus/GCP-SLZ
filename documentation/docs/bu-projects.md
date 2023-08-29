@@ -65,3 +65,8 @@ module "altus_trans_projects" {
 ## Usage
 
 Apply this code to manage Altus ingest, curated, and transformation projects within your Google Cloud Platform organization.
+
+
+# Code
+
+{% include 'bu-projects.code' %}

@@ -62,3 +62,7 @@ This module assigns various roles within the "Altus" and "Shared" folders, provi
 ```hcl
 module "project-admins" {}
 ```
+
+# Code
+
+{% include 'slz-groups-iam.code' %}

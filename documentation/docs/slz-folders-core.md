@@ -7,7 +7,6 @@ This code snippet defines a hierarchical folder structure within Google Cloud Pl
 ## Folder Structure
 
 
-![Folder Structure](img/slz-folders-core.png)
 
 
 ### Description:
@@ -73,3 +72,7 @@ A random string resource is defined, used for generating a suffix. It's not dire
 - **`length`**: Length of the string (3 characters).
 - **`special`**: Does not include special characters.
 - **`upper`**: Does not include uppercase letters.
+
+# Code
+
+{% include 'slz-folders-core.code' %}
