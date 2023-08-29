@@ -1,56 +1,80 @@
-import os
 import sys
+import os
+import re
+import logging
 import argparse
-from typing import List, Iterator, Optional
 
-def capture_block(lines: Iterator[str], end_line: str, include_start: bool, include_end: bool) -> str:
-    block_lines = []
-    for line in lines:
-        stripped_line = line.strip()
-        if stripped_line == end_line:
-            if include_end:
-                block_lines.append(stripped_line)
-            return "\n".join(block_lines).strip()
-        if include_start or block_lines:
-            block_lines.append(stripped_line)
+logging.basicConfig(level=logging.INFO)
 
-def parse_tf_file_with_resources(lines: List[str]) -> List[str]:
-    lines_iter = iter(lines)
-    merged_content = []
+def is_valid_hcl_block(lines):
+    """Check if a given list of lines forms a valid HCL block."""
+    # You can add more sophisticated checks here if needed
+    return True
 
-    for line in lines_iter:
-        stripped_line = line.strip()
+def add_hcl_code_tags(lines):
+    """Wrap a list of lines with HCL code tags if it's a valid HCL block."""
+    if is_valid_hcl_block(lines):
+        return ["```hcl"] + lines + ["```"]
+    return lines
 
-        if "/*" in stripped_line:
-            comment_block = capture_block(lines_iter, "*/", False, False)
-            merged_content.append(comment_block)
-            continue
+def remove_inline_comments(line):
+    """Remove /* and */ inline comments from a line."""
+    return re.sub(r'\/\*|\*\/', '', line)
 
-        if any(keyword in stripped_line for keyword in ["resource", "module", "locals", "data"]):
-            code_block = f"```hcl\n{capture_block(lines_iter, '}', True, True)}\n```"
-            merged_content.append(code_block)
-            continue
+def parse_args():
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(description='Process a Terraform (.tf) file.')
+    parser.add_argument('input_file', help='Path to the input .tf file')
+    parser.add_argument('output_folder', help='Folder where the output .code file will be saved')
+    return parser.parse_args()
 
-    return merged_content
+def main():
+    args = parse_args()
+    input_file = args.input_file
+    output_folder = args.output_folder
+    
+    try:
+        # Read the content from the input file
+        with open(input_file, 'r') as f:
+            lines = f.readlines()
 
-def generate_markdown_with_resources(doc_lines: List[str], output_file_path: str) -> None:
-    with open(output_file_path, 'w') as f:
-        f.write("\n".join(doc_lines))
+        # Remove inline comments and prepare for HCL tagging
+        cleaned_lines = [remove_inline_comments(line).rstrip() for line in lines]
+        output_lines = []
+        hcl_block = []
+        in_hcl_block = False
 
-def main(file_path: str, output_directory: Optional[str] = None) -> None:
-    output_file_name = os.path.splitext(os.path.basename(file_path))[0] + '.code'
-    output_file_path = os.path.join(output_directory if output_directory else os.path.dirname(file_path), output_file_name)
+        for line in cleaned_lines:
+            if line.endswith('{'):
+                in_hcl_block = True
+                hcl_block.append(line)
+            elif line == '}':
+                hcl_block.append(line)
+                output_lines.extend(add_hcl_code_tags(hcl_block))
+                hcl_block = []
+                in_hcl_block = False
+            elif in_hcl_block:
+                hcl_block.append(line)
+            else:
+                output_lines.append(line)
 
-    with open(file_path, 'r') as f:
-        lines = f.readlines()
+        # Prepare the output file name
+        base_name = os.path.basename(input_file)
+        file_name_without_extension = os.path.splitext(base_name)[0]
+        output_file = os.path.join(output_folder, f"{file_name_without_extension}.code")
 
-    doc_lines_with_resources = parse_tf_file_with_resources(lines)
-    generate_markdown_with_resources(doc_lines_with_resources, output_file_path)
+        # Write the cleaned content to the output file
+        with open(output_file, 'w') as f:
+            f.write('\n'.join(output_lines))
+
+        logging.info(f"Successfully modified {input_file} and saved to {output_file}")
+        
+    except FileNotFoundError:
+        logging.error(f"File {input_file} not found.")
+    except PermissionError:
+        logging.error(f"Permission denied for reading/writing files.")
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Process Terraform files.')
-    parser.add_argument('file_path', help='Path to the Terraform file')
-    parser.add_argument('--output_directory', help='Directory to save the output', default=None)
-    args = parser.parse_args()
-
-    main(args.file_path, args.output_directory)
+    main()

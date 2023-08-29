@@ -15,16 +15,12 @@ module "proj_folders" {
 }
 ```
 
-## Resources
-
-The resources provided in this code create a multi-layer folder structure within Google Cloud Platform.
-
 ## Dependencies
 
 - Terraform v0.12 or higher
 - Google Cloud Platform account with necessary permissions
 
 
-# Code
+## Code
 
 {% include 'bu-folders.code' %}

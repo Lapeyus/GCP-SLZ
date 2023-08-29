@@ -2,60 +2,43 @@ import os
 import sys
 from typing import List, Optional
 
-def capture_comment_block(lines: iter, start_line: str, end_line: str) -> str:
-    block_lines = []
-    for line in lines:
-        stripped_line = line.strip()
-        if end_line in stripped_line:
-            return "\n".join(block_lines).strip()
-        block_lines.append(stripped_line)
-
 def capture_code_block(lines: iter, end_line: str, title: str) -> str:
-    block_lines = []
-    title_stripped = title.strip('"')
-    title_str = f'title="{title_stripped}"'
-    include_first_line = True  # Flag to include the first line
+    block_lines = [title.rstrip('\n')]  # Add the first line
+    open_braces = title.count('{')
+    close_braces = title.count('}')
     
     for line in lines:
-        stripped_line = line.strip()
+        open_braces += line.count('{')
+        close_braces += line.count('}')
+        block_lines.append(line.rstrip('\n'))  # Add the line
         
-        if include_first_line:
-            block_lines.append(stripped_line)  # Include the first line
-            include_first_line = False  # Reset the flag
-        elif stripped_line == end_line:
-            block_lines.append(stripped_line)  # Include the last line
-            return f"```hcl {title_str}\n{''.join(block_lines)}\n```"
-        else:
-            block_lines.append(line)
-
-
-
+        if open_braces == close_braces:
+            return "\n```hcl\n" + "\n".join(block_lines) + "\n```\n"
 
 def parse_tf_file_with_resources(lines: List[str]) -> List[str]:
     lines_iter = iter(lines)
     merged_content = []
+    comment_block = ""
 
     for line in lines_iter:
-        stripped_line = line.strip()
-
-        if "/*" in stripped_line:
-            comment_block = capture_comment_block(lines_iter, stripped_line, "*/")
-            merged_content.append(comment_block)
+        # Capture comment blocks
+        if line.strip().startswith("/*"):
+            comment_block = line.strip("/*").strip("*/").strip()
             continue
 
-        if any(keyword in stripped_line for keyword in ["resource", "module", "data"]):
-            title = stripped_line.split(" ")[1]
-            code_block = capture_code_block(lines_iter, "}", title)
-            merged_content.append(code_block)
-            continue
-
-        if "locals" in stripped_line:
-            title = "Local Variables"
-            code_block = capture_code_block(lines_iter, "}", title)
-            merged_content.append(code_block)
-            continue
+        # Capture Terraform blocks
+        if any(keyword in line for keyword in ["resource ", "module ", "locals ", "data "]):
+            code_block = capture_code_block(lines_iter, "}", line)
+            if comment_block:
+                # Remove /* and */ from comment_block
+                comment_block_clean = comment_block.replace("/*", "").replace("*/", "").strip()
+                merged_content.append(f"### {comment_block_clean}\n{code_block}")
+                comment_block = ""  # Clear comment block for next iteration
+            else:
+                merged_content.append(code_block)
 
     return merged_content
+
 
 def generate_markdown_with_resources(doc_lines: List[str], output_file_path: str) -> None:
     with open(output_file_path, 'w') as f:

@@ -12,7 +12,7 @@ locals {
 
 /* 
 ## Module: Org Seed Project
-This module creates a GCP project with various settings. uses a GCP mamaged module
+This Terraform module, `org_seed_project`, is used to create a Google Cloud Project with specific configurations using the Project Factory module, without creating a random project ID, a default service account, or a network, but activating certain APIs.
 */
 module "org_seed_project" {
   source                  = "terraform-google-modules/project-factory/google"
@@ -31,24 +31,42 @@ module "org_seed_project" {
 }
 /* 
 ## Resource: Google Service Account
-This resource creates a Google Service Account within the project.
+This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `tf_seed_sa` in the project created by the `org_seed_project` module.
 */
 resource "google_service_account" "tf_seed_sa" {
   account_id   = "tf_seed_sa"
   display_name = "Terraform Service Account"
   project      = module.org_seed_project.project_id
 }
-
 /* 
 ## Resource: Google Service Account Key
-This resource creates a key for the Google Service Account.
+This Terraform code generates a new private key for the `tf_seed_sa` Google Cloud Service Account and stores it in `google_service_account_key` named `account_key`.
 */
 resource "google_service_account_key" "account_key" {
   service_account_id = google_service_account.service_account.name
 }
 /* 
-## Module: Org IAM Bindings
-This module sets up IAM bindings at the organization level.
+## Module: Terraform Service Account Org IAM Bindings
+1. `"roles/resourcemanager.organizationAdmin"`: 
+necessary for the service account to manage organization-wide resources effectively.
+
+2. `"roles/resourcemanager.projectCreator"`: 
+allows the service account to create new projects within the organization. 
+
+3. `"roles/resourcemanager.folderAdmin"`: 
+grants administrative access to manage folders within the organization. 
+
+4. `"roles/compute.xpnAdmin"`: 
+allows the service account to manage network resources across projects. 
+
+5. `"roles/serviceusage.serviceUsageAdmin"`: 
+allows enabling or disabling various Google Cloud services across projects.
+
+6. `"roles/billing.user"`: 
+allows the service account to view and manage billing information. 
+
+7. `"roles/iam.serviceAccountAdmin"`: 
+grants administrative access to manage service accounts. 
 */
 module "tf_seed_sa_organization_iam_bindings" {
   source        = "terraform-google-modules/iam/google//modules/organizations_iam"
@@ -67,8 +85,26 @@ module "tf_seed_sa_organization_iam_bindings" {
   }
 }
 /* 
-## Module: Project IAM Bindings
-This module sets up IAM bindings at the project level.
+## Module: Terraform Service Account Project IAM Bindings
+
+1. `"roles/serviceusage.serviceUsageAdmin"`: relevant for enabling or disabling specific Google Cloud services within the project.
+
+2. `"roles/iam.serviceAccountKeyAdmin"`: The service account might need to manage its own keys.
+
+3. `"roles/iam.serviceAccountAdmin"`: If the service account needs to manage other service accounts at the project level, is necessary.
+
+4. `"roles/iam.serviceAccountTokenCreator"`: service account needs to create tokens for other service accounts.
+
+5. `"roles/iam.workloadIdentityUser"`: allows the service account to act as a workload identity user.
+
+6. `"roles/iam.workloadIdentityPoolAdmin"`: allows the service account to manage id pools.  
+
+7. `"roles/storage.objectCreator"`: Permission to create objects in Cloud Storage. 
+
+8. `"roles/storage.objectViewer"`: provides read access to objects in Cloud Storage.  
+
+9. `"roles/storage.admin"`: It includes permissions to create, delete, and modify storage buckets and objects.
+
 */
 module "tf_seed_sa_project_iam_bindings" {
   source   = "terraform-google-modules/iam/google//modules/projects_iam"
@@ -91,7 +127,7 @@ module "tf_seed_sa_project_iam_bindings" {
 
 /* 
 ## Identity Pool
-This resource sets up a workload identity pool.
+This Terraform code creates a new Google Cloud IAM Workload Identity Pool with the ID `github-terraformer` in the specified project, and stores it in `google_iam_workload_identity_pool` named `idp_pool`.
 */
 resource "google_iam_workload_identity_pool" "idp_pool" {
   workload_identity_pool_id = "github-terraformer"
@@ -99,7 +135,7 @@ resource "google_iam_workload_identity_pool" "idp_pool" {
 }
 /* 
 ## Resource: Google IAM Workload Identity Pool Provider
-This resource sets up a workload identity pool provider.
+This Terraform code creates a new Google Cloud IAM Workload Identity Pool Provider for the identity pool `github-terraformer`, and configures it with an empty list of allowed audiences, an Github issuer URI, and attribute mappings for OIDC (OpenID Connect).
 */
 resource "google_iam_workload_identity_pool_provider" "gh_provider" {
   workload_identity_pool_id          = "github-terraformer"
@@ -117,8 +153,8 @@ resource "google_iam_workload_identity_pool_provider" "gh_provider" {
 }
 
 /* 
-## Google Service Account IAM Binding: 
-member repos can impersonate the terraform SA via github actions.
+## Google Service Account IAM Binding 
+Member repos can impersonate the terraform SA via github actions.
 When possible add one repo at a time, or:
 
 - Uncomment A to allow all client repos to impersonate the terraform SA

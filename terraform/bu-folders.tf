@@ -1,3 +1,7 @@
+/*
+  ### Project A 
+ Creates the required folders for a project with 6 folder environments
+*/
 module "projecta_folders" {
   source = "../modules/google_folder"
 
@@ -29,7 +33,10 @@ module "projecta_folders" {
     },
   }
 }
-
+/*
+  ### Project B 
+ Creates the required folders for a project with 6 folder environments
+*/
 module "projectb_folders" {
   source = "../modules/google_folder"
 
@@ -61,7 +68,10 @@ module "projectb_folders" {
     },
   }
 }
-
+/*
+  ### Project C 
+ Creates the required folders for a project with 6 folder environments
+*/
 module "projectc_folders" {
   source = "../modules/google_folder"
 

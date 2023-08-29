@@ -35,6 +35,22 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: doxygen
+      run: |
+        python documentation/scripts/doxygen.py terraform/slz-folders-core.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-projects-sharedvpc.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-groups-iam.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-groups.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-org-policy.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-projects-billing.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-projects-cicd.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/slz-projects-log-monitor.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/bu-folders.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/bu-groups.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/bu-projects.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/bu-tfstate-buckets.tf ./documentation/docs/ \
+        && python documentation/scripts/doxygen.py terraform/seed.tf ./documentation/docs/ 
+
     - name: Install Graphviz
       run: |
         sudo apt-get update
