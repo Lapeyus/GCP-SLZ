@@ -1,6 +1,6 @@
 variable "owner" {
   type    = string
-  default = "clientname"
+  default = "client-name"
 }
 
 variable "org_id" {
@@ -43,15 +43,15 @@ variable "activate_apis" {
       "vpcaccess.googleapis.com",
       "container.googleapis.com"
     ]
-    owner-projecta = [
+    projecta = [
       "compute.googleapis.com",
       "run.googleapis.com",
     ]
-    owner-projectb = [
+    projectb = [
       "compute.googleapis.com",
       "bigquery.googleapis.com",
     ]
-    owner-projectc = [
+    projectc = [
       "compute.googleapis.com",
       "bigquery.googleapis.com",
       "composer.googleapis.com",

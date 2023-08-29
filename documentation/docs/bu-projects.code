@@ -1,10 +1,26 @@
+
+The code is creating three local variables, each containing a map of folder IDs from different modules
+(`projecta_folders`, `projectbated_folders`, `projectc_folders`),
+excluding the folders whose keys match with the owner's project
+(i.e., `"${var.owner}-projecta"`, `"${var.owner}-projectb"`, and `"${var.owner}-projectc"`).
+Only the child folders represent projects, the parent is just a unit for IAM
+
 ```hcl
 locals {
-  filtered_projecta_folders  = { for k, v in module.projecta_folders.id : k => v if k != "owner-projecta" }
-  filtered_projectbated_folders = { for k, v in module.projectbated_folders.id : k => v if k != "owner-projectb" }
-  filtered_projectc_folders   = { for k, v in module.projectc_folders.id : k => v if k != "owner-projectc" }
+  filtered_projecta_folders     = { for k, v in module.projecta_folders.id : k => v if k != "${var.owner}-projecta" }
+  filtered_projectbated_folders = { for k, v in module.projectbated_folders.id : k => v if k != "${var.owner}-projectb" }
+  filtered_projectc_folders     = { for k, v in module.projectc_folders.id : k => v if k != "${var.owner}-projectc" }
 }
 ```
+
+
+
+### Bussines Unit Projects: Project A
+The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`,
+using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs,
+folder ID from the filtered list, host project ID from a shared VPC host project module,
+activation of certain APIs, and a label for billing purposes
+
 ```hcl
 module "owner_projecta_projects" {
   for_each                 = local.filtered_projecta_folders
@@ -17,12 +33,20 @@ module "owner_projecta_projects" {
   billing_account          = var.billing_account
   folder_id                = each.value
   svpc_host_project_id     = module.shared_vpc_host_project.project_id
-  activate_apis            = var.activate_apis["owner-projecta"]
+  activate_apis            = var.activate_apis["projecta"]
   labels = {
-    terraform_managed = true
+    env = "prod"
   }
 }
 ```
+
+
+### Bussines Unit Projects: Project B
+The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`,
+using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs,
+folder ID from the filtered list, host project ID from a shared VPC host project module,
+activation of certain APIs, and a label for billing purposes
+
 ```hcl
 module "owner_projectbated_projects" {
   for_each                 = local.filtered_projectbated_folders
@@ -35,12 +59,20 @@ module "owner_projectbated_projects" {
   billing_account          = var.billing_account
   folder_id                = each.value
   svpc_host_project_id     = module.shared_vpc_host_project.project_id
-  activate_apis            = var.activate_apis["owner-projectb"]
+  activate_apis            = var.activate_apis["projectb"]
   labels = {
-    terraform_managed = true
+    env = "prod"
   }
 }
 ```
+
+
+### Bussines Unit Projects: Project C
+The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`,
+using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs,
+folder ID from the filtered list, host project ID from a shared VPC host project module,
+activation of certain APIs, and a label for billing purposes
+
 ```hcl
 module "owner_projectc_projects" {
   for_each                 = local.filtered_projectc_folders
@@ -53,9 +85,9 @@ module "owner_projectc_projects" {
   billing_account          = var.billing_account
   folder_id                = each.value
   svpc_host_project_id     = module.shared_vpc_host_project.project_id
-  activate_apis            = var.activate_apis["owner-projectc"]
+  activate_apis            = var.activate_apis["projectc"]
   labels = {
-    terraform_managed = true
+    env = "prod"
   }
 }
 ```

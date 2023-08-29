@@ -1,4 +1,6 @@
 site_name: Secure Landing Zone in GCP
+repo_url: https://github.com/Lapeyus/GCP-SLZ
+
 nav:
   - Home: index.md
   - Secure Landing Zone:
@@ -10,13 +12,14 @@ nav:
       - Billing Projects: slz-projects-billing.md
       - CI/CD Projects: slz-projects-cicd.md
       - Shared VPC Projects: slz-projects-sharedvpc.md
+      - L&M: slz-projects-log-monitor.md
+      - Terraform State Buckets: tfstate-buckets.md
       - FAQs: slz-faqs.md
   - Bussiness Unit Configurations:
       - Folders: bu-folders.md
       - Groups: bu-groups.md
       - Projects: bu-projects.md
       - FAQs: bu-faqs.md
-      - Terraform State Buckets: tfstate-buckets.md
   - additional-resources.md
 theme:
   name: 'material' # mkdocs, readthedocs material
@@ -25,7 +28,9 @@ theme:
   favicon: img/logo.png
   font:
     text: Roboto
- 
+  # icon:
+  #   repo: fontawesome/brands/git-alt 
+    
   features:
     - content.code.copy
     - content.code.select

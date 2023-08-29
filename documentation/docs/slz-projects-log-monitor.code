@@ -10,6 +10,7 @@ EOF
   all_logs_filter  = ""
 }
 ```
+
 ```hcl
 module "org_monitoring_project" {
   source                  = "terraform-google-modules/project-factory/google"
@@ -26,14 +27,26 @@ module "org_monitoring_project" {
   }
 }
 ```
+
 ```hcl
 resource "google_monitoring_dashboard" "logging_dashboards" {
-  for_each       = fileset(path.module, "dashboards/*.json") #local.json_file
+  for_each       = fileset(path.module, "dashboards.json") #local.json_file
   project        = module.org_monitoring_project.project_id
   dashboard_json = file(each.key)
 }
 ```
+
+### Add this to projects that need to be monitored ###
+
 ```hcl
+# resource "google_monitoring_monitored_project" "primary" {
+#   metrics_scope = "change-to-existing-metrics-scope-project"
+#   name          = "logging-monitoring-3953"
+# }
+
+*****************************************
+  Send logs to Storage
+****************************************
 module "storage_destination" {
   source                      = "terraform-google-modules/log-export/google//modules/storage"
   version                     = "~> 7.3.0"
@@ -64,6 +77,7 @@ module "storage_destination" {
   ]
 }
 ```
+
 ```hcl
 module "log_export_to_storage" {
   source          = "terraform-google-modules/log-export/google"

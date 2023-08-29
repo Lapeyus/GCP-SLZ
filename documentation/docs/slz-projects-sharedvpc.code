@@ -18,6 +18,12 @@ module "shared_vpc_host_project" {
   }
 }
 ```
+
+# ### This Module creates a GCP VPC and assigns subnets and routes to the range. You can also use this module to create secondary IP ranges, and firewall rules ###
+
+# #####################################
+# ###          PREPROD VPC          ###
+# #####################################
 ```hcl
 module "preprod_vpc_shared_vpc_host" {
   source                                 = "terraform-google-modules/network/google"
@@ -189,6 +195,9 @@ module "preprod_vpc_shared_vpc_host" {
   ]
 }
 ```
+
+# # ### The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export" ###
+# # ### Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed ###
 ```hcl
 resource "google_compute_global_address" "preprod_psa_address" {
   name          = "preprod-psconnect-ips"
@@ -200,6 +209,7 @@ resource "google_compute_global_address" "preprod_psa_address" {
   prefix_length = "21"
 }
 ```
+
 ```hcl
 resource "google_service_networking_connection" "preprod_psa_connection" {
   network                 = module.preprod_vpc_shared_vpc_host.network_id
@@ -207,6 +217,7 @@ resource "google_service_networking_connection" "preprod_psa_connection" {
   reserved_peering_ranges = [google_compute_global_address.preprod_psa_address.name]
 }
 ```
+
 ```hcl
 resource "google_compute_network_peering_routes_config" "preprod_psa_route_export" {
   project              = module.shared_vpc_host_project.project_id
@@ -216,6 +227,11 @@ resource "google_compute_network_peering_routes_config" "preprod_psa_route_expor
   export_custom_routes = true
 }
 ```
+
+# # #####################################
+# # ### VPC CONNECTOR FOR PREPROD VPC ###
+# # #####################################
+
 ```hcl
 resource "google_vpc_access_connector" "vpcconn-preprod" {
   name    = "vpcconn-preprod"
@@ -226,6 +242,8 @@ resource "google_vpc_access_connector" "vpcconn-preprod" {
   }
 }
 ```
+
+### Cloud NAT for preprod VPC us-east4 ###
 ```hcl
 module "cloud-nat" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -238,6 +256,12 @@ module "cloud-nat" {
   name          = "preprod-cloud-nat-us-east4"
 }
 ```
+
+
+# # #####################################
+# # ###        PRODUCTION VPC         ###
+# # #####################################
+
 ```hcl
 module "prod_vpc_shared_vpc_host" {
   source                                 = "terraform-google-modules/network/google"
@@ -337,6 +361,9 @@ module "prod_vpc_shared_vpc_host" {
   ]
 }
 ```
+
+# # ### The next 3 resources ceate a Private Service Access Subnet for Production VPC and configures route import/export" ###
+# # ### Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed ###
 ```hcl
 resource "google_compute_global_address" "prod_psa_address" {
   name          = "prod-psconnect-ips"
@@ -348,6 +375,7 @@ resource "google_compute_global_address" "prod_psa_address" {
   prefix_length = "21"
 }
 ```
+
 ```hcl
 resource "google_service_networking_connection" "prod_psa_connection" {
   network                 = module.prod_vpc_shared_vpc_host.network_id
@@ -355,6 +383,7 @@ resource "google_service_networking_connection" "prod_psa_connection" {
   reserved_peering_ranges = [google_compute_global_address.prod_psa_address.name]
 }
 ```
+
 ```hcl
 resource "google_compute_network_peering_routes_config" "prod_psa_route_export" {
   project              = module.shared_vpc_host_project.project_id
@@ -364,6 +393,11 @@ resource "google_compute_network_peering_routes_config" "prod_psa_route_export" 
   export_custom_routes = true
 }
 ```
+
+# # #####################################
+# # ### VPC CONNECTOR FOR PROD VPC ###
+# # #####################################
+
 ```hcl
 resource "google_vpc_access_connector" "vpcconn-prod" {
   name    = "vpcconn-prod"
@@ -374,6 +408,8 @@ resource "google_vpc_access_connector" "vpcconn-prod" {
   }
 }
 ```
+
+### Cloud NAT for prod VPC us-east5 ###
 ```hcl
 module "cloud-nat-prod" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -386,6 +422,11 @@ module "cloud-nat-prod" {
   name          = "prod-cloud-nat-us-east5"
 }
 ```
+
+# # #####################################
+# # ###       FIREWALL POLICIES       ###
+# # #####################################
+
 ```hcl
 module "firewall_policy" {
   source      = "../modules/network-firewall-policy"

@@ -169,7 +169,7 @@ resource "google_iam_workload_identity_pool_provider" "gh_provider" {
 ```
 
 
-## Google Service Account IAM Binding:
+## Google Service Account IAM Binding
 Member repos can impersonate the terraform SA via github actions.
 When possible add one repo at a time, or:
 

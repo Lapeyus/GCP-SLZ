@@ -1,5 +1,5 @@
 /*
-  ## 1. GCP Admins: 
+## 1. GCP Admins: 
  Members of this group will have broad permissions across the entire org.
  The number of members on this group should be limited.
 */
@@ -16,7 +16,7 @@ module "gcp_admins" {
 }
 
 /*
-  ## 2. Security Admins: 
+## 2. Security Admins: 
 Responsible for security settings, such as configuring IAM and organization policies.
   Members of this group will have permissions related to security settings,
   like configuring Identity and Access Management (IAM), organization policies, etc.
@@ -33,7 +33,7 @@ module "security_admins" {
   owners       = []
 }
 /*
-  ## 3. Network Admins: 
+## 3. Network Admins: 
 Manages network resources like VPCs, subnets, and firewall rules.
   This group is responsible for the management of network resources such as VPCs,
   subnets, firewall rules, etc.
@@ -50,7 +50,7 @@ module "network_admins" {
   owners       = []
 }
 /*
-  ## 4. Audit Admins: 
+## 4. Audit Admins: 
 Has permissions to view all resources and settings for auditing and compliance.
   Members of this group will have permissions to view all resources and settings,
   meant for auditing and compliance purposes.
@@ -67,7 +67,7 @@ module "audit_admins" {
   owners       = []
 }
 /*
-  ## 5. Project Admins: 
+## 5. Project Admins: 
 
 A global grant to manage all projects in the organization. Individual project management is delegated to dedicated groups (see alt-groups.tf).  This is a global grant to manage all projects in the ORG.
   we have dedicated groups to manage each project individually. see alt-groups.tf

@@ -12,7 +12,7 @@ locals {
 
 /* 
 ## Module: Org Seed Project
-This Terraform module, `org_seed_project`, is used to create a Google Cloud Project with specific configurations using the Project Factory module, without creating a random project ID, a default service account, or a network, but activating certain APIs.
+This Terraform module, `org_seed_project`, is used to create a Google Cloud Project with specific configurations using the Project Factory module, without creating a random project ID, a default service account, or a network, activates all agregated APIs.
 */
 module "org_seed_project" {
   source                  = "terraform-google-modules/project-factory/google"

@@ -14,6 +14,7 @@ module "skip_default_network" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "uniform_bucket_level_access" {
   source = "../modules/org-policy"
@@ -30,6 +31,7 @@ module "uniform_bucket_level_access" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "enforce_bucket_public_access_prevention" {
   source = "../modules/org-policy"
@@ -46,6 +48,7 @@ module "enforce_bucket_public_access_prevention" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "disable_vm_serial_ports" {
   source = "../modules/org-policy"
@@ -62,6 +65,7 @@ module "disable_vm_serial_ports" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "restrict_shared_vpc_project_lien" {
   source = "../modules/org-policy"
@@ -78,6 +82,7 @@ module "restrict_shared_vpc_project_lien" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "restrict_public_ip_cloudsql" {
   source = "../modules/org-policy"
@@ -94,6 +99,7 @@ module "restrict_public_ip_cloudsql" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "disable_vm_nested_virtualization" {
   source = "../modules/org-policy"
@@ -110,6 +116,7 @@ module "disable_vm_nested_virtualization" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "disable_guest_attributes" {
   source = "../modules/org-policy"
@@ -126,6 +133,8 @@ module "disable_guest_attributes" {
   policy_type = "boolean"
 }
 ```
+
+
 ```hcl
 module "require_os_login" {
   source = "../modules/org-policy"
@@ -142,6 +151,7 @@ module "require_os_login" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "domain_restricted_sharing" {
   source = "../modules/org-policy"
@@ -158,6 +168,7 @@ module "domain_restricted_sharing" {
   policy_type = "list"
 }
 ```
+
 ```hcl
 module "restrict_vm_external_ip" {
   source = "../modules/org-policy"
@@ -174,6 +185,7 @@ module "restrict_vm_external_ip" {
   policy_type = "list"
 }
 ```
+
 ```hcl
 module "restrict_vpc_peering" {
   source = "../modules/org-policy"
@@ -190,6 +202,7 @@ module "restrict_vpc_peering" {
   policy_type = "list"
 }
 ```
+
 ```hcl
 module "restrict_vpc_host_projects" {
   source = "../modules/org-policy"
@@ -206,6 +219,7 @@ module "restrict_vpc_host_projects" {
   policy_type = "list"
 }
 ```
+
 ```hcl
 module "disable_service_account_key_creation" {
   source = "../modules/org-policy"
@@ -222,6 +236,7 @@ module "disable_service_account_key_creation" {
   policy_type = "boolean"
 }
 ```
+
 ```hcl
 module "disable_service_account_key_upload" {
   source = "../modules/org-policy"

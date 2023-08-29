@@ -17,12 +17,15 @@ module "billing_project" {
   }
 }
 ```
+
+# Prod budget with more options
 ```hcl
 resource "google_pubsub_topic" "prod_budget" {
   name    = "owner-prod-budget-topic-${random_string.suffix.result}"
   project = module.billing_project.project_id
 }
 ```
+
 ```hcl
 module "budget_prod_projects" {
   source                 = "terraform-google-modules/project-factory/google//modules/budget"
@@ -39,12 +42,15 @@ module "budget_prod_projects" {
   }
 }
 ```
+
+# Preprod budget with more options
 ```hcl
 resource "google_pubsub_topic" "preprod_budget" {
   name    = "owner-preprod-budget-topic-${random_string.suffix.result}"
   project = module.billing_project.project_id
 }
 ```
+
 ```hcl
 module "budget_preprod_projects" {
   source                 = "terraform-google-modules/project-factory/google//modules/budget"
