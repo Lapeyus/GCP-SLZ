@@ -53,7 +53,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y graphviz
-          pip install pyhcl graphviz mkdocs mkdocs-material mkdocs-macros-plugin mkdocs-graphviz
+          pip install pyhcl
 
       - name: Configure Git
         run: |
@@ -86,7 +86,7 @@ jobs:
 
       - name: Install and Deploy Mkdocs
         run: |
-          pip install mkdocs mkdocs-material mkdocs-macros-plugin mkdocs-graphviz
+          pip install mkdocs mkdocs-material mkdocs-macros-plugin graphviz mkdocs-graphviz
           mkdocs gh-deploy --config-file documentation/mkdocs.yml --force --clean --verbose
 
       - name: Upload Artifact and Deploy Pages
