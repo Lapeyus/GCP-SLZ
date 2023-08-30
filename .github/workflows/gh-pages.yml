@@ -69,7 +69,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pyhcl graphviz
+        pip install pyhcl graphviz mkdocs-graphviz
 
     - name: Configure Git
       run: |
