@@ -3,7 +3,7 @@ repo_url: https://github.com/Lapeyus/GCP-SLZ
 
 nav:
   - Home: index.md
-  - Secure Landing Zone:
+  - Secure Landing Zone Core:
       - The Seed Project: seed.md
       - Folders Core: slz-folders-core.md
       - Groups: slz-groups.md
@@ -20,7 +20,10 @@ nav:
       - Groups: bu-groups.md
       - Projects: bu-projects.md
       - FAQs: bu-faqs.md
-  - additional-resources.md
+  - Terraform Docs: tfdocs.md
+  - Additional Resources:
+      - Articles: additional-resources.md
+
 theme:
   name: 'material' # mkdocs, readthedocs material
   language: en
@@ -29,24 +32,18 @@ theme:
   font:
     text: Roboto
   # icon:
-  #   repo: fontawesome/brands/git-alt 
-    
+  #   repo: fontawesome/brands/git-alt
+
   features:
     - content.code.copy
     - content.code.select
-    - content.code.annotate 
+    - content.code.annotate
 
   palette:
     # Palette toggle for automatic mode
     - media: '(prefers-color-scheme)'
       toggle:
         icon: material/brightness-auto
-        name: Switch to light mode
-    # Palette toggle for light mode
-    - media: '(prefers-color-scheme: light)'
-      scheme: default
-      toggle:
-        icon: material/brightness-7
         name: Switch to dark mode
     # Palette toggle for dark mode
     - media: '(prefers-color-scheme: dark)'
@@ -54,20 +51,47 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+    # Palette toggle for light mode
+    # - media: '(prefers-color-scheme: light)'
+    #   scheme: default
+    #   toggle:
+    #     icon: material/brightness-7
+    #     name: Switch to dark mode
+
 
 plugins:
   - search
   - macros
- 
+
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - mkdocs_graphviz:
+        light_theme: 000000
+        dark_theme: FFFFFF
+        color: 789ABC
+        bgcolor: none
+        graph_color: 789ABC
+        graph_fontcolor: 789ABC
+        node_color: 789ABC
+        node_fontcolor: 050709
+        edge_color: 789ABC
+        edge_fontcolor: 789ABC
+        priority: 75
+  - tables
 #   - codehilite
 #   - pymdownx.betterem
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js

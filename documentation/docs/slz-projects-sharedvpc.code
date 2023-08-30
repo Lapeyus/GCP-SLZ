@@ -1,3 +1,4 @@
+
 ```hcl
 module "shared_vpc_host_project" {
   source                         = "terraform-google-modules/project-factory/google"
@@ -19,11 +20,9 @@ module "shared_vpc_host_project" {
 }
 ```
 
-# ### This Module creates a GCP VPC and assigns subnets and routes to the range. You can also use this module to create secondary IP ranges, and firewall rules ###
 
-# #####################################
-# ###          PREPROD VPC          ###
-# #####################################
+This Module creates a GCP VPC and assigns subnets and routes to the range. You can also use this module to create secondary IP ranges, and firewall rules
+
 ```hcl
 module "preprod_vpc_shared_vpc_host" {
   source                                 = "terraform-google-modules/network/google"
@@ -196,8 +195,10 @@ module "preprod_vpc_shared_vpc_host" {
 }
 ```
 
-# # ### The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export" ###
-# # ### Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed ###
+The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export"
+Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed
+
+
 ```hcl
 resource "google_compute_global_address" "preprod_psa_address" {
   name          = "preprod-psconnect-ips"
@@ -228,9 +229,8 @@ resource "google_compute_network_peering_routes_config" "preprod_psa_route_expor
 }
 ```
 
-# # #####################################
-# # ### VPC CONNECTOR FOR PREPROD VPC ###
-# # #####################################
+
+VPC CONNECTOR FOR PREPROD VPC
 
 ```hcl
 resource "google_vpc_access_connector" "vpcconn-preprod" {
@@ -243,7 +243,8 @@ resource "google_vpc_access_connector" "vpcconn-preprod" {
 }
 ```
 
-### Cloud NAT for preprod VPC us-east4 ###
+Cloud NAT for preprod VPC us-east4
+
 ```hcl
 module "cloud-nat" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -257,11 +258,7 @@ module "cloud-nat" {
 }
 ```
 
-
-# # #####################################
-# # ###        PRODUCTION VPC         ###
-# # #####################################
-
+PRODUCTION VPC
 ```hcl
 module "prod_vpc_shared_vpc_host" {
   source                                 = "terraform-google-modules/network/google"
@@ -362,8 +359,10 @@ module "prod_vpc_shared_vpc_host" {
 }
 ```
 
-# # ### The next 3 resources ceate a Private Service Access Subnet for Production VPC and configures route import/export" ###
-# # ### Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed ###
+The next 3 resources ceate a Private Service Access Subnet for Production VPC and configures route import/export"
+Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed
+
+
 ```hcl
 resource "google_compute_global_address" "prod_psa_address" {
   name          = "prod-psconnect-ips"
@@ -394,9 +393,8 @@ resource "google_compute_network_peering_routes_config" "prod_psa_route_export" 
 }
 ```
 
-# # #####################################
-# # ### VPC CONNECTOR FOR PROD VPC ###
-# # #####################################
+
+VPC CONNECTOR FOR PROD VPC
 
 ```hcl
 resource "google_vpc_access_connector" "vpcconn-prod" {
@@ -409,7 +407,9 @@ resource "google_vpc_access_connector" "vpcconn-prod" {
 }
 ```
 
-### Cloud NAT for prod VPC us-east5 ###
+
+Cloud NAT for prod VPC us-east5
+
 ```hcl
 module "cloud-nat-prod" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -423,9 +423,8 @@ module "cloud-nat-prod" {
 }
 ```
 
-# # #####################################
-# # ###       FIREWALL POLICIES       ###
-# # #####################################
+
+FIREWALL POLICIES
 
 ```hcl
 module "firewall_policy" {
@@ -436,17 +435,6 @@ module "firewall_policy" {
   target_vpcs = [module.preprod_vpc_shared_vpc_host.network_id, module.prod_vpc_shared_vpc_host.network_id]
 
   rules = [
-    # {
-    #   priority       = "1000"
-    #   direction      = "EGRESS"
-    #   action         = "deny"
-    #   rule_name      = "default-egress-deny-all"
-    #   description    = "Block all default outgoing traffic from the VPC"
-    #   enable_logging = true
-    #   match = {
-    #     dest_ip_ranges = ["0.0.0.0/0"]
-    #   }
-    # },
     {
       priority       = "800"
       direction      = "INGRESS"

@@ -16,7 +16,7 @@ data "google_folders" "prj_folders" {
 
 ```hcl
 locals {
-  child_folders = [for folder in data.google_folders.my_prj_folders.folders : folder]
+  child_folders = [for folder in data.google_folders.prj_folders.folders : folder]
   groups        = ["developers", "devops", "admins"]
   folder_group_combinations = flatten([
     for folder in local.child_folders : [
