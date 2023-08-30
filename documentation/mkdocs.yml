@@ -1,5 +1,5 @@
 site_name: Secure Landing Zone in GCP
-repo_url: https://github.com/Lapeyus/GCP-SLZ
+repo_url: https://github.com/66degrees/devops-ve-pod-1-slz
 
 nav:
   - Home: index.md
@@ -93,5 +93,5 @@ markdown_extensions:
 #   - codehilite
 #   - pymdownx.betterem
 
-extra_javascript:
-  - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js
+# extra_javascript:
+#   - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js
