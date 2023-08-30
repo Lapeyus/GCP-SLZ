@@ -70,6 +70,10 @@ jobs:
     - name: Install dependencies
       run: |
         pip install pyhcl graphviz mkdocs-graphviz
+    - run: pip install mkdocs
+    - run: pip install mkdocs-material
+    - run: pip install mkdocs-macros-plugin
+    - run: pip install mkdocs-graphviz  # <-- Add this line
 
     - name: Configure Git
       run: |
@@ -100,6 +104,10 @@ jobs:
       - run: pip install mkdocs
       - run: pip install mkdocs-material
       - run: pip install mkdocs-macros-plugin
+      - run: pip install mkdocs
+      - run: pip install mkdocs-material
+      - run: pip install mkdocs-macros-plugin
+      - run: pip install mkdocs-graphviz
       - run: mkdocs gh-deploy --config-file documentation/mkdocs.yml  --force --clean --verbose
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
