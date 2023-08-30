@@ -32,7 +32,7 @@ jobs:
           output-file: './documentation/docs/tfdocs.md'
           output-method: 'replace'
           git-push: 'true'
-          recursive: 'true'
+          recursive: 'false'
   doxygenate:
     name: 'Custom documentation as code'
     runs-on: ubuntu-latest
