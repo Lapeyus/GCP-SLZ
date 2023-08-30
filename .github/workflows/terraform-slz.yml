@@ -4,18 +4,14 @@ on:
     push:
       paths:
         - 'terraform/**'
-      paths-ignore:
-        - 'terraform/**/*.md'
       branches:
         - '*'
     pull_request:
       paths:
         - 'terraform/**'
-      paths-ignore:
-        - 'terraform/**/*.md'
       branches:
         - '*'
-    workflow_dispatch:
+    workflow_dispatch:  
 
 concurrency:
   group: unique-execution
