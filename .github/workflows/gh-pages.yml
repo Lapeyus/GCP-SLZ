@@ -28,12 +28,12 @@ jobs:
       - name: Render terraform docs inside the tfdocs.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1.0.0
         with:
-          working-dir: './terraform'
+          working-dir: '.'
           output-file: './documentation/docs/tfdocs.md'
           output-method: 'replace'
           git-push: 'true'
           recursive: 'true'
-          recursive-path: '.'
+          recursive-path: './terraform'
   doxygenate:
     name: 'Custom documentation as code'
     runs-on: ubuntu-latest
