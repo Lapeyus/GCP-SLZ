@@ -33,7 +33,7 @@ jobs:
           output-method: 'replace'
           git-push: 'true'
           recursive: 'true'
-          recursive-path: './terraform'
+          recursive-path: '.'
   doxygenate:
     name: 'Custom documentation as code'
     runs-on: ubuntu-latest
