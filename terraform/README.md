@@ -19,12 +19,6 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_owner_curated_projects"></a> [owner\_curated\_projects](#module\_owner\_curated\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
-| <a name="module_owner_curated_projects_tf_state"></a> [owner\_curated\_projects\_tf\_state](#module\_owner\_curated\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
-| <a name="module_owner_projecta_projects"></a> [owner\_projecta\_projects](#module\_owner\_projecta\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
-| <a name="module_owner_projecta_projects_tf_state"></a> [owner\_projecta\_projects\_tf\_state](#module\_owner\_projecta\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
-| <a name="module_owner_trans_projects"></a> [owner\_trans\_projects](#module\_owner\_trans\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
-| <a name="module_owner_trans_projects_tf_state"></a> [owner\_trans\_projects\_tf\_state](#module\_owner\_trans\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_audit-admins"></a> [audit-admins](#module\_audit-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
 | <a name="module_audit_admins"></a> [audit\_admins](#module\_audit\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_billing_project"></a> [billing\_project](#module\_billing\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
@@ -34,7 +28,6 @@
 | <a name="module_cicd_tf_state"></a> [cicd\_tf\_state](#module\_cicd\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_cloud-nat"></a> [cloud-nat](#module\_cloud-nat) | terraform-google-modules/cloud-nat/google | 4.0.0 |
 | <a name="module_cloud-nat-prod"></a> [cloud-nat-prod](#module\_cloud-nat-prod) | terraform-google-modules/cloud-nat/google | 4.0.0 |
-| <a name="module_curated_folders"></a> [curated\_folders](#module\_curated\_folders) | ../modules/google_folder | n/a |
 | <a name="module_disable_guest_attributes"></a> [disable\_guest\_attributes](#module\_disable\_guest\_attributes) | ../modules/org-policy | n/a |
 | <a name="module_disable_service_account_key_creation"></a> [disable\_service\_account\_key\_creation](#module\_disable\_service\_account\_key\_creation) | ../modules/org-policy | n/a |
 | <a name="module_disable_service_account_key_upload"></a> [disable\_service\_account\_key\_upload](#module\_disable\_service\_account\_key\_upload) | ../modules/org-policy | n/a |
@@ -46,15 +39,23 @@
 | <a name="module_folders"></a> [folders](#module\_folders) | ../modules/google_folder | n/a |
 | <a name="module_gcp-admins"></a> [gcp-admins](#module\_gcp-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_gcp_admins"></a> [gcp\_admins](#module\_gcp\_admins) | terraform-google-modules/group/google | 0.4.0 |
-| <a name="module_projecta_folders"></a> [projecta\_folders](#module\_projecta\_folders) | ../modules/google_folder | n/a |
 | <a name="module_network-admins"></a> [network-admins](#module\_network-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
 | <a name="module_network_admins"></a> [network\_admins](#module\_network\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_org_seed_project"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
+| <a name="module_owner_projecta_projects"></a> [owner\_projecta\_projects](#module\_owner\_projecta\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
+| <a name="module_owner_projecta_projects_tf_state"></a> [owner\_projecta\_projects\_tf\_state](#module\_owner\_projecta\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
+| <a name="module_owner_projectb_projects_tf_state"></a> [owner\_projectb\_projects\_tf\_state](#module\_owner\_projectb\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
+| <a name="module_owner_projectbated_projects"></a> [owner\_projectbated\_projects](#module\_owner\_projectbated\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
+| <a name="module_owner_projectc_projects"></a> [owner\_projectc\_projects](#module\_owner\_projectc\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
+| <a name="module_owner_projectc_projects_tf_state"></a> [owner\_projectc\_projects\_tf\_state](#module\_owner\_projectc\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_preprod_vpc_shared_vpc_host"></a> [preprod\_vpc\_shared\_vpc\_host](#module\_preprod\_vpc\_shared\_vpc\_host) | terraform-google-modules/network/google | 6.0.1 |
 | <a name="module_prod_vpc_shared_vpc_host"></a> [prod\_vpc\_shared\_vpc\_host](#module\_prod\_vpc\_shared\_vpc\_host) | terraform-google-modules/network/google | 7.3.0 |
 | <a name="module_project-admins"></a> [project-admins](#module\_project-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
 | <a name="module_project_admins"></a> [project\_admins](#module\_project\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_project_groups"></a> [project\_groups](#module\_project\_groups) | terraform-google-modules/group/google | 0.4.0 |
+| <a name="module_projecta_folders"></a> [projecta\_folders](#module\_projecta\_folders) | ../modules/google_folder | n/a |
+| <a name="module_projectb_folders"></a> [projectb\_folders](#module\_projectb\_folders) | ../modules/google_folder | n/a |
+| <a name="module_projectc_folders"></a> [projectc\_folders](#module\_projectc\_folders) | ../modules/google_folder | n/a |
 | <a name="module_require_os_login"></a> [require\_os\_login](#module\_require\_os\_login) | ../modules/org-policy | n/a |
 | <a name="module_restrict_public_ip_cloudsql"></a> [restrict\_public\_ip\_cloudsql](#module\_restrict\_public\_ip\_cloudsql) | ../modules/org-policy | n/a |
 | <a name="module_restrict_shared_vpc_project_lien"></a> [restrict\_shared\_vpc\_project\_lien](#module\_restrict\_shared\_vpc\_project\_lien) | ../modules/org-policy | n/a |
@@ -65,10 +66,9 @@
 | <a name="module_security_admins"></a> [security\_admins](#module\_security\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_shared_vpc_host_project"></a> [shared\_vpc\_host\_project](#module\_shared\_vpc\_host\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_skip_default_network"></a> [skip\_default\_network](#module\_skip\_default\_network) | ../modules/org-policy | n/a |
-| <a name="module_terraform_sa_organization_iam_bindings"></a> [terraform\_sa\_organization\_iam\_bindings](#module\_terraform\_sa\_organization\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
-| <a name="module_terraform_sa_project_iam_bindings"></a> [terraform\_sa\_project\_iam\_bindings](#module\_terraform\_sa\_project\_iam\_bindings) | terraform-google-modules/iam/google//modules/projects_iam | 7.6.0 |
+| <a name="module_tf_seed_sa_organization_iam_bindings"></a> [tf\_seed\_sa\_organization\_iam\_bindings](#module\_tf\_seed\_sa\_organization\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
+| <a name="module_tf_seed_sa_project_iam_bindings"></a> [tf\_seed\_sa\_project\_iam\_bindings](#module\_tf\_seed\_sa\_project\_iam\_bindings) | terraform-google-modules/iam/google//modules/projects_iam | 7.6.0 |
 | <a name="module_tf_state"></a> [tf\_state](#module\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
-| <a name="module_trans_folders"></a> [trans\_folders](#module\_trans\_folders) | ../modules/google_folder | n/a |
 | <a name="module_uniform_bucket_level_access"></a> [uniform\_bucket\_level\_access](#module\_uniform\_bucket\_level\_access) | ../modules/org-policy | n/a |
 
 ## Resources
@@ -83,32 +83,34 @@
 | [google_iam_workload_identity_pool_provider.gh_provider](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool_provider) | resource |
 | [google_pubsub_topic.preprod_budget](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/pubsub_topic) | resource |
 | [google_pubsub_topic.prod_budget](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/pubsub_topic) | resource |
-| [google_service_account.service_account](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account) | resource |
+| [google_service_account.tf_seed_sa](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account) | resource |
 | [google_service_account_iam_binding.workload_identity_binding](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_iam_binding) | resource |
+| [google_service_account_key.account_key](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_key) | resource |
 | [google_service_networking_connection.preprod_psa_connection](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_networking_connection) | resource |
 | [google_service_networking_connection.prod_psa_connection](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_networking_connection) | resource |
 | [google_vpc_access_connector.vpcconn-preprod](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/vpc_access_connector) | resource |
 | [google_vpc_access_connector.vpcconn-prod](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/vpc_access_connector) | resource |
 | [random_string.suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
-| [google_folders.my_prj_folders](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/data-sources/folders) | data source |
+| [google_folders.prj_folders](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/data-sources/folders) | data source |
 | [google_organization.org](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/data-sources/organization) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_activate_apis"></a> [activate\_apis](#input\_activate\_apis) | n/a | `map(list(string))` | <pre>{<br>  "owner-Cur": [<br>    "compute.googleapis.com",<br>    "bigquery.googleapis.com"<br>  ],<br>  "owner-projecta": [<br>    "compute.googleapis.com",<br>    "run.googleapis.com"<br>  ],<br>  "owner-Trans": [<br>    "compute.googleapis.com",<br>    "bigquery.googleapis.com",<br>    "composer.googleapis.com",<br>    "container.googleapis.com",<br>    "secretmanager.googleapis.com",<br>    "dataform.googleapis.com"<br>  ],<br>  "Billing": [<br>    "compute.googleapis.com",<br>    "cloudresourcemanager.googleapis.com",<br>    "pubsub.googleapis.com",<br>    "billingbudgets.googleapis.com"<br>  ],<br>  "CICD": [<br>    "cloudbuild.googleapis.com",<br>    "artifactregistry.googleapis.com"<br>  ],<br>  "Network": [<br>    "servicenetworking.googleapis.com",<br>    "compute.googleapis.com",<br>    "vpcaccess.googleapis.com",<br>    "container.googleapis.com"<br>  ],<br>  "seed": [<br>    "cloudidentity.googleapis.com",<br>    "orgpolicy.googleapis.com",<br>    "servicenetworking.googleapis.com",<br>    "cloudbilling.googleapis.com",<br>    "cloudresourcemanager.googleapis.com",<br>    "serviceusage.googleapis.com",<br>    "iam.googleapis.com",<br>    "iamcredentials.googleapis.com",<br>    "securitycenter.googleapis.com",<br>    "billingbudgets.googleapis.com",<br>    "pubsub.googleapis.com",<br>    "vpcaccess.googleapis.com",<br>    "compute.googleapis.com"<br>  ]<br>}</pre> | no |
+| <a name="input_activate_apis"></a> [activate\_apis](#input\_activate\_apis) | n/a | `map(list(string))` | <pre>{<br>  "Billing": [<br>    "compute.googleapis.com",<br>    "cloudresourcemanager.googleapis.com",<br>    "pubsub.googleapis.com",<br>    "billingbudgets.googleapis.com"<br>  ],<br>  "CICD": [<br>    "cloudbuild.googleapis.com",<br>    "artifactregistry.googleapis.com"<br>  ],<br>  "Network": [<br>    "servicenetworking.googleapis.com",<br>    "compute.googleapis.com",<br>    "vpcaccess.googleapis.com",<br>    "container.googleapis.com"<br>  ],<br>  "projecta": [<br>    "compute.googleapis.com",<br>    "run.googleapis.com"<br>  ],<br>  "projectb": [<br>    "compute.googleapis.com",<br>    "bigquery.googleapis.com"<br>  ],<br>  "projectc": [<br>    "compute.googleapis.com",<br>    "bigquery.googleapis.com",<br>    "composer.googleapis.com",<br>    "container.googleapis.com",<br>    "secretmanager.googleapis.com",<br>    "dataform.googleapis.com"<br>  ],<br>  "seed": [<br>    "cloudidentity.googleapis.com",<br>    "orgpolicy.googleapis.com",<br>    "servicenetworking.googleapis.com",<br>    "cloudbilling.googleapis.com",<br>    "cloudresourcemanager.googleapis.com",<br>    "serviceusage.googleapis.com",<br>    "iam.googleapis.com",<br>    "iamcredentials.googleapis.com",<br>    "seprojectbitycenter.googleapis.com",<br>    "billingbudgets.googleapis.com",<br>    "pubsub.googleapis.com",<br>    "vpcaccess.googleapis.com",<br>    "compute.googleapis.com"<br>  ]<br>}</pre> | no |
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | n/a | `string` | `"012F00-93BFC2-44CBB0"` | no |
 | <a name="input_org_id"></a> [org\_id](#input\_org\_id) | n/a | `string` | `"137946739361"` | no |
+| <a name="input_owner"></a> [owner](#input\_owner) | n/a | `string` | `"client-name"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_owner_project_groups"></a> [owner\_project\_groups](#output\_owner\_project\_groups) | The GCP groups associated with each owner project. |
-| <a name="output_owner_projects"></a> [owner\_projects](#output\_owner\_projects) | A merged map of all owner projects: projecta, curated, and trans projects. All properties |
 | <a name="output_org_cicd_project"></a> [org\_cicd\_project](#output\_org\_cicd\_project) | The organization's CI/CD project module. All properties |
 | <a name="output_org_seed_project"></a> [org\_seed\_project](#output\_org\_seed\_project) | The seeded organization project module. All properties |
+| <a name="output_owner_project_groups"></a> [owner\_project\_groups](#output\_owner\_project\_groups) | The GCP groups associated with each owner project. |
+| <a name="output_owner_projects"></a> [owner\_projects](#output\_owner\_projects) | A merged map of all owner projects: projecta, curated, and trans projects. All properties |
 | <a name="output_preprod_vpc_shared_vpc_host"></a> [preprod\_vpc\_shared\_vpc\_host](#output\_preprod\_vpc\_shared\_vpc\_host) | The shared VPC for the pre-production environment. All properties |
 | <a name="output_prod_vpc_shared_vpc_host"></a> [prod\_vpc\_shared\_vpc\_host](#output\_prod\_vpc\_shared\_vpc\_host) | The shared VPC for the production environment. All properties |
 | <a name="output_shared_vpc_project"></a> [shared\_vpc\_project](#output\_shared\_vpc\_project) | The shared VPC host project module. All properties |
