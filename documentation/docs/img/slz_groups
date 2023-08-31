@@ -4,19 +4,19 @@ digraph "SLZ groups" {
 	edge [color="#7B8894"]
 	subgraph cluster_Organization {
 		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=Organization labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
-		f40e58b4ae5444c0845732537f667b6b [label="organizations/${var.org_id}" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"76b58aa13b88426fb8d2c5dacc5082f9" [label="organizations/${var.org_id}" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
 	}
-	f40e58b4ae5444c0845732537f667b6b -> "22cb4f3d40324a2fbafeda9708704271" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	f40e58b4ae5444c0845732537f667b6b -> e3ed27af13f5465a8aefe57c38ec1313 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	f40e58b4ae5444c0845732537f667b6b -> e1bb7d732c6a444c820bb247f24fa370 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	f40e58b4ae5444c0845732537f667b6b -> "5b61dc545e644f5194383da6ac4468a9" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
-	f40e58b4ae5444c0845732537f667b6b -> "5ed3b44c8b2641e3badfd3cda49f997d" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"76b58aa13b88426fb8d2c5dacc5082f9" -> f103d3b386f64f2883a631799319568d [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"76b58aa13b88426fb8d2c5dacc5082f9" -> efbcae5986fa4871afe6878358ffd06e [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"76b58aa13b88426fb8d2c5dacc5082f9" -> "1f7ce713498841c8b0e1872c37640912" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"76b58aa13b88426fb8d2c5dacc5082f9" -> "8f1c1f38eae948d4a24f0ab5bd85e6c3" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"76b58aa13b88426fb8d2c5dacc5082f9" -> "486aa27596624ec5bd51f63d0e05829b" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
 	subgraph "cluster_SLZ Groups" {
 		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="SLZ Groups" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
-		"22cb4f3d40324a2fbafeda9708704271" [label="GCP Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
-		e3ed27af13f5465a8aefe57c38ec1313 [label="GCP Security Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
-		e1bb7d732c6a444c820bb247f24fa370 [label="GCP Network Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
-		"5b61dc545e644f5194383da6ac4468a9" [label="GCP Audit Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
-		"5ed3b44c8b2641e3badfd3cda49f997d" [label="GCP Project Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		f103d3b386f64f2883a631799319568d [label="GCP Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		efbcae5986fa4871afe6878358ffd06e [label="GCP Security Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"1f7ce713498841c8b0e1872c37640912" [label="GCP Network Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"8f1c1f38eae948d4a24f0ab5bd85e6c3" [label="GCP Audit Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"486aa27596624ec5bd51f63d0e05829b" [label="GCP Project Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
 	}
 }
