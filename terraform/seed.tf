@@ -37,13 +37,15 @@ resource "google_service_account" "tf_seed_sa" {
   account_id   = "tf_seed_sa"
   display_name = "Terraform Service Account"
   project      = module.org_seed_project.project_id
+  depends_on = [ module.org_seed_project ]
 }
 /* 
 ## Resource: Google Service Account Key
 This Terraform code generates a new private key for the `tf_seed_sa` Google Cloud Service Account and stores it in `google_service_account_key` named `account_key`.
 */
 resource "google_service_account_key" "account_key" {
-  service_account_id = google_service_account.service_account.name
+  service_account_id = google_service_account.tf_seed_sa.name
+  depends_on = [ google_service_account.tf_seed_sa ]
 }
 /* 
 ## Module: Terraform Service Account Org IAM Bindings
@@ -83,6 +85,7 @@ module "tf_seed_sa_organization_iam_bindings" {
     "roles/billing.user"                      = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
     "roles/iam.serviceAccountAdmin"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
   }
+  depends_on = [ google_service_account.tf_seed_sa ]
 }
 /* 
 ## Module: Terraform Service Account Project IAM Bindings
@@ -123,6 +126,7 @@ module "tf_seed_sa_project_iam_bindings" {
     "roles/storage.objectViewer"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
     "roles/storage.admin"                  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
   }
+  depends_on = [ google_service_account.tf_seed_sa ]
 }
 
 /* 
@@ -132,13 +136,14 @@ This Terraform code creates a new Google Cloud IAM Workload Identity Pool with t
 resource "google_iam_workload_identity_pool" "idp_pool" {
   workload_identity_pool_id = "github-terraformer"
   project                   = module.org_seed_project.project_id
+  depends_on = [ module.module.org_seed_project ]
 }
 /* 
 ## Resource: Google IAM Workload Identity Pool Provider
 This Terraform code creates a new Google Cloud IAM Workload Identity Pool Provider for the identity pool `github-terraformer`, and configures it with an empty list of allowed audiences, an Github issuer URI, and attribute mappings for OIDC (OpenID Connect).
 */
 resource "google_iam_workload_identity_pool_provider" "gh_provider" {
-  workload_identity_pool_id          = "github-terraformer"
+  workload_identity_pool_id          = google_iam_workload_identity_pool.idp_pool.id
   workload_identity_pool_provider_id = "gh-actions"
   display_name                       = "gh-actions"
   oidc {
@@ -150,6 +155,7 @@ resource "google_iam_workload_identity_pool_provider" "gh_provider" {
     "attribute.actor"      = "assertion.actor"
     "attribute.repository" = "assertion.repository"
   }
+  depends_on = [ google_iam_workload_identity_pool.idp_pool ]
 }
 
 /* 
@@ -173,4 +179,5 @@ resource "google_service_account_iam_binding" "workload_identity_binding" {
     # A: "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository_${var.owner}/${var.owner}-Power",
     # B: "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
   ]
+  depends_on = [ google_iam_workload_identity_pool.idp_pool ]
 }

@@ -1,0 +1,31 @@
+digraph G {
+	node [shape=folder style=filled]
+	Core
+	Billing
+	Core -> Billing
+	Core
+	"Logging-Monitoring"
+	Core -> "Logging-Monitoring"
+	Core
+	Security
+	Core -> Security
+	Core
+	Network
+	Core -> Network
+	Shared
+	"Shared-Prod"
+	Shared -> "Shared-Prod"
+	Shared
+	"Shared-NonProd"
+	Shared -> "Shared-NonProd"
+	"organizations/${var.org_id}" [shape=house]
+	Core
+	"organizations/${var.org_id}" -> Core
+	"organizations/${var.org_id}" [shape=house]
+	Shared
+	"organizations/${var.org_id}" -> Shared
+	"organizations/${var.org_id}" [shape=house]
+	BussinesUnits
+	"organizations/${var.org_id}" -> BussinesUnits
+	rankdir=TB size="10,10"
+}

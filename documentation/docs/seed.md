@@ -54,6 +54,24 @@ graph TD
   G --> H[End]
 ```
 
+``` mermaid
+{% include './img/seed.mmd' %}
+```
+---
+
+
+``` mermaid
+graph TD;
+    google_service_account.tf_seed_sa --> org_seed_project;
+    google_service_account_key.account_key --> google_service_account.tf_seed_sa;  
+    tf_seed_sa_organization_iam_bindings  --> google_service_account.tf_seed_sa;
+    tf_seed_sa_project_iam_bindings  --> google_service_account.tf_seed_sa;
+    google_iam_workload_identity_pool.idp_pool --> org_seed_project;
+    google_iam_workload_identity_pool_provider.gh_provider --> google_iam_workload_identity_pool.idp_pool;
+    google_service_account_iam_binding.workload_identity_binding --> google_service_account.tf_seed_sa;
+
+```
+
 1. **Project Creation**: Setup a GCP project using the "terraform-google-modules/
 2. **Activation of APIs**: Flatten and set the required APIs.
 project-factory/google" module.

@@ -1,0 +1,10 @@
+graph BT;
+    Billing --> Core;
+    Logging-Monitoring --> Core;
+    Security --> Core;
+    Network --> Core;
+    Shared-Prod --> Shared;
+    Shared-NonProd --> Shared;
+    Core --> organizations/${var.org_id};
+    Shared --> organizations/${var.org_id};
+    BussinesUnits --> organizations/${var.org_id};
