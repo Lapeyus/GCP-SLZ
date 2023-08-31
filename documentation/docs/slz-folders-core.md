@@ -21,8 +21,6 @@ The design emphasizes security by:
 # SLZ Folder hierarchy
 
 
-<!-- ![image info](./img/slz-folders-core.png) -->
-
 ```mermaid
 {% include './img/slz-folders-core.mmd' %}
 ```
