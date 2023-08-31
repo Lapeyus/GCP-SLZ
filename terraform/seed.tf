@@ -16,7 +16,7 @@ This Terraform module, `org_seed_project`, is used to create a Google Cloud Proj
 */
 module "org_seed_project" {
   source                  = "terraform-google-modules/project-factory/google"
-  version                 = "14.2.0"
+  version                 = "14.3.0"
   random_project_id       = "false"
   default_service_account = "delete"
   create_project_sa       = false
