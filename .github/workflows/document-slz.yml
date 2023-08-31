@@ -85,10 +85,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
-
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz  # Add this line
+  
       - name: Install and Deploy Mkdocs
         run: |
-          pip install mkdocs mkdocs-material mkdocs-macros-plugin graphviz mkdocs-graphviz
+          pip install mkdocs mkdocs-material mkdocs-macros-plugin graphviz pymdown-extensions mkdocs-graphviz
           mkdocs gh-deploy --config-file documentation/mkdocs.yml --force --clean --verbose
 
       - name: Upload Artifact and Deploy Pages
