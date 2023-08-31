@@ -21,7 +21,7 @@ The design emphasizes security by:
 # SLZ Folder hierarchy
 
 !!! example "SLZ Folders"
-    ![image info](./img/gcp_folders.png)
+    ![image info](./img/slz-folders-core.png)
 ---
 # Code
 
