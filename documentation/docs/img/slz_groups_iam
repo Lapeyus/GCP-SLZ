@@ -1,0 +1,61 @@
+digraph "SLZ groups IAM" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="SLZ groups IAM" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"654a5f12387747fcbb23cb933e497869" -> "715c357f35b44a94981c0fbe8ec48641" [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"715c357f35b44a94981c0fbe8ec48641" -> "7030eaa25143448d88d9665d6d30c586" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"654a5f12387747fcbb23cb933e497869" -> "9b2e55c6316244d78d66196cb36f9636" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"654a5f12387747fcbb23cb933e497869" -> "99e4937c9b5e495385b09a50f15d917c" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	af5c6f998aaa47179b15a4fef68469a1 -> "715c357f35b44a94981c0fbe8ec48641" [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"715c357f35b44a94981c0fbe8ec48641" -> "72e9fc52ba684c14b77be780ec1a798d" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f520bc1df9cf454883f472c8ceebcb47 -> ff06d13ff5c3460f96afa62603a8c384 [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f520bc1df9cf454883f472c8ceebcb47 -> "7f1b7705fd6e49a297e63ff1d72d6f04" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"2582909e12734a4992732b088c6af459" -> ae016a25414044c9b17661e6dc11f65a [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"2582909e12734a4992732b088c6af459" -> c8f68ac0d2b44b6c8c7e06bc9d174a4f [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a2e24f221d6e431b80d7e2e35d1d55f1 -> "715c357f35b44a94981c0fbe8ec48641" [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a2e24f221d6e431b80d7e2e35d1d55f1 -> "47bfabdf770d444bb4ec5ce306ab74c6" [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"715c357f35b44a94981c0fbe8ec48641" -> b998e26b034340d48ec708cff7c68303 [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"47bfabdf770d444bb4ec5ce306ab74c6" -> b998e26b034340d48ec708cff7c68303 [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a2e24f221d6e431b80d7e2e35d1d55f1 -> ae721ab297684e0bb983690faac1c708 [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a2e24f221d6e431b80d7e2e35d1d55f1 -> "5bfd2fe920374c07bacc6b800d16669c" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a2e24f221d6e431b80d7e2e35d1d55f1 -> "6ef0869bd2d948719e4ca48a11b1c3d7" [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	a2e24f221d6e431b80d7e2e35d1d55f1 -> cc3f0a3841b84ad4be0e2e5032782c24 [dir=back fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph cluster_Organization {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=Organization labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"715c357f35b44a94981c0fbe8ec48641" [label=Organization height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/resource-manager.png" shape=none]
+		subgraph "cluster_GCP Admins" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="GCP Admins" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"654a5f12387747fcbb23cb933e497869" [label=Group height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"7030eaa25143448d88d9665d6d30c586" [label="Organization Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"9b2e55c6316244d78d66196cb36f9636" [label="Security Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"99e4937c9b5e495385b09a50f15d917c" [label="Billing Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		}
+		subgraph "cluster_Security Admins" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Security Admins" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			af5c6f998aaa47179b15a4fef68469a1 [label=Group height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"72e9fc52ba684c14b77be780ec1a798d" [label="Security Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		}
+		subgraph "cluster_Network Admins" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Network Admins" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			f520bc1df9cf454883f472c8ceebcb47 [label=Group height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			ff06d13ff5c3460f96afa62603a8c384 [label="Network Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/compute/compute-engine.png" shape=none]
+			"7f1b7705fd6e49a297e63ff1d72d6f04" [label="VPC Access Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/network/virtual-private-cloud.png" shape=none]
+		}
+		subgraph "cluster_Audit Admins" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Audit Admins" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"2582909e12734a4992732b088c6af459" [label=Group height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			ae016a25414044c9b17661e6dc11f65a [label="Security Reviewer" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			c8f68ac0d2b44b6c8c7e06bc9d174a4f [label="Logging Viewer" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/storage/filestore.png" shape=none]
+		}
+		subgraph "cluster_Project Admins" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Project Admins" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			a2e24f221d6e431b80d7e2e35d1d55f1 [label=Group height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"47bfabdf770d444bb4ec5ce306ab74c6" [label="Service Account" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			b998e26b034340d48ec708cff7c68303 [label=Editor height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			ae721ab297684e0bb983690faac1c708 [label="Service Account Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"5bfd2fe920374c07bacc6b800d16669c" [label="Service Account Token Creator" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+			"6ef0869bd2d948719e4ca48a11b1c3d7" [label="Artifact Registry Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/devtools/source-repositories.png" shape=none]
+			cc3f0a3841b84ad4be0e2e5032782c24 [label="Artifact Registry Repo Admin" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/devtools/source-repositories.png" shape=none]
+		}
+	}
+}

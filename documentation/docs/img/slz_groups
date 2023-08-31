@@ -1,0 +1,22 @@
+digraph "SLZ groups" {
+	graph [bgcolor=transparent fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="SLZ groups" nodesep=0.60 pad=2.0 rankdir=TB ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	subgraph cluster_Organization {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=Organization labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		f40e58b4ae5444c0845732537f667b6b [label="organizations/${var.org_id}" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+	}
+	f40e58b4ae5444c0845732537f667b6b -> "22cb4f3d40324a2fbafeda9708704271" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f40e58b4ae5444c0845732537f667b6b -> e3ed27af13f5465a8aefe57c38ec1313 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f40e58b4ae5444c0845732537f667b6b -> e1bb7d732c6a444c820bb247f24fa370 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f40e58b4ae5444c0845732537f667b6b -> "5b61dc545e644f5194383da6ac4468a9" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f40e58b4ae5444c0845732537f667b6b -> "5ed3b44c8b2641e3badfd3cda49f997d" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_SLZ Groups" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="SLZ Groups" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"22cb4f3d40324a2fbafeda9708704271" [label="GCP Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		e3ed27af13f5465a8aefe57c38ec1313 [label="GCP Security Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		e1bb7d732c6a444c820bb247f24fa370 [label="GCP Network Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"5b61dc545e644f5194383da6ac4468a9" [label="GCP Audit Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"5ed3b44c8b2641e3badfd3cda49f997d" [label="GCP Project Admins" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+	}
+}

@@ -1,0 +1,46 @@
+digraph "seed project" {
+	graph [bgcolor=transparent fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="seed project" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	subgraph "cluster_Organization Level" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Organization Level" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"7da8967a1df749e2836a52dee0b89408" [label="Seed Project" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/devtools/code.png" shape=none]
+	}
+	subgraph cluster_APIs {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=APIs labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		d75e912678194590a92f2f9a1c4bc661 [label="Activated APIs" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/analytics/bigquery.png" shape=none]
+	}
+	subgraph "cluster_Project Level Resources" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Project Level Resources" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		fb4aab3003814e02ac247d39ea15ad7d [label="GCP Project" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/compute/app-engine.png" shape=none]
+	}
+	subgraph "cluster_Service Account" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Service Account" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"7805f131848749a8960c0afa7c0101fe" [label="Terraform SA" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		a89b274ef05546538a33c45043052ab6 [label="Service Account Key" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+	}
+	subgraph "cluster_IAM Roles" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="IAM Roles" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		cb383d08702e44129e639c1566e9e920 [label="Org Bindings" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"394427f1f3ec4cf8bf17744258acdf1d" [label="Project Bindings" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+	}
+	subgraph "cluster_Workload Identity" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Workload Identity" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"76b2e758cb31459e9225ac77b0a0b71a" [label="Identity Pool" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+		"3fdb24a5548f41558acea37b83948a48" [label="Pool Provider" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+	}
+	subgraph "cluster_Service Account IAM Binding" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Service Account IAM Binding" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"68f8030f6cd1465b84b596914b047e00" [label="Workload Identity Binding" height=1.9 image="/opt/homebrew/lib/python3.11/site-packages/resources/gcp/security/iam.png" shape=none]
+	}
+	"7da8967a1df749e2836a52dee0b89408" -> d75e912678194590a92f2f9a1c4bc661 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7da8967a1df749e2836a52dee0b89408" -> fb4aab3003814e02ac247d39ea15ad7d [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	fb4aab3003814e02ac247d39ea15ad7d -> "7805f131848749a8960c0afa7c0101fe" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7805f131848749a8960c0afa7c0101fe" -> a89b274ef05546538a33c45043052ab6 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7805f131848749a8960c0afa7c0101fe" -> cb383d08702e44129e639c1566e9e920 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7805f131848749a8960c0afa7c0101fe" -> "394427f1f3ec4cf8bf17744258acdf1d" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	fb4aab3003814e02ac247d39ea15ad7d -> "76b2e758cb31459e9225ac77b0a0b71a" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"76b2e758cb31459e9225ac77b0a0b71a" -> "3fdb24a5548f41558acea37b83948a48" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"3fdb24a5548f41558acea37b83948a48" -> "68f8030f6cd1465b84b596914b047e00" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"7805f131848749a8960c0afa7c0101fe" -> "68f8030f6cd1465b84b596914b047e00" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
