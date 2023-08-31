@@ -7,7 +7,7 @@ nav:
       - The Seed Project: seed.md
       - Folders Core: slz-folders-core.md
       - Groups: slz-groups.md
-      - IAM Groups: slz-groups-iam.md
+      - Groups IAM: slz-groups-iam.md
       - Organizational Policies: slz-org-policy.md
       - Billing Projects: slz-projects-billing.md
       - CI/CD Projects: slz-projects-cicd.md
@@ -55,6 +55,9 @@ theme:
 
 
 plugins:
+  - diagrams:
+      file_extension: ".diagrams.py"
+      max_workers: 5
   - search
   - macros
 

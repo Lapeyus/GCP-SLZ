@@ -20,12 +20,9 @@ The design emphasizes security by:
     
 # SLZ Folder hierarchy
 
-
-```mermaid
-{% include './img/slz-folders-core.mmd' %}
-```
+!!! example "SLZ Folders"
+    ![image info](./img/gcp_folders.png)
 ---
-
 # Code
 
 {% include 'slz-folders-core.code' %}

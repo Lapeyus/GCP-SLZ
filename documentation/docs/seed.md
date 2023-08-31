@@ -43,11 +43,9 @@ The seed project is crucial because it lays the foundation for all your future p
 - Terraform installed on the local machine.
 
 
+!!! example "A Seed Project"
+    ![image info](./img/seed.png)
 
----
-```mermaid
-{% include './img/seed.mmd' %}
-```
 ---
 
 
