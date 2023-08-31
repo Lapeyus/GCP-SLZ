@@ -59,4 +59,4 @@ This configuration is aligned with the specific Service Level Zones requirements
 
 # Code
 
-{% include 'slz-projects-billing.code' %}
+{% include 'code/slz-projects-billing.code' %}

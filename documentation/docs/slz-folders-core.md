@@ -25,4 +25,4 @@ The design emphasizes security by:
 ---
 # Code
 
-{% include 'slz-folders-core.code' %}
+{% include 'code/slz-folders-core.code' %}

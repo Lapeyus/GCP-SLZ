@@ -72,4 +72,4 @@ Apply this code to manage Altus ingest, curated, and transformation projects wit
 
 # Code
 
-{% include 'bu-projects.code' %}
+{% include 'code/bu-projects.code' %}

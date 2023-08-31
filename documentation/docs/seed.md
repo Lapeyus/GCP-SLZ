@@ -78,4 +78,4 @@ project-factory/google" module.
 
 # Code 📜
 
-{% include 'seed.code' %}
+{% include 'code/seed.code' %}

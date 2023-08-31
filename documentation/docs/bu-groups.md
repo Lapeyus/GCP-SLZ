@@ -62,4 +62,4 @@ Apply this code to manage folders and group permissions within your Google Cloud
 
 # Code
 
-{% include 'bu-groups.code' %}
+{% include 'code/bu-groups.code' %}

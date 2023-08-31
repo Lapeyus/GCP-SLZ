@@ -27,4 +27,4 @@ By carefully attaching the appropriate roles to administrative groups, this code
     ![image info](./img/slz_groups_iam.png)
 # Code
 
-{% include 'slz-groups-iam.code' %}
+{% include 'code/slz-groups-iam.code' %}

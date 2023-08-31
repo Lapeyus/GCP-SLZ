@@ -4,4 +4,4 @@
 
 # Code
 
-{% include 'slz-projects-log-monitor.code' %}
+{% include 'code/slz-projects-log-monitor.code' %}

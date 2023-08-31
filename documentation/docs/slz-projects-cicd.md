@@ -69,4 +69,4 @@ Include this module in your existing Terraform configuration and provide the nec
 
 # Code
 
-{% include 'slz-projects-cicd.code' %}
+{% include 'code/slz-projects-cicd.code' %}

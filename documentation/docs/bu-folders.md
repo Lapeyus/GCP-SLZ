@@ -30,4 +30,4 @@ module "proj_folders" {
 
 ## Code
 
-{% include 'bu-folders.code' %}
+{% include 'code/bu-folders.code' %}

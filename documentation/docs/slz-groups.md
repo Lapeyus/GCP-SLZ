@@ -23,4 +23,4 @@ The following are the key administrative groups designed to manage various aspec
 ---
 # Code
 
-{% include 'slz-groups.code' %}
+{% include 'code/slz-groups.code' %}

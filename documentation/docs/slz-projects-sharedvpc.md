@@ -72,4 +72,4 @@ This module aligns with the principles of the Service Landing Zone (SLZ) to prov
 
 # Code
 
-{% include 'slz-projects-sharedvpc.code' %}
+{% include 'code/slz-projects-sharedvpc.code' %}
