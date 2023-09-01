@@ -7,7 +7,7 @@
   - **Security**: Holds security-related configurations and policies.
   - **Network**: For managing network-related resources.
 - **Shared**: A folder hosting shared resources with subfolders for production and non-production environments.
-- **BussinesUnits**: Businnes Unit. this folder or folders holds all projects.
+- **BussinesUnits**: Businnes Unit attachment point. this folder is used to nest all Bussines Units that company has, a Bussines Unit holds project folders, a project has environment folders. see bu-folders.tf.
 
 ```hcl
 module "folders" {
