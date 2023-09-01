@@ -20,6 +20,7 @@ The following are the key administrative groups designed to manage various aspec
 
 !!! example "SLZ Groups"
     ![image info](./img/slz_groups.png)
+    [view here to view image full size](./img/slz_groups.png)
 ---
 # Code
 

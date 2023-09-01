@@ -5,12 +5,12 @@ variable "owner" {
 
 variable "org_id" {
   type    = string
-  default = "137946739361"
+  default = "12312312234345"
 }
 
 variable "billing_account" {
   type    = string
-  default = "012F00-93BFC2-44CBB0"
+  default = "012X00-93XXX2-44XXX0"
 }
 
 variable "activate_apis" {
