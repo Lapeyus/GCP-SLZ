@@ -192,7 +192,7 @@ module "preprod_vpc_shared_vpc_host" {
 }
 /*
 The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export" 
-Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed 
+Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addresses 
 */
 
 resource "google_compute_global_address" "preprod_psa_address" {

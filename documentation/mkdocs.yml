@@ -9,10 +9,10 @@ nav:
       - Groups: slz-groups.md
       - Groups IAM: slz-groups-iam.md
       - Organizational Policies: slz-org-policy.md
-      - Billing Projects: slz-projects-billing.md
-      - CI/CD Projects: slz-projects-cicd.md
-      - Shared VPC Projects: slz-projects-sharedvpc.md
-      - L&M: slz-projects-log-monitor.md
+      - Billing Project: slz-projects-billing.md
+      - CI/CD Project: slz-projects-cicd.md
+      - Shared VPC Project: slz-projects-sharedvpc.md
+      - Loggin & Monitoring : slz-projects-log-monitor.md
       - Terraform State Buckets: tfstate-buckets.md
       - FAQs: slz-faqs.md
   - Bussiness Unit Configurations:
@@ -27,8 +27,8 @@ nav:
 theme:
   name: 'material' # mkdocs, readthedocs material
   language: en
-  logo: img/logo.png
-  favicon: img/logo.png
+  logo: img/icons/66.png
+  favicon: img/icons/66.png
   font:
     text: Roboto
   # icon:

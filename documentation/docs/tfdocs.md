@@ -41,7 +41,7 @@
 | <a name="module_gcp_admins"></a> [gcp\_admins](#module\_gcp\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_network-admins"></a> [network-admins](#module\_network-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
 | <a name="module_network_admins"></a> [network\_admins](#module\_network\_admins) | terraform-google-modules/group/google | 0.4.0 |
-| <a name="module_org_seed_project"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
+| <a name="module_org_seed_project"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.3.0 |
 | <a name="module_owner_projecta_projects"></a> [owner\_projecta\_projects](#module\_owner\_projecta\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_owner_projecta_projects_tf_state"></a> [owner\_projecta\_projects\_tf\_state](#module\_owner\_projecta\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_owner_projectb_projects_tf_state"></a> [owner\_projectb\_projects\_tf\_state](#module\_owner\_projectb\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
