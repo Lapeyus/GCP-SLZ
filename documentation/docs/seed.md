@@ -45,23 +45,35 @@ The seed project is crucial because it lays the foundation for all your future p
 
 
 ---
+### Steps
 
+First define the APIs to be activated.
+The `module "org_seed_project"` sets up the project.
+The `resource "google_service_account"` creates the service account.
+IAM roles are managed through modules `"terraform_sa_organization_iam_bindings"` and `"terraform_sa_project_iam_bindings"`.
+Workload Identity Federation and binding are handled with specific resources.
 
-1. **Project Creation**: Setup a GCP project using the "terraform-google-modules/
-2. **Activation of APIs**: Flatten and set the required APIs.
+1. **Activation of APIs**: Flatten and set the required APIs.
 project-factory/google" module.
+    - `modify the values for tf-conf-variables.tf/activate_apis`
+
+2. **Project Creation**: Setup a GCP project using the "terraform-google-modules/
+
+    - `terraform apply -target=module.org_seed_project` 
+
 3. **Service Account Creation**: Define a service account used by Terraform.
+    - `terraform apply -target=google_service_account.tf_seed_sa` 
+
 4. **Roles Assignment**: Set up the roles for the Terraform service account on the organization and project levels.
+    - `terraform apply -target=module.tf_seed_organization_iam_bindings`
+    - `terraform apply -target=module.tf_seed_project_iam_bindings`  
 5. **Workload Identity Federation**: Setup Workload Identity Federation for GitHub actions.
-6. **Workload Identity Binding**: Apply the identity binding.
+    - `terraform apply -target=google_iam_workload_identity_pool.cicd_terraformer`  
+    - `terraform apply -target=google_iam_workload_identity_pool_provider.github`  
+6. **Workload Identity Binding**: Apply the workload identity binding.
+    - `terraform apply -target=google_service_account_iam_binding.workload_identity`
 
-### Logic 🧠
-
-- The `locals` block defines the APIs to be activated.
-- The `module "org_seed_project"` sets up the project.
-- The `resource "google_service_account"` creates the service account.
-- IAM roles are managed through modules `"terraform_sa_organization_iam_bindings"` and `"terraform_sa_project_iam_bindings"`.
-- Workload Identity Federation and binding are handled with specific resources.
+You are now ready to enable your CICD pipeline to create resources impersonating the terraform service account.
 
 ### Notes 📝
 

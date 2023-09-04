@@ -93,5 +93,5 @@ markdown_extensions:
 #   - codehilite
 #   - pymdownx.betterem
 
-extra_javascript:
-  - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js
+# extra_javascript:
+#   - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js

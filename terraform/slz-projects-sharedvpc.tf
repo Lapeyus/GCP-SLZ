@@ -385,7 +385,7 @@ resource "google_vpc_access_connector" "vpcconn-prod" {
 
 /*
 Cloud NAT for prod VPC us-east5 
-*/ 
+*/
 module "cloud-nat-prod" {
   source        = "terraform-google-modules/cloud-nat/google"
   version       = "4.0.0"

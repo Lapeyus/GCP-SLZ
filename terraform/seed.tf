@@ -31,21 +31,21 @@ module "org_seed_project" {
 }
 /* 
 ## Resource: Google Service Account
-This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `tf_seed_sa` in the project created by the `org_seed_project` module.
+This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `tf_seed` in the project created by the `org_seed_project` module.
 */
-resource "google_service_account" "tf_seed_sa" {
-  account_id   = "tf_seed_sa"
-  display_name = "Terraform Service Account"
+resource "google_service_account" "tf_seed" {
+  account_id   = "tf-seed"
+  display_name = "Terraform Seed Service Account"
   project      = module.org_seed_project.project_id
-  depends_on = [ module.org_seed_project ]
+  depends_on   = [module.org_seed_project]
 }
 /* 
-## Resource: Google Service Account Key
-This Terraform code generates a new private key for the `tf_seed_sa` Google Cloud Service Account and stores it in `google_service_account_key` named `account_key`.
+## Resource: Google Service Account Key [OPTIONAL][NOT RECOMENDED]
+This Terraform code generates a new private key for the `tf_seed` Google Cloud Service Account and stores it in `google_service_account_key` named `tf_seed`. 
 */
-resource "google_service_account_key" "account_key" {
-  service_account_id = google_service_account.tf_seed_sa.name
-  depends_on = [ google_service_account.tf_seed_sa ]
+resource "google_service_account_key" "tf_seed" {
+  service_account_id = google_service_account.tf_seed.name
+  depends_on         = [google_service_account.tf_seed]
 }
 /* 
 ## Module: Terraform Service Account Org IAM Bindings
@@ -70,22 +70,22 @@ allows the service account to view and manage billing information.
 7. `"roles/iam.serviceAccountAdmin"`: 
 grants administrative access to manage service accounts. 
 */
-module "tf_seed_sa_organization_iam_bindings" {
+module "tf_seed_organization_iam_bindings" {
   source        = "terraform-google-modules/iam/google//modules/organizations_iam"
   version       = "7.6.0"
   organizations = [var.org_id]
   mode          = "additive"
 
   bindings = {
-    "roles/resourcemanager.organizationAdmin" = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/resourcemanager.projectCreator"    = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/resourcemanager.folderAdmin"       = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/compute.xpnAdmin"                  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/serviceusage.serviceUsageAdmin"    = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/billing.user"                      = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/iam.serviceAccountAdmin"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+    "roles/resourcemanager.organizationAdmin" = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/resourcemanager.projectCreator"    = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/resourcemanager.folderAdmin"       = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/compute.xpnAdmin"                  = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/serviceusage.serviceUsageAdmin"    = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/billing.user"                      = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/iam.serviceAccountAdmin"           = ["serviceAccount:${google_service_account.tf_seed.email}"],
   }
-  depends_on = [ google_service_account.tf_seed_sa ]
+  depends_on = [google_service_account.tf_seed]
 }
 /* 
 ## Module: Terraform Service Account Project IAM Bindings
@@ -109,41 +109,41 @@ module "tf_seed_sa_organization_iam_bindings" {
 9. `"roles/storage.admin"`: It includes permissions to create, delete, and modify storage buckets and objects.
 
 */
-module "tf_seed_sa_project_iam_bindings" {
+module "tf_seed_project_iam_bindings" {
   source   = "terraform-google-modules/iam/google//modules/projects_iam"
   version  = "7.6.0"
   projects = [module.org_seed_project.project_id]
   mode     = "additive"
 
   bindings = {
-    "roles/serviceusage.serviceUsageAdmin" = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/iam.serviceAccountKeyAdmin"     = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/iam.serviceAccountAdmin"        = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/iam.serviceAccountTokenCreator" = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/iam.workloadIdentityUser"       = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/iam.workloadIdentityPoolAdmin"  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/storage.objectCreator"          = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/storage.objectViewer"           = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
-    "roles/storage.admin"                  = ["serviceAccount:${google_service_account.tf_seed_sa.email}"],
+    "roles/serviceusage.serviceUsageAdmin" = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/iam.serviceAccountKeyAdmin"     = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/iam.serviceAccountAdmin"        = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/iam.serviceAccountTokenCreator" = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/iam.workloadIdentityUser"       = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/iam.workloadIdentityPoolAdmin"  = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/storage.objectCreator"          = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/storage.objectViewer"           = ["serviceAccount:${google_service_account.tf_seed.email}"],
+    "roles/storage.admin"                  = ["serviceAccount:${google_service_account.tf_seed.email}"],
   }
-  depends_on = [ google_service_account.tf_seed_sa ]
+  depends_on = [google_service_account.tf_seed]
 }
 
 /* 
 ## Identity Pool
-This Terraform code creates a new Google Cloud IAM Workload Identity Pool with the ID `github-terraformer` in the specified project, and stores it in `google_iam_workload_identity_pool` named `idp_pool`.
+This Terraform code creates a new Google Cloud IAM Workload Identity Pool with the ID `cicd-terraformer` in the specified project, and stores it in `google_iam_workload_identity_pool` named `cicd_terraformer`.
 */
-resource "google_iam_workload_identity_pool" "idp_pool" {
-  workload_identity_pool_id = "github-terraformer"
+resource "google_iam_workload_identity_pool" "cicd_terraformer" {
+  workload_identity_pool_id = "cicd-terraformer"
   project                   = module.org_seed_project.project_id
-  depends_on = [ module.module.org_seed_project ]
+  depends_on                = [module.module.org_seed_project]
 }
 /* 
 ## Resource: Google IAM Workload Identity Pool Provider
-This Terraform code creates a new Google Cloud IAM Workload Identity Pool Provider for the identity pool `github-terraformer`, and configures it with an empty list of allowed audiences, an Github issuer URI, and attribute mappings for OIDC (OpenID Connect).
+This Terraform code creates a new Google Cloud IAM Workload Identity Pool Provider for the identity pool `cicd-terraformer`, and configures it with an empty list of allowed audiences, an Github issuer URI, and attribute mappings for OIDC (OpenID Connect).
 */
-resource "google_iam_workload_identity_pool_provider" "gh_provider" {
-  workload_identity_pool_id          = google_iam_workload_identity_pool.idp_pool.id
+resource "google_iam_workload_identity_pool_provider" "github" {
+  workload_identity_pool_id          = google_iam_workload_identity_pool.cicd_terraformer.id
   workload_identity_pool_provider_id = "gh-actions"
   display_name                       = "gh-actions"
   oidc {
@@ -151,33 +151,32 @@ resource "google_iam_workload_identity_pool_provider" "gh_provider" {
     issuer_uri        = "https://token.actions.githubusercontent.com"
   }
   attribute_mapping = {
-    "google.subject"       = "assertion.sub"
-    "attribute.actor"      = "assertion.actor"
-    "attribute.repository" = "assertion.repository"
+    "google.subject"             = "assertion.sub"
+    "attribute.actor"            = "assertion.actor"
+    "attribute.repository"       = "assertion.repository"
+    "attribute.repository_owner" = "assertion.repository_owner"
   }
-  depends_on = [ google_iam_workload_identity_pool.idp_pool ]
+
+  depends_on = [google_iam_workload_identity_pool.cicd_terraformer]
 }
 
 /* 
 ## Google Service Account IAM Binding 
 Member repos can impersonate the terraform SA via github actions.
-When possible add one repo at a time, or:
 
-- Uncomment A to allow all client repos to impersonate the terraform SA
+- Uncomment A to allow all client repos to impersonate the terraform SA (not recommended)
 - Uncomment B to use Use Workload Identity with Google Kubernetes Engine, once for each namespace
 */
 
-resource "google_service_account_iam_binding" "workload_identity_binding" {
+resource "google_service_account_iam_binding" "workload_identity" {
   service_account_id = google_service_account.service_account.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-slz",
-    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-shared-infra",
-    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projecta-infra",
-    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projectc-infra",
-    "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository/${var.owner}/${var.owner}-projectb-infra",
-    # A: "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/github-terraformer/attribute.repository_${var.owner}/${var.owner}-Power",
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.cicd_terraformer.id}/attribute.repository/${var.owner}/${SLZ-REPO-NAME}",
+
+    # A: "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/cicd-terraformer/attribute.repository_owner/${var.owner}",
+
     # B: "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
   ]
-  depends_on = [ google_iam_workload_identity_pool.idp_pool ]
+  depends_on = [google_iam_workload_identity_pool.cicd_terraformer]
 }
