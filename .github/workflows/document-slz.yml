@@ -21,13 +21,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure Global Git
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
   tfdocs:
     name: 'Terraform docs'
     runs-on: ubuntu-latest
@@ -37,7 +30,7 @@ jobs:
       - name: Render and Push Terraform Docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
-          working-dir: './terraform'
+          find-dir: './terraform'
           output-file: ./documentation/docs/tfdocs.md
           output-method: replace
           git-push: "true"
@@ -71,6 +64,10 @@ jobs:
           done
 
           # python documentation/scripts/folders.py './terraform/slz-folders-core.tf' ./documentation/docs/img --format=graphviz
+      - name: Configure Global Git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
       - name: Commit doc changes
         run: |
           git add ./documentation/
