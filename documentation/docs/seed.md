@@ -93,6 +93,11 @@ You are now ready to enable your CICD pipeline to create resources impersonating
     ![image info](./img/seed.png)
 
     [view here to view image full size](./img/seed.png)
-# Code 📜
+## Code 📜
 
 {% include 'code/seed.code' %}
+
+
+## References
+
+### [GitHub Actions: Authenticate to Google Cloud](https://github.com/marketplace/actions/authenticate-to-google-cloud#setting-up-workload-identity-federation)
