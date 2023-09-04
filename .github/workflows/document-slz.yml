@@ -96,7 +96,7 @@ jobs:
         run: |
           pip install mkdocs mkdocs-material mkdocs-macros-plugin graphviz pymdown-extensions mkdocs-graphviz mkdocs-diagrams
           mkdocs gh-deploy --config-file documentation/mkdocs.yml --force --clean --verbose
-
+          mkdocs-material
       - name: Upload Artifact and Deploy Pages
         uses: actions/upload-pages-artifact@v2
         with:
