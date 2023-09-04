@@ -72,9 +72,9 @@ module "security-admins" {
     ]
   }
 }
+
 /*
 ### Network Admins
-
 - **roles/compute.networkAdmin**: This role allows a user to administer Compute Engine networks. It includes permissions to create, modify, and delete networking resources such as subnets, routers, firewalls, etc.
 
 - **roles/vpcaccess.admin**: This role grants permissions to manage VPC Access Connectors. These connectors are used to connect Google Cloud services with VPC networks.
