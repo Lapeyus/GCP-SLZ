@@ -2,24 +2,30 @@
 
 Welcome to the **documentation** for setting up a Secure Landing Zone (SLZ) in Google Cloud Platform (GCP).
 !!! note "Customization Required"
-    Make sure to customize the code according to your specific requirements and organizational structure and fork your work. If you want to add improvements work them from a research feature branch and open a Pull Request.
-    ![image info](./img/git-flow.png)
+Make sure to customize the code according to your specific requirements and organizational structure and fork your work. If you want to add improvements work them from a research feature branch and open a Pull Request froma develpment branch.
+![image info](./img/git-flow.png)
 
-    <!-- ```mermaid
-    gitGraph:
-        commit "SLZ"
-        branch research
-        checkout research
-        commit id:"1111"
-        commit tag:"improvements"
+    ```mermaid
+        gitGraph
+        commit
+        branch develop-slz
+        commit tag:"v0.1.0"
+        commit
         checkout main
         commit type: HIGHLIGHT
         commit
-        merge research
+        merge develop-slz
         commit
-        branch your_client_branch
+        commit tag:"v1.0.0"
+        branch slz-ClientA
         commit
-    ``` -->
+        commit
+        commit tag:"v1.1.0"
+        checkout main
+        branch slz-ClientB
+        commit tag:"v1.1.1"
+    ```
+
 ---
 
 # Google Cloud Landing Zone
@@ -28,7 +34,7 @@ Welcome to the **documentation** for setting up a Secure Landing Zone (SLZ) in G
 
 ## Introduction
 
-A Google Cloud Landing Zone serves as the architectural foundation for your Google Cloud ecosystem. It offers standardization for resource organization, IAM roles, policy management, and more, serving as a robust template for your cloud environment. 
+A Google Cloud Landing Zone serves as the architectural foundation for your Google Cloud ecosystem. It offers standardization for resource organization, IAM roles, policy management, and more, serving as a robust template for your cloud environment.
 
 Landing Zones are utilized across various cloud providers and aim to establish an effective operational and governance model. They guide your cloud adoption strategy, promote team collaboration, and ensure security and compliance.
 
@@ -36,7 +42,7 @@ Landing Zones are utilized across various cloud providers and aim to establish a
 
 ## The Lasting Benefits of Google Cloud Landing Zone
 
-Setting up a Google Cloud Landing Zone will pave the way for a long-lasting, secure, and manageable cloud infrastructure. 
+Setting up a Google Cloud Landing Zone will pave the way for a long-lasting, secure, and manageable cloud infrastructure.
 
 - **Resource Management**: Achieve centralized control, enhanced visibility, and auditable changes for each infrastructure modification.
 

@@ -9,17 +9,7 @@ output: cli
 quiet: false
 skip-check:
   - CKV_TF_1 # "Ensure Terraform module sources use a commit hash"
-  - CKV_GCP_45 # "Ensure no roles that enable to impersonate and manage all service accounts are used at an organization level"
-  - CKV_GCP_49 # "Ensure roles do not impersonate or manage Service Accounts used at project level"
-  - CKV_GCP_62 # "Bucket should log access"
-  - CKV2_GCP_5 # "Ensure that Cloud Audit Logging is configured properly across all services and all users from a project"
-  - CKV_GCP_27 # "Ensure that the default network does not exist in a project"
-  - CKV_GCP_76 # "Ensure that Private google access is enabled for IPV6"
-  - CKV_GCP_41 # "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
-  - CKV2_GCP_18 # "Ensure GCP network defines a firewall and does not use the default firewall"
   - CKV_GCP_83 # "Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)"
-  - CKV_GCP_118 # "Ensure IAM workload identity pool provider is restricted"
-  - CKV_GCP_84 # "Ensure Artifact Registry Repositories are encrypted with Customer Supplied Encryption Keys (CSEK)"
 skip-fixes: false
 skip-suppressions: false
 soft-fail: false

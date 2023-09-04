@@ -38,7 +38,7 @@ with Diagram("Shared VPC host project", show=False, filename="slz-projects-share
             # preprod_psa_address = Custom("preprod_psa_address", global_address_path)
             # preprod_psa_connection = Custom("preprod_psa_connection", apis_icon_path)
             # preprod_psa_route_export = Custom("preprod_psa_route_export", peering_routes)
-            
+
             # vpcb >> Edge(label="Exports Routes") >> preprod_psa_address
             # vpcb >> Edge(label="Includes") >> [preprod_psa_route_export]
             # vpcb >> Edge(label="Uses") >> preprod_psa_connection

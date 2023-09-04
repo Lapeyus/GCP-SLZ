@@ -191,8 +191,8 @@ module "preprod_vpc_shared_vpc_host" {
   ]
 }
 /*
-The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export" 
-Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addresses 
+The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export"
+Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addresses
 */
 
 resource "google_compute_global_address" "preprod_psa_address" {
@@ -220,7 +220,7 @@ resource "google_compute_network_peering_routes_config" "preprod_psa_route_expor
 }
 
 /*
-VPC CONNECTOR FOR PREPROD VPC 
+VPC CONNECTOR FOR PREPROD VPC
 */
 resource "google_vpc_access_connector" "vpcconn-preprod" {
   name    = "vpcconn-preprod"
@@ -231,7 +231,7 @@ resource "google_vpc_access_connector" "vpcconn-preprod" {
   }
 }
 /*
-Cloud NAT for preprod VPC us-east4 
+Cloud NAT for preprod VPC us-east4
 */
 module "cloud-nat" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -343,8 +343,8 @@ module "prod_vpc_shared_vpc_host" {
   ]
 }
 /*
-The next 3 resources ceate a Private Service Access Subnet for Production VPC and configures route import/export" 
-Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed 
+The next 3 resources ceate a Private Service Access Subnet for Production VPC and configures route import/export"
+Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed
 */
 
 resource "google_compute_global_address" "prod_psa_address" {
@@ -372,7 +372,7 @@ resource "google_compute_network_peering_routes_config" "prod_psa_route_export" 
 }
 
 /*
-VPC CONNECTOR FOR PROD VPC 
+VPC CONNECTOR FOR PROD VPC
 */
 resource "google_vpc_access_connector" "vpcconn-prod" {
   name    = "vpcconn-prod"
@@ -384,7 +384,7 @@ resource "google_vpc_access_connector" "vpcconn-prod" {
 }
 
 /*
-Cloud NAT for prod VPC us-east5 
+Cloud NAT for prod VPC us-east5
 */
 module "cloud-nat-prod" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -397,8 +397,8 @@ module "cloud-nat-prod" {
   name          = "prod-cloud-nat-us-east5"
 }
 
-/* 
-FIREWALL POLICIES 
+/*
+FIREWALL POLICIES
 */
 module "firewall_policy" {
   source      = "../modules/network-firewall-policy"

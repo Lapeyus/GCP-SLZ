@@ -15,7 +15,7 @@ graph_attr = {
 node_attr = {}
 edge_attr = {}
 
-with Diagram("Secure Landing Zone Groups", filename="slz-groups", show=False, direction="TB", 
+with Diagram("Secure Landing Zone Groups", filename="slz-groups", show=False, direction="TB",
              outformat="png", graph_attr=graph_attr):
     with Cluster("Google Cloud Platform"):
         org = Custom("GCP Organization", org_icon_path)

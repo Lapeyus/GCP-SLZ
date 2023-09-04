@@ -1,9 +1,9 @@
 # Managing Business Units in GCP with Terraform 🛠️☁️
 
-These snippets together form a comprehensive Terraform code to manage different aspects of Business Unit projects, folders, and groups, all within the Google Cloud Platform. 
+These snippets together form a comprehensive Terraform code to manage different aspects of Business Unit projects, folders, and groups, all within the Google Cloud Platform.
 
 !!! note "Customization Required"
-    Make sure to customize the code according to your specific requirements and organizational structure.
+Make sure to customize the code according to your specific requirements and organizational structure.
 
 ---
 
@@ -60,4 +60,3 @@ You can create project groups in BU by defining the `project_groups` module and 
       source       = "terraform-google-modules/group/google"
     }
 ```
-

@@ -1,4 +1,4 @@
-###  How to add a new folder to the SLZ core folders module
+### How to add a new folder to the SLZ core folders module
 
 Adding a new folder to the `folders` module with Terraform is straightforward. You can simply add a new key-value pair inside the `folders` map, following the existing structure. this would only be necesary to add a folder to the SLZ, all projects are nested inside the ALtus Folder from alt-folders.tf
 
@@ -35,11 +35,10 @@ resource "random_string" "suffix" {
 
 In this example, the new "MYCHILDFOLDER" folder is set as a child of the "Shared" folder by referencing the `parent_entry_key`. You can customize the parent and other attributes according to your needs.
 
-
 In this example, the new "MYROOTFOLDER" folder is set as a child of the ORG folder by referencing the `organizations/${var.org_id}`. You can customize the parent and other attributes according to your needs.
 
-
 ### How Do I Modify or Add SLZ Groups?
+
 Modifying or adding SLZ groups can be achieved by modifying or adding a new module definition for the desired group. Here's an example to add a new group named "GCP Custom Admins":
 
 ```hcl
@@ -94,7 +93,6 @@ module "gcp-admins" {
 
 Remember to replace `"roles/custom.admin"` with the actual role that you want to add or modify.
 
-
 ### Modifying Organization Policies
 
 **Enable/Disable Policies**: You can enable or disable a specific organization policy by modifying the `enforcement` attribute within the module definition. Set it to `true` to enable and `false` to disable. Here's an example:
@@ -146,17 +144,16 @@ module "new_policy" {
 }
 ```
 
-
 ### How to Modify Existing Budgets
 
 To modify an existing budget, you can make changes to the existing module definition for the budget you wish to alter. Here's how you can update the amount and alerts for the production budget:
 
 ```markdown
 module "budget_prod_projects" {
-  // ...
-  amount                 = "2000" // Updating the budget amount
-  alert_spent_percents   = [0.4, 0.6, 0.8, 1.0] // Updating the alert percentages
-  // ...
+// ...
+amount = "2000" // Updating the budget amount
+alert_spent_percents = [0.4, 0.6, 0.8, 1.0] // Updating the alert percentages
+// ...
 }
 ```
 
@@ -168,26 +165,26 @@ To add a new budget, you can replicate the pattern used for existing budgets and
 
 ```markdown
 # Development budget topic
+
 resource "google_pubsub_topic" "dev_budget" {
-  name    = "altus-dev-budget-topic-${random_string.suffix.result}"
-  project = module.billing_project.project_id
+name = "altus-dev-budget-topic-${random_string.suffix.result}"
+project = module.billing_project.project_id
 }
 
 module "budget_dev_projects" {
-  source                 = "terraform-google-modules/project-factory/google//modules/budget"
-  billing_account        = var.billing_account
-  projects               = [module.billing_project.project_id]
-  amount                 = "500"
-  display_name           = "Budget for ${module.billing_project.project_id} (Development)"
+source = "terraform-google-modules/project-factory/google//modules/budget"
+billing_account = var.billing_account
+projects = [module.billing_project.project_id]
+amount = "500"
+display_name = "Budget for ${module.billing_project.project_id} (Development)"
   alert_spent_percents   = [0.5, 0.8, 1.0]
   credit_types_treatment = "INCLUDE_ALL_CREDITS"
   alert_pubsub_topic     = "projects/${module.billing_project.project_id}/topics/${google_pubsub_topic.dev_budget.name}"
-  labels = {
-    "env" : "dev"
-  }
+labels = {
+"env" : "dev"
+}
 }
 ```
-
 
 ### Creating New CI/CD Cloud Build Pipelines and Triggers in the CICD Project for a Project in the Org
 
@@ -195,39 +192,39 @@ To create a new Cloud Build pipeline, you will need to create a build trigger an
 
 ```markdown
 resource "google_cloudbuild_trigger" "my_trigger" {
-  project  = module.cicd.project_id
-  name     = "my-trigger-name"
-  description = "My build trigger"
+project = module.cicd.project_id
+name = "my-trigger-name"
+description = "My build trigger"
 
-  github {
-    owner  = "my-org"
-    name   = "my-repo"
-    push {
-      branch = "^master$"
-    }
-  }
+github {
+owner = "my-org"
+name = "my-repo"
+push {
+branch = "^master$"
+}
+}
 
-  filename = "cloudbuild.yaml"
+filename = "cloudbuild.yaml"
 }
 
 resource "google_cloudbuild_build" "my_build" {
-  project_id = module.cicd.project_id
-  timeout    = "1800s"
+project_id = module.cicd.project_id
+timeout = "1800s"
 
-  source {
-    repo_source {
-      project_id  = "my-project-id"
-      repo_name   = "my-repo"
-      branch_name = "master"
-    }
-  }
+source {
+repo_source {
+project_id = "my-project-id"
+repo_name = "my-repo"
+branch_name = "master"
+}
+}
 
-  steps {
-    name = "gcr.io/cloud-builders/docker"
-    args = ["build", "--tag=gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA", "."]
-  }
+steps {
+name = "gcr.io/cloud-builders/docker"
+args = ["build", "--tag=gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA", "."]
+}
 
-  images = ["gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA"]
+images = ["gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA"]
 }
 ```
 
@@ -241,27 +238,26 @@ Here's how you can push a Docker image to the shared Artifact Registry:
 
 ```markdown
 resource "google_cloudbuild_build" "push_to_artifact_registry" {
-  project_id = module.cicd.project_id
-  timeout    = "1800s"
+project_id = module.cicd.project_id
+timeout = "1800s"
 
-  source {
-    repo_source {
-      project_id  = "my-project-id"
-      repo_name   = "my-repo"
-      branch_name = "master"
-    }
-  }
+source {
+repo_source {
+project_id = "my-project-id"
+repo_name = "my-repo"
+branch_name = "master"
+}
+}
 
-  steps {
-    name = "gcr.io/cloud-builders/docker"
-    args = ["build", "--tag=us-central1-docker.pkg.dev/${module.cicd.project_id}/altus-docker/my-image:$SHORT_SHA", "."]
-    args = ["push", "us-central1-docker.pkg.dev/${module.cicd.project_id}/altus-docker/my-image:$SHORT_SHA"]
-  }
+steps {
+name = "gcr.io/cloud-builders/docker"
+args = ["build", "--tag=us-central1-docker.pkg.dev/${module.cicd.project_id}/altus-docker/my-image:$SHORT_SHA", "."]
+args = ["push", "us-central1-docker.pkg.dev/${module.cicd.project_id}/altus-docker/my-image:$SHORT_SHA"]
+}
 }
 ```
 
 This code snippet pushes a Docker image to the shared Artifact Registry that you created in the CICD project.
-
 
 ### What does the `shared_vpc_host_project` module do?
 
@@ -293,8 +289,8 @@ The Cloud NAT for the pre-production VPC is configured using the `cloud-nat` mod
 
 The production VPC is configured through the `prod_vpc_shared_vpc_host` module. Similar to the pre-production VPC, it specifies the network name, routing mode, subnets, secondary IP ranges, and routes. The subnets are tailored for production and disaster recovery, with dedicated subnets for VPC connectors. Routes are created for egress through the internet gateway.
 
-
 ### Modifying a VPC
+
 You can modify a VPC by adjusting the parameters within the existing VPC module. For instance, to change the routing mode of the `preprod-vpc`, update the `routing_mode` field:
 
 ```hcl
@@ -306,6 +302,7 @@ module "preprod_vpc_shared_vpc_host" {
 ```
 
 ### Adding a VPC
+
 To add a new VPC, you can create a new instance of the VPC module:
 
 ```hcl
@@ -319,6 +316,7 @@ module "new_vpc" {
 ```
 
 ### Modifying a Subnet
+
 To modify a subnet, you can edit the corresponding subnet details inside the VPC module. For example, to change the IP range of a specific subnet:
 
 ```hcl
@@ -336,6 +334,7 @@ module "preprod_vpc_shared_vpc_host" {
 ```
 
 ### Adding a Subnet
+
 To add a subnet, you can simply append a new subnet entry within the `subnets` list inside the VPC module:
 
 ```hcl
@@ -355,6 +354,7 @@ module "preprod_vpc_shared_vpc_host" {
 ```
 
 ### Modifying a Firewall Rule
+
 To modify a firewall rule, you would define or modify a firewall resource. However, the provided code snippet doesn't include a firewall rule, so here's a general way to modify one:
 
 ```hcl
@@ -369,6 +369,7 @@ resource "google_compute_firewall" "my_firewall" {
 ```
 
 ### Adding a Firewall Rule
+
 To add a firewall rule, you can define a new firewall resource:
 
 ```hcl

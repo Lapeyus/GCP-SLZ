@@ -34,7 +34,7 @@ module "gcp-admins" {
 ### Security Admins
 - **roles/iam.securityAdmin**: Manage access control for all resources that reside within an organization, and to view security configuration information. It includes most IAM permissions like managing service accounts and keys
 
-- **roles/orgpolicy.policyAdmin**: This role grants permissions to view, create, update and delete organization policies. It allows the user to set constraints across the entire organization, enforcing 
+- **roles/orgpolicy.policyAdmin**: This role grants permissions to view, create, update and delete organization policies. It allows the user to set constraints across the entire organization, enforcing
 
 - **roles/iam.serviceAccountAdmin**: This role allows management of service accounts.
 
@@ -43,7 +43,7 @@ module "gcp-admins" {
 - **roles/logging.configWriter**: This role allows writing of all logging configurations.
 
 - **roles/compute.securityAdmin**: This role provides access to view, modify, and create security settings.
- 
+
 */
 module "security-admins" {
   source  = "terraform-google-modules/iam/google//modules/organizations_iam"

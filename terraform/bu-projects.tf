@@ -1,7 +1,7 @@
 /*
-The code is creating three local variables, each containing a map of folder IDs from different modules 
-(`projecta_folders`, `projectbated_folders`, `projectc_folders`), 
-excluding the folders whose keys match with the owner's project 
+The code is creating three local variables, each containing a map of folder IDs from different modules
+(`projecta_folders`, `projectbated_folders`, `projectc_folders`),
+excluding the folders whose keys match with the owner's project
 (i.e., `"${var.owner}-projecta"`, `"${var.owner}-projectb"`, and `"${var.owner}-projectc"`).
 Only the child folders represent projects, the parent is just a unit for IAM
 */
@@ -14,10 +14,10 @@ locals {
 /*
 
 ### Bussines Unit Projects: Project A
-The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`, 
-using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs, 
-folder ID from the filtered list, host project ID from a shared VPC host project module, 
-activation of certain APIs, and a label for billing purposes  
+The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`,
+using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs,
+folder ID from the filtered list, host project ID from a shared VPC host project module,
+activation of certain APIs, and a label for billing purposes
 */
 module "owner_projecta_projects" {
   for_each                 = local.filtered_projecta_folders
@@ -38,10 +38,10 @@ module "owner_projecta_projects" {
 
 /*
 ### Bussines Unit Projects: Project B
-The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`, 
-using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs, 
-folder ID from the filtered list, host project ID from a shared VPC host project module, 
-activation of certain APIs, and a label for billing purposes  
+The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`,
+using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs,
+folder ID from the filtered list, host project ID from a shared VPC host project module,
+activation of certain APIs, and a label for billing purposes
 */
 module "owner_projectbated_projects" {
   for_each                 = local.filtered_projectbated_folders
@@ -62,10 +62,10 @@ module "owner_projectbated_projects" {
 
 /*
 ### Bussines Unit Projects: Project C
-The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`, 
-using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs, 
-folder ID from the filtered list, host project ID from a shared VPC host project module, 
-activation of certain APIs, and a label for billing purposes  
+The code is creating a Terraform module named "owner_projecta_projects" for each entry in `local.filtered_projecta_folders`,
+using the Google Project Factory module, with a random project ID of length 3, specific organization and billing account IDs,
+folder ID from the filtered list, host project ID from a shared VPC host project module,
+activation of certain APIs, and a label for billing purposes
 */
 module "owner_projectc_projects" {
   for_each                 = local.filtered_projectc_folders

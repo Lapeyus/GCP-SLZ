@@ -19,7 +19,7 @@ graph_attr2 = {
 node_attr = {}
 edge_attr = {}
 
-with Diagram("Secure Landing Zone Folder Hierarchy", filename="slz-folders-core", show=False, direction="TB", 
+with Diagram("Secure Landing Zone Folder Hierarchy", filename="slz-folders-core", show=False, direction="TB",
              outformat="png", graph_attr=graph_attr):
     with Cluster("Google Cloud Platform"):
         org = Custom("GCP Organization", org_icon_path)
@@ -41,14 +41,14 @@ with Diagram("Secure Landing Zone Folder Hierarchy", filename="slz-folders-core"
     with Cluster("Attachment Point"):
         business_units = Custom("Bussiness Units", folder_icon_path)
         org >> Edge(color="Black", style="bold") >>  business_units
-        
+
     with Cluster("Bussiness Unit A", graph_attr=graph_attr2):
         business_units_project = Custom("Project A", folder_icon_path)
         dev = Custom("dev", folder_icon_path)
         prod = Custom("prod", folder_icon_path)
         business_units >> business_units_project
         business_units_project >> [dev,prod]
-        
+
         # business_units_project2 = Custom("Project B", folder_icon_path)
         # dev2 = Custom("dev", folder_icon_path)
         # prod2 = Custom("prod", folder_icon_path)

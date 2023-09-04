@@ -33,7 +33,7 @@ module "security_admins" {
   owners       = []
 }
 /*
-### 3. Network Admins 
+### 3. Network Admins
 Manages network resources like VPCs, subnets, and firewall rules.
   This group is responsible for the management of network resources such as VPCs,
   subnets, firewall rules, etc.
@@ -50,7 +50,7 @@ module "network_admins" {
   owners       = []
 }
 /*
-### 4. Audit Admins 
+### 4. Audit Admins
 Has permissions to view all resources and settings for auditing and compliance.
   Members of this group will have permissions to view all resources and settings,
   meant for auditing and compliance purposes.

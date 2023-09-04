@@ -32,7 +32,7 @@ def main():
     args = parse_args()
     input_file = args.input_file
     output_folder = args.output_folder
-    
+
     try:
         # Read the content from the input file
         with open(input_file, 'r') as f:
@@ -68,7 +68,7 @@ def main():
             f.write('\n'.join(output_lines))
 
         logging.info(f"Successfully modified {input_file} and saved to {output_file}")
-        
+
     except FileNotFoundError:
         logging.error(f"File {input_file} not found.")
     except PermissionError:

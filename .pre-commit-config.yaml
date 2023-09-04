@@ -16,12 +16,6 @@ repos:
         entry: check-merge-conflict
         language: python
         types: [text]
-      - id: check-yaml
-        name: check yaml
-        description: checks yaml files for parseable syntax.
-        entry: check-yaml
-        language: python
-        types: [yaml]
       - id: destroyed-symlinks
         name: detect destroyed symlinks
         description: detects symlinks which are changed to regular files with a content of a path which that symlink was pointing to.
@@ -102,33 +96,25 @@ repos:
     hooks:
       - id: terraform_fmt
         args:
-          - -recursive
-          - --args=-no-color
-          - --args=-diff
-
-    #   - id: terraform_tflint
-  #         args:
-  #           - --args=--reprojectbsive
-  #       - id: terraform_providers_lock
-  #       - id: terraform_docs
-  #       - id: terraform_checkov
-  #         args:
-  #         - --args=--config-file '__GIT_WORKING_DIR__/.github/checkov.yml'
-  #         - --args=--framework terraform
-  #   - id: terraform_wrapper_module_for_each
-  #     args:
-  #       - --args=--module-dir=.   # Process only root module
-  #       - --args=--dry-run        # No files will be created/updated
-  #       - --args=--verbose        # Verbose output
-  #   - id: terrascan
-  #     args:
-  #       - --args=--non-reprojectbsive # avoids scan errors on subdirectories without Terraform config files
-  #       - --args=--verbose
-  #   - --args=--policy-type=gcp
-  #   - --args=--iac_dir=bootstrap/
-  #   - id: terraform_tfsec
-  #   - id: terraform_validate
-  #     args:
-  #       - --args=-json
-  #       - --args=-no-color
-  #       - --hook-config=--retry-once-with-cleanup=true
+          - --args=--recursive
+      - id: terraform_docs
+      - id: terraform_tflint
+        args:
+          - --args=--recursive
+      - id: terraform_checkov
+        args:
+          - --args=--config-file '__GIT_WORKING_DIR__/.github/checkov.yml'
+          - --args=--framework all
+          - --args=--download-external-modules true
+      - id: terraform_providers_lock
+      # - id: terraform_tfsec
+      # - id: terrascan
+      #   args:
+      #     - --args=--verbose
+      #     - --args=--policy-type=gcp
+      #     - --args=--iac_dir=terraform/
+      # - id: terraform_validate
+      #   args:
+      #     - --args=-json
+      #     - --args=-no-color
+      #     - --hook-config=--retry-once-with-cleanup=true

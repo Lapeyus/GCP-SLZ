@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     # Extract depends_on relationships from the Terraform file
     relations = extract_depends_on_relations(args.input_file)
-    
+
     # Create file from the extracted relations based on the format
     if args.format == 'mermaid':
         create_mermaid_from_relations(relations, output_file)

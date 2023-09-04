@@ -12,7 +12,7 @@ nav:
       - Billing Project: slz-projects-billing.md
       - CI/CD Project: slz-projects-cicd.md
       - Shared VPC Project: slz-projects-sharedvpc.md
-      - Loggin & Monitoring : slz-projects-log-monitor.md
+      - Loggin & Monitoring: slz-projects-log-monitor.md
       - Terraform State Buckets: tfstate-buckets.md
       - FAQs: slz-faqs.md
   - Bussiness Unit Configurations:
@@ -41,22 +41,21 @@ theme:
 
   palette:
     # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
+    - media: '(prefers-color-scheme: dark)'
       scheme: slate
       toggle:
         icon: material/lightbulb-outline
         name: Switch to light mode
     # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
+    - media: '(prefers-color-scheme: light)'
       scheme: default
       toggle:
         icon: material/lightbulb
         name: Switch to dark mode
 
-
 plugins:
   - diagrams:
-      file_extension: ".diagrams.py"
+      file_extension: '.diagrams.py'
       max_workers: 5
   - search
   - macros
@@ -78,20 +77,20 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - mkdocs_graphviz:
-        light_theme: 000000
-        dark_theme: FFFFFF
-        color: 789ABC
-        bgcolor: none
-        graph_color: 789ABC
-        graph_fontcolor: 789ABC
-        node_color: 789ABC
-        node_fontcolor: 050709
-        edge_color: 789ABC
-        edge_fontcolor: 789ABC
-        priority: 75
+      light_theme: 000000
+      dark_theme: FFFFFF
+      color: 789ABC
+      bgcolor: none
+      graph_color: 789ABC
+      graph_fontcolor: 789ABC
+      node_color: 789ABC
+      node_fontcolor: 050709
+      edge_color: 789ABC
+      edge_fontcolor: 789ABC
+      priority: 75
   - tables
 #   - codehilite
 #   - pymdownx.betterem
 
-# extra_javascript:
-#   - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js
+extra_javascript:
+  - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js

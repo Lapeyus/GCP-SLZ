@@ -35,4 +35,3 @@ with Diagram("GCP Seed Project", show=False, filename="seed", outformat=["png",]
     wip >> iam_binding
     proj_roles >> prj  << apis
     prj << buckets
-

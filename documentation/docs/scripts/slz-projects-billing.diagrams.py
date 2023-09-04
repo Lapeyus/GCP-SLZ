@@ -16,13 +16,13 @@ with Diagram("Terraform Google Cloud Billing", show=False,filename="slz-projects
         billing_project = Custom("Billing Project", proj_icon_path)
 
         with Cluster("module budget_prod_projects"):
-            budget_prod_topic = Pubsub("preprod_projects") 
+            budget_prod_topic = Pubsub("preprod_projects")
             prod_budget = Custom("prod_budget", budget_icon_path)
             prod_budget >> budget_prod_topic
-    
+
         with Cluster("module budget_preprod_projects"):
-            budget_preprod_topic = Pubsub("preprod_topic") 
+            budget_preprod_topic = Pubsub("preprod_topic")
             preprod_budget = Custom("preprod_budget", budget_icon_path)
             preprod_budget >> budget_preprod_topic
-        
+
         billing_project >> Edge(label="") >> [preprod_budget,prod_budget]

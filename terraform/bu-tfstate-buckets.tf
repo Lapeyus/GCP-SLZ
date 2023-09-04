@@ -1,6 +1,6 @@
 /*
-The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module, 
-with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1', 
+The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module,
+with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1',
 enforced public access prevention, and an IAM policy granting 'storage.objectViewer' role to the group 'gcp-organization-admins@ownerpower.com'.
 
 This Bucket holds the SLZ terraform state
@@ -20,8 +20,8 @@ module "tf_state" {
   ]
 }
 /*
-The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module, 
-with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1', 
+The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module,
+with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1',
 enforced public access prevention, and an IAM policy granting 'storage.objectViewer' role to the group 'gcp-organization-admins@ownerpower.com'.
 
 This Bucket holds the CICD Project terraform state
@@ -41,8 +41,8 @@ module "cicd_tf_state" {
   ]
 }
 /*
-This code is creating local Terraform variables that filter out specific buckets from the `projecta_folders`, 
-`projectb_folders`, and `projectc_folders` modules based on their keys, excluding those with keys "${var.owner}-projecta", 
+This code is creating local Terraform variables that filter out specific buckets from the `projecta_folders`,
+`projectb_folders`, and `projectc_folders` modules based on their keys, excluding those with keys "${var.owner}-projecta",
 "${var.owner}-projectb", and "${var.owner}-projectc" respectively.
 */
 locals {
@@ -52,8 +52,8 @@ locals {
 }
 
 /*
-The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module, 
-with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1', 
+The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module,
+with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1',
 enforced public access prevention, and an IAM policy granting 'storage.objectViewer' role to the group 'gcp-organization-admins@ownerpower.com'.
 
 This Bucket holds the Project A terraform state
@@ -75,8 +75,8 @@ module "owner_projecta_projects_tf_state" {
 }
 
 /*
-The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module, 
-with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1', 
+The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module,
+with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1',
 enforced public access prevention, and an IAM policy granting 'storage.objectViewer' role to the group 'gcp-organization-admins@ownerpower.com'.
 
 This Bucket holds the Project B terraform state
@@ -98,8 +98,8 @@ module "owner_projectb_projects_tf_state" {
 }
 
 /*
-The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module, 
-with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1', 
+The code is creating a Terraform module named "tf_state" using the Google Cloud Storage simple bucket module,
+with a specified name, project ID from the `org_seed_project` module, location set to 'us-east1',
 enforced public access prevention, and an IAM policy granting 'storage.objectViewer' role to the group 'gcp-organization-admins@ownerpower.com'.
 
 This Bucket holds the Project C terraform state

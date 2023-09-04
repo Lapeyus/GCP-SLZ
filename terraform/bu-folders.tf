@@ -1,5 +1,5 @@
 /*
-### Project A 
+### Project A
  Creates the required folders for a project: a parent with 6 nested folder environments
 */
 module "projecta_folders" {
@@ -34,7 +34,7 @@ module "projecta_folders" {
   }
 }
 /*
-### Project B 
+### Project B
  Creates the required folders for a project: a parent with 6 nested folder environments
 */
 module "projectb_folders" {
@@ -69,7 +69,7 @@ module "projectb_folders" {
   }
 }
 /*
-### Project C 
+### Project C
  Creates the required folders for a project: a parent with 6 nested folder environments.
 */
 module "projectc_folders" {

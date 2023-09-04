@@ -18,4 +18,3 @@ with Diagram("CICD project", show=False, filename="slz-projects-cicd", outformat
         apis = Custom("Cloud APIs", apis_icon_path)
 
     prj  >> apis
-

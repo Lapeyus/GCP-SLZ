@@ -1,5 +1,5 @@
 /*
-Fetching data about Google Cloud folders that are children 
+Fetching data about Google Cloud folders that are children
 of the parent folder identified by `module.folders.id["BussinesUnits"]` using the Google provider in Terraform.
 */
 data "google_folders" "prj_folders" {
@@ -7,9 +7,9 @@ data "google_folders" "prj_folders" {
 }
 
 /*
-### local values: 
-- `child_folders` extracts all child folders from the `prj_folders` data object, 
-- `groups` is a list of user groups, 
+### local values:
+- `child_folders` extracts all child folders from the `prj_folders` data object,
+- `groups` is a list of user groups,
 - `folder_group_combinations` creates a combination of each folder with each group and sets their display name and group type, and `members` is a map that initializes empty lists for each project-group combination.
 */
 locals {
@@ -36,8 +36,8 @@ locals {
   }
 }
 /*
-This block of Terraform code creates a Google Group for each combination of folder and group type, 
-with the group's ID, display name, and description being generated based on the owner, display name, and group type, 
+This block of Terraform code creates a Google Group for each combination of folder and group type,
+with the group's ID, display name, and description being generated based on the owner, display name, and group type,
 and assigns members from the previously defined `members` map.
 */
 module "project_groups" {
@@ -52,4 +52,3 @@ module "project_groups" {
   members      = local.members["${split("${var.owner}-", each.value.display_name)[1]}-${each.value.group_type}"]
   owners       = []
 }
-
