@@ -52,8 +52,8 @@ This code is creating local Terraform variables that filter out specific buckets
 ```hcl
 locals {
   filtered_projecta_buckets = { for k, v in module.projecta_folders.id : k => v if k != "${var.owner}-projecta" }
-  filtered_projectb_buckets  = { for k, v in module.projectb_folders.id : k => v if k != "${var.owner}-projectb" }
-  filtered_projectc_buckets    = { for k, v in module.projectc_folders.id : k => v if k != "${var.owner}-projectc" }
+  filtered_projectb_buckets = { for k, v in module.projectb_folders.id : k => v if k != "${var.owner}-projectb" }
+  filtered_projectc_buckets = { for k, v in module.projectc_folders.id : k => v if k != "${var.owner}-projectc" }
 }
 ```
 
