@@ -3,9 +3,9 @@ name: Deploy documentation to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Terraform"]
+    workflows: ['Terraform']
     branches: [main]
-    types: 
+    types:
       - completed
   # push:
   #   branches: ['main']
@@ -32,7 +32,8 @@ jobs:
         with:
           working-dir: './terraform'
           output-file: '../documentation/docs/tfdocs.md'
-          output-method: 'replace'   
+          output-method: 'replace'
+          git-push: 'true'
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
