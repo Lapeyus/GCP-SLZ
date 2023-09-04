@@ -19,7 +19,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_audit-admins"></a> [audit-admins](#module\_audit-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
+| <a name="module_audit-admins"></a> [audit-admins](#module\_audit-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_audit_admins"></a> [audit\_admins](#module\_audit\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_billing_project"></a> [billing\_project](#module\_billing\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_budget_preprod_projects"></a> [budget\_preprod\_projects](#module\_budget\_preprod\_projects) | terraform-google-modules/project-factory/google//modules/budget | 14.3.0 |
@@ -39,7 +39,7 @@
 | <a name="module_folders"></a> [folders](#module\_folders) | ../modules/google_folder | n/a |
 | <a name="module_gcp-admins"></a> [gcp-admins](#module\_gcp-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_gcp_admins"></a> [gcp\_admins](#module\_gcp\_admins) | terraform-google-modules/group/google | 0.4.0 |
-| <a name="module_network-admins"></a> [network-admins](#module\_network-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
+| <a name="module_network-admins"></a> [network-admins](#module\_network-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_network_admins"></a> [network\_admins](#module\_network\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_org_seed_project"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.3.0 |
 | <a name="module_owner_projecta_projects"></a> [owner\_projecta\_projects](#module\_owner\_projecta\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
@@ -62,7 +62,7 @@
 | <a name="module_restrict_vm_external_ip"></a> [restrict\_vm\_external\_ip](#module\_restrict\_vm\_external\_ip) | ../modules/org-policy | n/a |
 | <a name="module_restrict_vpc_host_projects"></a> [restrict\_vpc\_host\_projects](#module\_restrict\_vpc\_host\_projects) | ../modules/org-policy | n/a |
 | <a name="module_restrict_vpc_peering"></a> [restrict\_vpc\_peering](#module\_restrict\_vpc\_peering) | ../modules/org-policy | n/a |
-| <a name="module_security-admins"></a> [security-admins](#module\_security-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
+| <a name="module_security-admins"></a> [security-admins](#module\_security-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_security_admins"></a> [security\_admins](#module\_security\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_shared_vpc_host_project"></a> [shared\_vpc\_host\_project](#module\_shared\_vpc\_host\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_skip_default_network"></a> [skip\_default\_network](#module\_skip\_default\_network) | ../modules/org-policy | n/a |
