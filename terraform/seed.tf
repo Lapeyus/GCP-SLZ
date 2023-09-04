@@ -40,8 +40,8 @@ resource "google_service_account" "tf_seed" {
   depends_on   = [module.org_seed_project]
 }
 /* 
-## Google Service Account Key [OPTIONAL][NOT RECOMENDED]
-This Terraform code generates a new private key for the `tf_seed` Google Cloud Service Account and stores it in `google_service_account_key` named `tf_seed`. 
+### Google Service Account Key 
+This Terraform code generates a new private key for the `tf_seed` Google Cloud Service Account and stores it in `google_service_account_key` named `tf_seed`.[OPTIONAL][NOT RECOMENDED] 
 */
 resource "google_service_account_key" "tf_seed" {
   service_account_id = google_service_account.tf_seed.name
@@ -88,7 +88,7 @@ module "tf_seed_organization_iam_bindings" {
   depends_on = [google_service_account.tf_seed]
 }
 /* 
-## Terraform Service Account Project IAM Bindings
+### Terraform Service Account Project IAM Bindings
 
 1. `"roles/serviceusage.serviceUsageAdmin"`: relevant for enabling or disabling specific Google Cloud services within the project.
 
@@ -131,7 +131,7 @@ module "tf_seed_project_iam_bindings" {
 
 /* 
 ### Identity Pool
-This Terraform code creates a new Google Cloud IAM Workload Identity Pool with the ID `cicd-terraformer` in the specified project, and stores it in `google_iam_workload_identity_pool` named `cicd_terraformer`.
+This Terraform code creates a new Google Cloud IAM Workload Identity Pool with the ID `cicd-terraformer` in the specified project.
 */
 resource "google_iam_workload_identity_pool" "cicd_terraformer" {
   workload_identity_pool_id = "cicd-terraformer"
@@ -139,8 +139,8 @@ resource "google_iam_workload_identity_pool" "cicd_terraformer" {
   depends_on                = [module.module.org_seed_project]
 }
 /* 
-### Resource: Google IAM Workload Identity Pool Provider
-This Terraform code creates a new Google Cloud IAM Workload Identity Pool Provider for the identity pool `cicd-terraformer`, and configures it with an empty list of allowed audiences, an Github issuer URI, and attribute mappings for OIDC (OpenID Connect).
+### Google IAM Workload Identity Pool Provider
+Identity Pool Provider for the identity pool `google_iam_workload_identity_pool.cicd_terraformer`, configures it with an empty list of allowed audiences, an Github issuer URI, and attribute mappings for OIDC (OpenID Connect).
 */
 resource "google_iam_workload_identity_pool_provider" "github" {
   workload_identity_pool_id          = google_iam_workload_identity_pool.cicd_terraformer.id
@@ -178,5 +178,5 @@ resource "google_service_account_iam_binding" "workload_identity" {
 
     # B: "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
   ]
-  depends_on = [google_iam_workload_identity_pool.cicd_terraformer]
+  depends_on = [google_service_account.service_account.id, google_iam_workload_identity_pool_provider.github]
 }

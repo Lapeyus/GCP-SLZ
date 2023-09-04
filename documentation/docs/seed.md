@@ -22,14 +22,6 @@ The seed project is crucial because it lays the foundation for all your future p
 !!! warning "Security Note"
     It ensures that you have a secure, scalable, and maintainable infrastructure by delegating roles to an impersonatable agent.
 
-### Key Components 🔑
-
-- **GCP Seed project**
-- **Terraform Service Account**
-- **IAM Roles at Organization level**
-- **IAM Roles at Seed Project level**
-- **Workload Identity Federation**
-
 ---
 
 ### Usage 🛠️
@@ -46,6 +38,18 @@ The seed project is crucial because it lays the foundation for all your future p
 
 ---
 ### Steps
+
+```mermaid
+graph TD;
+    google_service_account --> module.org_seed_project;
+    google_service_account_key --> google_service_account;
+    tf_seed_organization_iam_bindings --> google_service_account;
+    tf_seed_project_iam_bindings --> google_service_account;
+    google_iam_workload_identity_pool --> module.org_seed_project;
+    google_iam_workload_identity_pool_provider --> google_iam_workload_identity_pool;
+    google_service_account_iam_binding --> google_service_account;
+     google_service_account_iam_binding --> google_iam_workload_identity_pool_provider
+```
 
 First define the APIs to be activated.
 The `module "org_seed_project"` sets up the project.
@@ -100,4 +104,4 @@ You are now ready to enable your CICD pipeline to create resources impersonating
 
 ## References
 
-### [GitHub Actions: Authenticate to Google Cloud](https://github.com/marketplace/actions/authenticate-to-google-cloud#setting-up-workload-identity-federation)
+[GitHub Actions: Authenticate to Google Cloud](https://github.com/marketplace/actions/authenticate-to-google-cloud#setting-up-workload-identity-federation)
