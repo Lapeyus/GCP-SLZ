@@ -66,8 +66,8 @@
 | <a name="module_security_admins"></a> [security\_admins](#module\_security\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_shared_vpc_host_project"></a> [shared\_vpc\_host\_project](#module\_shared\_vpc\_host\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_skip_default_network"></a> [skip\_default\_network](#module\_skip\_default\_network) | ../modules/org-policy | n/a |
-| <a name="module_tf_seed_sa_organization_iam_bindings"></a> [tf\_seed\_sa\_organization\_iam\_bindings](#module\_tf\_seed\_sa\_organization\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
-| <a name="module_tf_seed_sa_project_iam_bindings"></a> [tf\_seed\_sa\_project\_iam\_bindings](#module\_tf\_seed\_sa\_project\_iam\_bindings) | terraform-google-modules/iam/google//modules/projects_iam | 7.6.0 |
+| <a name="module_tf_seed_organization_iam_bindings"></a> [tf\_seed\_organization\_iam\_bindings](#module\_tf\_seed\_organization\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
+| <a name="module_tf_seed_project_iam_bindings"></a> [tf\_seed\_project\_iam\_bindings](#module\_tf\_seed\_project\_iam\_bindings) | terraform-google-modules/iam/google//modules/projects_iam | 7.6.0 |
 | <a name="module_tf_state"></a> [tf\_state](#module\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_uniform_bucket_level_access"></a> [uniform\_bucket\_level\_access](#module\_uniform\_bucket\_level\_access) | ../modules/org-policy | n/a |
 
@@ -79,13 +79,13 @@
 | [google_compute_global_address.prod_psa_address](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/compute_global_address) | resource |
 | [google_compute_network_peering_routes_config.preprod_psa_route_export](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/compute_network_peering_routes_config) | resource |
 | [google_compute_network_peering_routes_config.prod_psa_route_export](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/compute_network_peering_routes_config) | resource |
-| [google_iam_workload_identity_pool.idp_pool](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool) | resource |
-| [google_iam_workload_identity_pool_provider.gh_provider](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool_provider) | resource |
+| [google_iam_workload_identity_pool.cicd_terraformer](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool) | resource |
+| [google_iam_workload_identity_pool_provider.github](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool_provider) | resource |
 | [google_pubsub_topic.preprod_budget](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/pubsub_topic) | resource |
 | [google_pubsub_topic.prod_budget](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/pubsub_topic) | resource |
-| [google_service_account.tf_seed_sa](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account) | resource |
-| [google_service_account_iam_binding.workload_identity_binding](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_iam_binding) | resource |
-| [google_service_account_key.account_key](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_key) | resource |
+| [google_service_account.tf_seed](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account) | resource |
+| [google_service_account_iam_binding.workload_identity](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_iam_binding) | resource |
+| [google_service_account_key.tf_seed](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_key) | resource |
 | [google_service_networking_connection.preprod_psa_connection](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_networking_connection) | resource |
 | [google_service_networking_connection.prod_psa_connection](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_networking_connection) | resource |
 | [google_vpc_access_connector.vpcconn-preprod](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/vpc_access_connector) | resource |
