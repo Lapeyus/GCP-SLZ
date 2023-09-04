@@ -30,10 +30,11 @@ jobs:
       - name: Render and Push Terraform Docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
-          working-dir: .
-          output-file: ./documentation/docs/tfdocs.md
-          output-method: replace
-          git-push: "true"
+          working-dir: './terraform'
+          output-file: './documentation/docs/tfdocs.md'
+          output-method: 'replace'
+          git-push: 'true'
+      
       # - name: Move it to mkdocs folder
       #   run: |
       #     cp ./terraform/README.md ./documentation/docs/tfdocs.md || echo "Failed to copy README.md" 
