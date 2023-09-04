@@ -9,7 +9,7 @@ org_icon_path = "../img/icons/administration.png"
 os.chdir('../img')
 graph_attr = {
     "fontsize": "60",
-    "bgcolor": "transparent"
+    # "bgcolor": "transparent"
 }
 
 node_attr = {}

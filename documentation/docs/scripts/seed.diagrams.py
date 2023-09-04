@@ -12,13 +12,13 @@ buckets_icon_path = "../img/icons/cloud_storage.png"
 os.chdir('../img')
 graph_attr = {
     "fontsize": "50",
-    "bgcolor": "transparent",
+    # "bgcolor": "transparent",
 }
 
 node_attr = {}
 edge_attr = {}
-with Diagram("seed project", show=False, filename="seed", outformat=["png",], direction="TB", graph_attr={"bgcolor": "transparent"}):
-    with Cluster("Seed Project"):
+with Diagram("GCP Seed Project", show=False, filename="seed", outformat=["png",], direction="LR", graph_attr=graph_attr):
+    with Cluster(""):
         prj = Custom("", proj_icon_path)
         buckets = Custom("Terraform Buckets", buckets_icon_path)
         apis = Custom("Cloud APIs", apis_icon_path)

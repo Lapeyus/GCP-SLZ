@@ -11,8 +11,8 @@ The design emphasizes security by:
 
 - **Isolating Responsibilities**: By segregating resources into dedicated folders, you minimize the risk of unintended access or modifications.
 - **Scalable Organization**: This structure allows for expandable management and the easy addition of more departments, projects, or environmental divisions.
-- **Hierarchical Access Control**: Implementing IAM policies at different folder levels provides fine-grained control, supporting the principle of least privilege.
-- **Auditability**: The Logging and Monitoring folder can be configured to centralize logs, improving visibility and compliance.
+- **Hierarchical Access Control**: Implementing IAM policies at different folder levels provides fine-grained control, supporting the principle of least privilege. Also, when the permissions are attached to the folder and not the projects them selves the unerlying projects can be created, recreated destroyed, and the owners of the folder will still maintain the same privileges through inheritance.
+- **Auditability**: Audit logs are enabled, improving visibility and compliance.
 
 ---
 !!! info
@@ -22,14 +22,16 @@ The design emphasizes security by:
     1. diagram: documentation/docs/scripts/slz-folders-core.diagrams.py
     2. code: terraform/slz-folders-core.tf > documentation/docs/code/slz-folders-core.code
     
-# SLZ Folder hierarchy
+## SLZ Folder hierarchy
 
 !!! example "SLZ Folder hierarchy"
     ![slz](./img/slz-folders-core.png)
 
     [view here to view image full size](./img/slz-folders-core.png)
 ---
-the Grayed out area is not part of the SLZ, shown for refence. that section is explained in Bussines Units section
+!!! note "Bussines Units"
+    The Grayed out area in the image is not part of the SLZ core, it's shown here for refence. That section is explained in the folders page, for the Bussines Units section.
+
 ---
 ## Code
 

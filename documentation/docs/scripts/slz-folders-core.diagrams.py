@@ -8,8 +8,8 @@ org_icon_path = "../img/icons/administration.png"
 
 os.chdir('../img')
 graph_attr = {
-    "fontsize": "60",
-    "bgcolor": "transparent"
+    "fontsize": "20",
+    # "bgcolor": "transparent"
 }
 
 graph_attr2 = {
@@ -42,11 +42,15 @@ with Diagram("Secure Landing Zone Folder Hierarchy", filename="slz-folders-core"
         business_units = Custom("Bussiness Units", folder_icon_path)
         org >> Edge(color="Black", style="bold") >>  business_units
         
-    with Cluster("Bu. A", graph_attr=graph_attr2):
-        business_units_project = Custom("Bussiness Unit A", folder_icon_path)
-        dev = Custom("Project A", folder_icon_path)
-        prod = Custom("Project B", folder_icon_path)
+    with Cluster("Bussiness Unit A", graph_attr=graph_attr2):
+        business_units_project = Custom("Project A", folder_icon_path)
+        dev = Custom("dev", folder_icon_path)
+        prod = Custom("prod", folder_icon_path)
         business_units >> business_units_project
-        business_units_project >> dev
-        business_units_project >> prod 
+        business_units_project >> [dev,prod]
         
+        # business_units_project2 = Custom("Project B", folder_icon_path)
+        # dev2 = Custom("dev", folder_icon_path)
+        # prod2 = Custom("prod", folder_icon_path)
+        # business_units >> business_units_project2
+        # business_units_project2 >> [dev2,prod2]
