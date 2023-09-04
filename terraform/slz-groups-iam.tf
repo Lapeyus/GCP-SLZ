@@ -38,18 +38,18 @@ module "gcp-admins" {
 
 - **roles/iam.serviceAccountAdmin**: This role allows management of service accounts.
 
--**roles/resourcemanager.folderAdmin**: This role allows full control of folders.
+- **roles/resourcemanager.folderAdmin**: This role allows full control of folders.
 
 - **roles/logging.configWriter**: This role allows writing of all logging configurations.
 
--**roles/compute.securityAdmin**: This role provides access to view, modify, and create security settings.
+- **roles/compute.securityAdmin**: This role provides access to view, modify, and create security settings.
  
 */
 module "security-admins" {
-  source  = "terraform-google-modules/iam/google//modules/folders_iam"
+  source  = "terraform-google-modules/iam/google//modules/organizations_iam"
   version = "7.6.0"
-  folders = [module.folders.id["Security"]]
-  mode    = "additive"
+  # folders = [module.folders.id["Security"]]
+  mode = "additive"
 
   bindings = {
     "roles/iam.securityAdmin" = [
@@ -86,10 +86,10 @@ module "security-admins" {
 - **roles/compute.securityAdmin**: This role provides access to view, modify, and create security settings related to Compute Engine.
 */
 module "network-admins" {
-  source  = "terraform-google-modules/iam/google//modules/folders_iam"
+  source  = "terraform-google-modules/iam/google//modules/organizations_iam"
   version = "7.6.0"
-  folders = [module.folders.id["Network"]]
-  mode    = "additive"
+  # folders = [module.folders.id["Network"]]
+  mode = "additive"
 
   bindings = {
     "roles/compute.networkAdmin" = [
@@ -109,13 +109,23 @@ module "network-admins" {
     ]
   }
 }
+/*
+### Audit Admins
+- **roles/iam.securityReviewer**: This role allows a user to view IAM settings and policies across the Google Cloud environment.
 
-/**/
+- **roles/logging.viewer**: This role allows a user to view logs that are stored in the Logging section of the Google Cloud Console.
+
+- **roles/audit.configViewer**: This role provides read-only access to view all configuration and settings for services.
+
+- **roles/errorreporting.viewer**: This role grants permissions to view error reporting data.
+
+- **roles/serviceusage.serviceUsageConsumer**: This role allows viewing service usage and configurations.
+*/
 module "audit-admins" {
-  source  = "terraform-google-modules/iam/google//modules/folders_iam"
+  source  = "terraform-google-modules/iam/google//modules/organizations_iam"
   version = "7.6.0"
-  folders = [module.folders.id["Logging-Monitoring"]]
-  mode    = "additive"
+  # folders = [module.folders.id["Logging-Monitoring"]]
+  mode = "additive"
 
   bindings = {
     "roles/iam.securityReviewer" = [
@@ -123,35 +133,74 @@ module "audit-admins" {
     ],
     "roles/logging.viewer" = [
       "group:${module.audit_admins.id}",
+    ],
+    "roles/audit.configViewer" = [
+      "group:${module.audit_admins.id}",
+    ],
+    "roles/errorreporting.viewer" = [
+      "group:${module.audit_admins.id}",
+    ],
+    "roles/serviceusage.serviceUsageConsumer" = [
+      "group:${module.audit_admins.id}",
     ]
   }
 }
+/*
+### Project Admins
 
-/**/
+- **roles/editor**: This role has permissions to access all resources, and can perform all actions except for a few like changing IAM settings.
+
+- **roles/iam.serviceAccountAdmin**: This role allows users to administer service accounts.
+
+- **roles/iam.serviceAccountTokenCreator**: This role allows users to create OAuth2 access tokens, sign blobs or JWTs and sign JWTs for service accounts.
+
+- **roles/artifactregistry.admin**: This role grants full control over artifacts and settings in Artifact Registry.
+
+- **roles/artifactregistry.repoAdmin**: This role grants full control over repositories in Artifact Registry.
+
+- **roles/resourcemanager.projectIamAdmin**: This role grants full control over IAM policies within a project.
+
+- **roles/storage.admin**: This role grants full control of objects and buckets in Google Cloud Storage.
+
+- **roles/compute.admin**: This role provides full control over compute resources.
+
+*/
 module "project-admins" {
   source  = "terraform-google-modules/iam/google//modules/folders_iam"
   version = "7.6.0"
-  folders = [module.folders.id["owner"], module.folders.id["Shared"]]
+  folders = [module.folders.id["BussinesUnits"], module.folders.id["Shared"]]
   mode    = "additive"
 
   bindings = {
     "roles/editor" = [
       "serviceAccount:${google_service_account.service_account.email}",
       "group:${module.project_admins.id}",
-    ]
+    ],
     "roles/iam.serviceAccountAdmin" = [
       "serviceAccount:${google_service_account.service_account.email}",
       "group:${module.project_admins.id}",
-    ]
+    ],
     "roles/iam.serviceAccountTokenCreator" = [
       "serviceAccount:${google_service_account.service_account.email}",
       "group:${module.project_admins.id}",
-    ]
+    ],
     "roles/artifactregistry.admin" = [
       "serviceAccount:${google_service_account.service_account.email}",
       "group:${module.project_admins.id}",
-    ]
+    ],
     "roles/artifactregistry.repoAdmin" = [
+      "serviceAccount:${google_service_account.service_account.email}",
+      "group:${module.project_admins.id}",
+    ],
+    "roles/resourcemanager.projectIamAdmin" = [
+      "serviceAccount:${google_service_account.service_account.email}",
+      "group:${module.project_admins.id}",
+    ],
+    "roles/storage.admin" = [
+      "serviceAccount:${google_service_account.service_account.email}",
+      "group:${module.project_admins.id}",
+    ],
+    "roles/compute.admin" = [
       "serviceAccount:${google_service_account.service_account.email}",
       "group:${module.project_admins.id}",
     ]
