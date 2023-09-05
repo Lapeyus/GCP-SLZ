@@ -2,10 +2,10 @@
 
 Welcome to the **documentation** for setting up a Secure Landing Zone (SLZ) in Google Cloud Platform (GCP).
 !!! note "Customization Required"
-Make sure to customize the code according to your specific requirements and organizational structure and fork your work. If you want to add improvements work them from a research feature branch and open a Pull Request froma develpment branch.
-![image info](./img/git-flow.png)
+    Make sure to customize the code according to your specific requirements and organizational structure and fork your work. If you want to add improvements work them from a research feature branch and open a Pull Request froma develpment branch.
+    ![image info](./img/git-flow.png)
 
-    ```mermaid
+    <!-- ```mermaid
         gitGraph
         commit
         branch develop-slz
@@ -24,7 +24,7 @@ Make sure to customize the code according to your specific requirements and orga
         checkout main
         branch slz-ClientB
         commit tag:"v1.1.1"
-    ```
+    ``` -->
 
 ---
 

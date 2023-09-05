@@ -1,4 +1,4 @@
-/**
+/*
 ### Billing Project Module
 
 This module is responsible for creating a GCP project specifically for billing purposes using the Terraform Google Project Factory module.
@@ -32,7 +32,7 @@ module "billing_project" {
   }
 }
 
-/**
+/*
 ### Google Pub/Sub Topic forProduction Budget
 Creates a Google Pub/Sub topic forproduction budget alerts.
 - `name`: The name of the Pub/Sub topic.
@@ -44,7 +44,7 @@ resource "google_pubsub_topic" "prod_budget" {
   project = module.billing_project.project_id
 }
 
-/**
+/*
 ### Budget Module for Production Projects
 
 This module is responsible for setting up budgets for production projects.
@@ -74,7 +74,7 @@ module "budget_prod_projects" {
   }
 }
 
-/**
+/*
 ### Google Pub/Sub Topic for Pre-Production Budget
 Creates a Google Pub/Sub topic for pre-production budget alerts.
 
@@ -86,7 +86,7 @@ resource "google_pubsub_topic" "preprod_budget" {
   project = module.billing_project.project_id
 }
 
-/**
+/*
 ### Budget Module for Pre-Production Projects
 This module is responsible for setting up budgets for pre-production projects.
 

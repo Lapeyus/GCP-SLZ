@@ -65,32 +65,32 @@ markdown_extensions:
   - md_in_html
   - admonition
   - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  # - pymdownx.superfences:
+  #     custom_fences:
+  #       - name: mermaid
+  #         class: mermaid
+  #         format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - mkdocs_graphviz:
-      light_theme: 000000
-      dark_theme: FFFFFF
-      color: 789ABC
-      bgcolor: none
-      graph_color: 789ABC
-      graph_fontcolor: 789ABC
-      node_color: 789ABC
-      node_fontcolor: 050709
-      edge_color: 789ABC
-      edge_fontcolor: 789ABC
-      priority: 75
+  # - mkdocs_graphviz:
+  #     light_theme: 000000
+  #     dark_theme: FFFFFF
+  #     color: 789ABC
+  #     bgcolor: none
+  #     graph_color: 789ABC
+  #     graph_fontcolor: 789ABC
+  #     node_color: 789ABC
+  #     node_fontcolor: 050709
+  #     edge_color: 789ABC
+  #     edge_fontcolor: 789ABC
+  #     priority: 75
   - tables
 #   - codehilite
 #   - pymdownx.betterem
 
-extra_javascript:
-  - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js
+# extra_javascript:
+#   - https://cdn.jsdelivr.net/gh/rod2ik/cdn@main/mkdocs/javascripts/mkdocs-graphviz.js

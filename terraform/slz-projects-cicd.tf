@@ -1,4 +1,4 @@
-/**
+/*
 ### CICD Project Module
 
 This module is responsible for creating a GCP project specifically for Continuous Integration and Continuous Deployment (CI/CD) using the Terraform Google Project Factory module.
