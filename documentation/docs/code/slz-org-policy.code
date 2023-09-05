@@ -1,3 +1,7 @@
+
+### Skip Default Network Creation
+Prevents the automatic creation of a default network in new projects.
+
 ```hcl
 module "skip_default_network" {
   source = "../modules/org-policy"
@@ -14,6 +18,9 @@ module "skip_default_network" {
   policy_type = "boolean"
 }
 ```
+
+### Uniform Bucket Level Access
+Enforces uniform bucket-level access control across all Cloud Storage buckets.
 
 ```hcl
 module "uniform_bucket_level_access" {
@@ -32,6 +39,10 @@ module "uniform_bucket_level_access" {
 }
 ```
 
+
+### Enforce Bucket Public Access Prevention
+Prevents public access to Cloud Storage buckets.
+
 ```hcl
 module "enforce_bucket_public_access_prevention" {
   source = "../modules/org-policy"
@@ -48,6 +59,10 @@ module "enforce_bucket_public_access_prevention" {
   policy_type = "boolean"
 }
 ```
+
+
+### Disable VM Serial Ports
+Disables the global serial port access to VM instances.
 
 ```hcl
 module "disable_vm_serial_ports" {
@@ -66,6 +81,10 @@ module "disable_vm_serial_ports" {
 }
 ```
 
+
+### Restrict Shared VPC Project Lien
+Restricts the removal of shared VPC project liens.
+
 ```hcl
 module "restrict_shared_vpc_project_lien" {
   source = "../modules/org-policy"
@@ -82,6 +101,10 @@ module "restrict_shared_vpc_project_lien" {
   policy_type = "boolean"
 }
 ```
+
+
+### Restrict Public IP CloudSQL
+Disallows public IP addresses for Cloud SQL instances.
 
 ```hcl
 module "restrict_public_ip_cloudsql" {
@@ -100,6 +123,10 @@ module "restrict_public_ip_cloudsql" {
 }
 ```
 
+
+### Disable VM Nested Virtualization
+Prevents the use of nested virtualization in VM instances.
+
 ```hcl
 module "disable_vm_nested_virtualization" {
   source = "../modules/org-policy"
@@ -116,6 +143,10 @@ module "disable_vm_nested_virtualization" {
   policy_type = "boolean"
 }
 ```
+
+
+### Disable Guest Attributes Access
+Blocks access to guest attributes in VM instances.
 
 ```hcl
 module "disable_guest_attributes" {
@@ -135,6 +166,9 @@ module "disable_guest_attributes" {
 ```
 
 
+### Require OS Login
+Enforces OS login for SSH access to VM instances.
+
 ```hcl
 module "require_os_login" {
   source = "../modules/org-policy"
@@ -151,6 +185,10 @@ module "require_os_login" {
   policy_type = "boolean"
 }
 ```
+
+
+### Domain Restricted Sharing
+Restricts sharing to specific domains.
 
 ```hcl
 module "domain_restricted_sharing" {
@@ -169,6 +207,10 @@ module "domain_restricted_sharing" {
 }
 ```
 
+
+### Restrict VM External IP
+Prohibits external IP access for VM instances.
+
 ```hcl
 module "restrict_vm_external_ip" {
   source = "../modules/org-policy"
@@ -185,6 +227,10 @@ module "restrict_vm_external_ip" {
   policy_type = "list"
 }
 ```
+
+
+### Restrict VPC Peering
+Limits VPC peering connections.
 
 ```hcl
 module "restrict_vpc_peering" {
@@ -203,6 +249,10 @@ module "restrict_vpc_peering" {
 }
 ```
 
+
+### Restrict Shared VPC Host Projects
+Restricts the creation of shared VPC host projects.
+
 ```hcl
 module "restrict_vpc_host_projects" {
   source = "../modules/org-policy"
@@ -220,6 +270,10 @@ module "restrict_vpc_host_projects" {
 }
 ```
 
+
+### Disable Service Account Key Creation
+Prevents the creation of service account keys.
+
 ```hcl
 module "disable_service_account_key_creation" {
   source = "../modules/org-policy"
@@ -236,6 +290,10 @@ module "disable_service_account_key_creation" {
   policy_type = "boolean"
 }
 ```
+
+
+### Disable Service Account Key Upload
+Disallows the upload of service account keys.
 
 ```hcl
 module "disable_service_account_key_upload" {

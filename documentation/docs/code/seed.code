@@ -161,8 +161,9 @@ resource "google_iam_workload_identity_pool_provider" "github" {
   workload_identity_pool_id          = google_iam_workload_identity_pool.cicd_terraformer.id
   workload_identity_pool_provider_id = "gh-actions"
   display_name                       = "gh-actions"
+  attribute_condition                = "repository_owner == '${var.owner}'"
   oidc {
-    allowed_audiences = []
+    allowed_audiences = ["//iam.googleapis.com/${google_iam_workload_identity_pool.cicd_terraformer.id}"]
     issuer_uri        = "https://token.actions.githubusercontent.com"
   }
   attribute_mapping = {
@@ -171,7 +172,6 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.repository"       = "assertion.repository"
     "attribute.repository_owner" = "assertion.repository_owner"
   }
-
   depends_on = [google_iam_workload_identity_pool.cicd_terraformer]
 }
 ```
