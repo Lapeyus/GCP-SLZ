@@ -1,13 +1,11 @@
 # workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Documentation
 on:
   workflow_run:
     workflows: ['Terraform']
     branches: [main]
     types:
       - completed
-  # push:
-  #   branches: ['main']
   workflow_dispatch:
 
 permissions:
@@ -27,6 +25,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Cache Ubuntu packages
+        uses: actions/cache@v2
+        with:
+          path: /var/cache/apt
+          key: ${{ runner.os }}-apt-${{ hashFiles('**/apt-packages.txt') }}
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Render and Push Terraform Docs
         uses: terraform-docs/gh-actions@v1.0.0
         with:
@@ -34,15 +46,25 @@ jobs:
           output-file: README.md
           output-method: replace
           git-push: 'true'
+
       - name: Move it to mkdocs folder
         run: |
           cp ./terraform/README.md ./documentation/docs/tfdocs.md
+
   doxygenate:
     name: 'Custom documentation as code'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -60,8 +82,6 @@ jobs:
           for tf_file in slz-folders-core seed slz-projects-sharedvpc slz-groups-iam slz-groups slz-org-policy slz-projects-billing slz-projects-cicd slz-projects-log-monitor bu-folders bu-groups bu-projects bu-tfstate-buckets; do
             python documentation/docs/scripts/doxygen.py "terraform/${tf_file}.tf" ./documentation/docs/code/
           done
-
-          # python documentation/scripts/folders.py './terraform/slz-folders-core.tf' ./documentation/docs/img --format=graphviz
 
       - name: Configure Git
         run: |
@@ -85,6 +105,14 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Setup Python
         uses: actions/setup-python@v4

@@ -1,4 +1,6 @@
-# Secure Landing Zone (SLZ) in GCP 🛡️☁️
+# Secure Landing Zone (SLZ) in GCP  🛡️☁️
+:material-google-cloud:
+
 
 Welcome to the **documentation** for setting up a Secure Landing Zone (SLZ) in Google Cloud Platform (GCP).
 !!! note "Customization Required"
