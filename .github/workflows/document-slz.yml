@@ -25,6 +25,10 @@ jobs:
     name: 'Documentation as code'
     runs-on: ubuntu-latest
     steps:
+      - name: Configure Global Git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Render Terraform Docs
@@ -49,10 +53,6 @@ jobs:
           done
 
           # python documentation/scripts/folders.py './terraform/slz-folders-core.tf' ./documentation/docs/img --format=graphviz
-      - name: Configure Global Git
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
       - name: Commit doc changes
         run: |
           git add .
