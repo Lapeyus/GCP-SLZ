@@ -4,6 +4,7 @@ from diagrams.custom import Custom
 
 folder_icon_path = "../img/icons/google-folder.png"
 org_icon_path = "../img/icons/administration.png"
+hook_icon_path = "../img/icons/hook.png"
 
 
 os.chdir('../img')
@@ -41,12 +42,14 @@ with Diagram("Secure Landing Zone Folder Hierarchy", filename="slz-folders-core"
     with Cluster("Attachment Point"):
         business_units = Custom("Bussiness Units", folder_icon_path)
         org >> Edge(color="Black", style="bold") >>  business_units
+        hook= Custom("", hook_icon_path)
+        # business_units >> hook
 
     with Cluster("Bussiness Unit A", graph_attr=graph_attr2):
         business_units_project = Custom("Project A", folder_icon_path)
         dev = Custom("dev", folder_icon_path)
         prod = Custom("prod", folder_icon_path)
-        business_units >> business_units_project
+        hook >> business_units_project
         business_units_project >> [dev,prod]
 
         # business_units_project2 = Custom("Project B", folder_icon_path)
