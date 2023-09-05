@@ -1,5 +1,9 @@
 # Aditional resources
 
+### [GCP's Best practices for using Terraform](https://cloud.google.com/docs/terraform/best-practices-for-terraform/)
+
+This document provides guidelines and recommendations for effective development with Terraform across multiple team members and work streams.
+
 ---
 
 ### [Bootstrap Your Google Cloud Foundation with Terraform and GitLab CI](https://johansiebens.dev/posts/2021/05/bootstrap-your-google-cloud-foundation-with-terraform-and-gitlab-ci/)
