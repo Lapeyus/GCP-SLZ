@@ -39,10 +39,9 @@
 | <a name="module_folders"></a> [folders](#module\_folders) | ../modules/google_folder | n/a |
 | <a name="module_gcp-admins"></a> [gcp-admins](#module\_gcp-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_gcp_admins"></a> [gcp\_admins](#module\_gcp\_admins) | terraform-google-modules/group/google | 0.4.0 |
-| <a name="module_log_export_to_storage"></a> [log\_export\_to\_storage](#module\_log\_export\_to\_storage) | terraform-google-modules/log-export/google | ~> 7.3.0 |
 | <a name="module_network-admins"></a> [network-admins](#module\_network-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_network_admins"></a> [network\_admins](#module\_network\_admins) | terraform-google-modules/group/google | 0.4.0 |
-| <a name="module_org_monitoring_project"></a> [org\_monitoring\_project](#module\_org\_monitoring\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
+| <a name="module_org_iam_bindings"></a> [org\_iam\_bindings](#module\_org\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_org_seed_project"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.3.0 |
 | <a name="module_owner_projecta_projects"></a> [owner\_projecta\_projects](#module\_owner\_projecta\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_owner_projecta_projects_tf_state"></a> [owner\_projecta\_projects\_tf\_state](#module\_owner\_projecta\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
@@ -55,6 +54,7 @@
 | <a name="module_project-admins"></a> [project-admins](#module\_project-admins) | terraform-google-modules/iam/google//modules/folders_iam | 7.6.0 |
 | <a name="module_project_admins"></a> [project\_admins](#module\_project\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_project_groups"></a> [project\_groups](#module\_project\_groups) | terraform-google-modules/group/google | 0.4.0 |
+| <a name="module_project_iam_bindings"></a> [project\_iam\_bindings](#module\_project\_iam\_bindings) | terraform-google-modules/iam/google//modules/projects_iam | 7.6.0 |
 | <a name="module_projecta_folders"></a> [projecta\_folders](#module\_projecta\_folders) | ../modules/google_folder | n/a |
 | <a name="module_projectb_folders"></a> [projectb\_folders](#module\_projectb\_folders) | ../modules/google_folder | n/a |
 | <a name="module_projectc_folders"></a> [projectc\_folders](#module\_projectc\_folders) | ../modules/google_folder | n/a |
@@ -68,9 +68,6 @@
 | <a name="module_security_admins"></a> [security\_admins](#module\_security\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_shared_vpc_host_project"></a> [shared\_vpc\_host\_project](#module\_shared\_vpc\_host\_project) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_skip_default_network"></a> [skip\_default\_network](#module\_skip\_default\_network) | ../modules/org-policy | n/a |
-| <a name="module_storage_destination"></a> [storage\_destination](#module\_storage\_destination) | terraform-google-modules/log-export/google//modules/storage | ~> 7.3.0 |
-| <a name="module_tf_seed_organization_iam_bindings"></a> [tf\_seed\_organization\_iam\_bindings](#module\_tf\_seed\_organization\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
-| <a name="module_tf_seed_project_iam_bindings"></a> [tf\_seed\_project\_iam\_bindings](#module\_tf\_seed\_project\_iam\_bindings) | terraform-google-modules/iam/google//modules/projects_iam | 7.6.0 |
 | <a name="module_tf_state"></a> [tf\_state](#module\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_uniform_bucket_level_access"></a> [uniform\_bucket\_level\_access](#module\_uniform\_bucket\_level\_access) | ../modules/org-policy | n/a |
 
@@ -82,15 +79,13 @@
 | [google_compute_global_address.prod_psa_address](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/compute_global_address) | resource |
 | [google_compute_network_peering_routes_config.preprod_psa_route_export](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/compute_network_peering_routes_config) | resource |
 | [google_compute_network_peering_routes_config.prod_psa_route_export](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/compute_network_peering_routes_config) | resource |
-| [google_iam_workload_identity_pool.cicd_terraformer](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool) | resource |
-| [google_iam_workload_identity_pool_provider.github](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool_provider) | resource |
-| [google_monitoring_dashboard.logging_dashboards](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/monitoring_dashboard) | resource |
-| [google_monitoring_monitored_project.primary](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/monitoring_monitored_project) | resource |
+| [google_iam_workload_identity_pool.main](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool) | resource |
+| [google_iam_workload_identity_pool_provider.github_actions](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/iam_workload_identity_pool_provider) | resource |
 | [google_pubsub_topic.preprod_budget](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/pubsub_topic) | resource |
 | [google_pubsub_topic.prod_budget](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/pubsub_topic) | resource |
-| [google_service_account.tf_seed](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account) | resource |
+| [google_service_account.main](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account) | resource |
 | [google_service_account_iam_binding.workload_identity](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_iam_binding) | resource |
-| [google_service_account_key.tf_seed](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_key) | resource |
+| [google_service_account_key.main](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_account_key) | resource |
 | [google_service_networking_connection.preprod_psa_connection](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_networking_connection) | resource |
 | [google_service_networking_connection.prod_psa_connection](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/service_networking_connection) | resource |
 | [google_vpc_access_connector.vpcconn-preprod](https://registry.terraform.io/providers/hashicorp/google/4.58.0/docs/resources/vpc_access_connector) | resource |
