@@ -1,4 +1,7 @@
-/**/
+/**
+### Shared VPC Host Project
+This module creates a Google Cloud Project that will act as a Shared VPC host.
+*/
 module "shared_vpc_host_project" {
   source                         = "terraform-google-modules/project-factory/google"
   version                        = "14.2.0"
@@ -18,8 +21,9 @@ module "shared_vpc_host_project" {
   }
 }
 
-/*
-This Module creates a GCP VPC and assigns subnets and routes to the range. You can also use this module to create secondary IP ranges, and firewall rules
+/**
+### Preprod VPC in Shared VPC Host
+This module sets up a Virtual Private Cloud (VPC) for pre-production environments within the shared VPC host project.
 */
 module "preprod_vpc_shared_vpc_host" {
   source                                 = "terraform-google-modules/network/google"
@@ -190,11 +194,11 @@ module "preprod_vpc_shared_vpc_host" {
     }
   ]
 }
-/*
-The next 3 resources ceate a Private Service Access Subnet for preprod VPC and configures route import/export"
-Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addresses
-*/
 
+/**
+### Preprod PSA Global Address
+This resource reserves an internal IP range for VPC peering in pre-production environments.
+*/
 resource "google_compute_global_address" "preprod_psa_address" {
   name          = "preprod-psconnect-ips"
   project       = module.shared_vpc_host_project.project_id
@@ -205,12 +209,20 @@ resource "google_compute_global_address" "preprod_psa_address" {
   prefix_length = "21"
 }
 
+/**
+### Preprod PSA Service Networking Connection
+This resource establishes a service networking connection using the reserved IP range for VPC peering in pre-production environments.
+*/
 resource "google_service_networking_connection" "preprod_psa_connection" {
   network                 = module.preprod_vpc_shared_vpc_host.network_id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.preprod_psa_address.name]
 }
 
+/**
+### Preprod PSA Route Export Configuration
+This resource configures route exports for the service networking connection in pre-production environments.
+*/
 resource "google_compute_network_peering_routes_config" "preprod_psa_route_export" {
   project              = module.shared_vpc_host_project.project_id
   peering              = google_service_networking_connection.preprod_psa_connection.peering
@@ -219,8 +231,9 @@ resource "google_compute_network_peering_routes_config" "preprod_psa_route_expor
   export_custom_routes = true
 }
 
-/*
-VPC CONNECTOR FOR PREPROD VPC
+/**
+### Preprod VPC Access Connector
+This resource creates a VPC Access Connector in pre-production environments for serverless products to connect to the VPC.
 */
 resource "google_vpc_access_connector" "vpcconn-preprod" {
   name    = "vpcconn-preprod"
@@ -230,8 +243,10 @@ resource "google_vpc_access_connector" "vpcconn-preprod" {
     name = "nonprod-vpc-con-us-east4"
   }
 }
-/*
-Cloud NAT for preprod VPC us-east4
+
+/**
+### Preprod Cloud NAT
+This module sets up a Cloud NAT gateway for the pre-production VPC to allow resources without public IP addresses to access the internet.
 */
 module "cloud-nat" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -244,7 +259,10 @@ module "cloud-nat" {
   name          = "preprod-cloud-nat-us-east4"
 }
 
-/*PRODUCTION VPC  */
+/**
+### Production VPC in Shared VPC Host
+This module sets up a Virtual Private Cloud (VPC) for production environments within the shared VPC host project.
+*/
 module "prod_vpc_shared_vpc_host" {
   source                                 = "terraform-google-modules/network/google"
   version                                = "7.3.0"
@@ -342,11 +360,11 @@ module "prod_vpc_shared_vpc_host" {
     }
   ]
 }
-/*
-The next 3 resources ceate a Private Service Access Subnet for Production VPC and configures route import/export"
-Private Service Access is what allows managed services like VertexAI, CloudSQL, Cloudbuild, etc, to have IP addressed
-*/
 
+/**
+### Google Compute Global Address for Prod PSA
+This resource is used to create a global IP address for VPC peering in a Google Cloud Project.
+*/
 resource "google_compute_global_address" "prod_psa_address" {
   name          = "prod-psconnect-ips"
   project       = module.shared_vpc_host_project.project_id
@@ -356,13 +374,21 @@ resource "google_compute_global_address" "prod_psa_address" {
   address       = "192.168.88.0"
   prefix_length = "21"
 }
-/**/
+
+/**
+### Google Service Networking Connection for Prod PSA
+This resource is used to establish the VPC peering connection.
+*/
 resource "google_service_networking_connection" "prod_psa_connection" {
   network                 = module.prod_vpc_shared_vpc_host.network_id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.prod_psa_address.name]
 }
-/**/
+
+/**
+### Google Compute Network Peering Routes Configuration for Prod PSA
+This resource is responsible for configuring custom routes for the VPC peering connection.
+*/
 resource "google_compute_network_peering_routes_config" "prod_psa_route_export" {
   project              = module.shared_vpc_host_project.project_id
   peering              = google_service_networking_connection.prod_psa_connection.peering
@@ -371,8 +397,9 @@ resource "google_compute_network_peering_routes_config" "prod_psa_route_export" 
   export_custom_routes = true
 }
 
-/*
-VPC CONNECTOR FOR PROD VPC
+/**
+### Google VPC Access Connector for Prod
+This resource establishes a VPC Access Connector in the `us-east5` region.
 */
 resource "google_vpc_access_connector" "vpcconn-prod" {
   name    = "vpcconn-prod"
@@ -383,8 +410,9 @@ resource "google_vpc_access_connector" "vpcconn-prod" {
   }
 }
 
-/*
-Cloud NAT for prod VPC us-east5
+/**
+### Cloud NAT for Prod using Terraform Google Module
+This module sets up Cloud NAT for the production VPC in the `us-east5` region.
 */
 module "cloud-nat-prod" {
   source        = "terraform-google-modules/cloud-nat/google"
@@ -397,8 +425,9 @@ module "cloud-nat-prod" {
   name          = "prod-cloud-nat-us-east5"
 }
 
-/*
-FIREWALL POLICIES
+/**
+### Firewall Policy using Custom Module
+This module configures firewall policies for both pre-production and production VPCs.
 */
 module "firewall_policy" {
   source      = "../modules/network-firewall-policy"
@@ -416,8 +445,7 @@ module "firewall_policy" {
       description    = "Allow traffic into the VPC from owner primary and secondary IPs"
       enable_logging = true
       match = {
-        # current IPS for ["owner_primary_ip", "owner_secondary_ip"]
-        src_ip_ranges = ["47.19.146.114", "75.127.173.50"]
+        src_ip_ranges = [""]
       }
     },
     {
@@ -428,8 +456,7 @@ module "firewall_policy" {
       description    = "Allow egress traffic for Cloud Run jobs scraping websites"
       enable_logging = true
       match = {
-        # current IPS for [mis.nyiso.com,   api.misoenergy.org, www.ercot.com]
-        dest_ip_ranges = ["204.152.47.69/32", "52.176.6.37/32", "45.60.45.66"]
+        dest_ip_ranges = []
       }
     }
   ]
