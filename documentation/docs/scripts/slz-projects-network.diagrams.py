@@ -12,7 +12,7 @@ vpc_connector_icon_path = "../img/icons/vpc-connector.png"
 # Change directory to where your output imgs are stored
 os.chdir('../img')
 
-with Diagram("Shared VPC host project", show=False, filename="slz-projects-sharedvpc"):
+with Diagram("Shared VPC host project", show=False, filename="slz-projects-network"):
     apis = Custom("servicenetworking.googleapis.com", apis_icon_path)
     psa_address = Custom("psaconnect-ip", global_address_path)
 

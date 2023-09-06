@@ -26,7 +26,7 @@ This module handles the creation of ingest projects using the filtered ingest fo
 module "altus_ingest_projects" {
   for_each                 = local.filtered_ingest_folders
   source                   = "terraform-google-modules/project-factory/google"
-  version                  = "14.2.0"
+  version                  = "14.3.0"
   ...
   labels = {
     terraform_managed = true

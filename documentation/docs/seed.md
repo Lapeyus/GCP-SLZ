@@ -40,18 +40,18 @@ The seed project is crucial because it lays the foundation for all your future p
 
 ```mermaid
 graph TD;
-    google_service_account --> module.org_seed_project;
+    google_service_account --> module.seed;
     google_service_account_key --> google_service_account;
     tf_seed_organization_iam_bindings --> google_service_account;
     tf_seed_project_iam_bindings --> google_service_account;
-    google_iam_workload_identity_pool --> module.org_seed_project;
+    google_iam_workload_identity_pool --> module.seed;
     google_iam_workload_identity_pool_provider --> google_iam_workload_identity_pool;
     google_service_account_iam_binding --> google_service_account;
      google_service_account_iam_binding --> google_iam_workload_identity_pool_provider
 ```
 
 First define the APIs to be activated.
-The `module "org_seed_project"` sets up the project.
+The `module "seed"` sets up the project.
 The `resource "google_service_account"` creates the service account.
 IAM roles are managed through modules `"terraform_sa_organization_iam_bindings"` and `"terraform_sa_project_iam_bindings"`.
 Workload Identity Federation and binding are handled with specific resources.
@@ -61,7 +61,7 @@ Workload Identity Federation and binding are handled with specific resources.
 
 2. **Project Creation**: Setup a GCP project using the "terraform-google-modules/
 
-   - `terraform apply -target=module.org_seed_project`
+   - `terraform apply -target=module.seed`
 
 3. **Service Account Creation**: Define a service account used by Terraform.
 

@@ -3,10 +3,9 @@
  Creates the required folders for a project: a parent with 6 nested folder environments
 */
 module "projecta_folders" {
-  source = "../modules/google_folder"
-
+  source = "./modules/google_folder"
   folders = {
-    "${var.owner}-projecta" = { external_parent_id = module.folders.id["BussinesUnits"] },
+    "${var.owner}-projecta" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projecta-dev" = {
       name             = "dev"
       parent_entry_key = "${var.owner}-projecta"
@@ -33,15 +32,16 @@ module "projecta_folders" {
     },
   }
 }
+
 /*
 ### Project B
  Creates the required folders for a project: a parent with 6 nested folder environments
 */
 module "projectb_folders" {
-  source = "../modules/google_folder"
+  source = "./modules/google_folder"
 
   folders = {
-    "${var.owner}-projectb" = { external_parent_id = module.folders.id["BussinesUnits"] },
+    "${var.owner}-projectb" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projectb-dev" = {
       name             = "dev"
       parent_entry_key = "${var.owner}-projectb"
@@ -73,10 +73,10 @@ module "projectb_folders" {
  Creates the required folders for a project: a parent with 6 nested folder environments.
 */
 module "projectc_folders" {
-  source = "../modules/google_folder"
+  source = "./modules/google_folder"
 
   folders = {
-    "${var.owner}-projectc" = { external_parent_id = module.folders.id["BussinesUnits"] },
+    "${var.owner}-projectc" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projectc-dev" = {
       name             = "dev"
       parent_entry_key = "${var.owner}-projectc"

@@ -42,7 +42,7 @@
 | <a name="module_network-admins"></a> [network-admins](#module\_network-admins) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
 | <a name="module_network_admins"></a> [network\_admins](#module\_network\_admins) | terraform-google-modules/group/google | 0.4.0 |
 | <a name="module_org_iam_bindings"></a> [org\_iam\_bindings](#module\_org\_iam\_bindings) | terraform-google-modules/iam/google//modules/organizations_iam | 7.6.0 |
-| <a name="module_org_seed_project"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.3.0 |
+| <a name="module_seed"></a> [org\_seed\_project](#module\_org\_seed\_project) | terraform-google-modules/project-factory/google | 14.3.0 |
 | <a name="module_owner_projecta_projects"></a> [owner\_projecta\_projects](#module\_owner\_projecta\_projects) | terraform-google-modules/project-factory/google | 14.2.0 |
 | <a name="module_owner_projecta_projects_tf_state"></a> [owner\_projecta\_projects\_tf\_state](#module\_owner\_projecta\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
 | <a name="module_owner_projectb_projects_tf_state"></a> [owner\_projectb\_projects\_tf\_state](#module\_owner\_projectb\_projects\_tf\_state) | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0 |
@@ -108,7 +108,7 @@
 | Name | Description |
 |------|-------------|
 | <a name="output_org_cicd_project"></a> [org\_cicd\_project](#output\_org\_cicd\_project) | The organization's CI/CD project module. All properties |
-| <a name="output_org_seed_project"></a> [org\_seed\_project](#output\_org\_seed\_project) | The seeded organization project module. All properties |
+| <a name="output_seed"></a> [org\_seed\_project](#output\_org\_seed\_project) | The seeded organization project module. All properties |
 | <a name="output_owner_project_groups"></a> [owner\_project\_groups](#output\_owner\_project\_groups) | The GCP groups associated with each owner project. |
 | <a name="output_owner_projects"></a> [owner\_projects](#output\_owner\_projects) | A merged map of all owner projects: projecta, curated, and trans projects. All properties |
 | <a name="output_preprod_vpc_shared_vpc_host"></a> [preprod\_vpc\_shared\_vpc\_host](#output\_preprod\_vpc\_shared\_vpc\_host) | The shared VPC for the pre-production environment. All properties |

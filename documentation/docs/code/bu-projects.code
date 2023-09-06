@@ -25,14 +25,14 @@ activation of certain APIs, and a label for billing purposes
 module "owner_projecta_projects" {
   for_each                 = local.filtered_projecta_folders
   source                   = "terraform-google-modules/project-factory/google"
-  version                  = "14.2.0"
+  version                  = "14.3.0"
   name                     = each.key
   random_project_id        = true
   random_project_id_length = 3
   org_id                   = var.org_id
   billing_account          = var.billing_account
   folder_id                = each.value
-  svpc_host_project_id     = module.shared_vpc_host_project.project_id
+  svpc_host_project_id     = module.network.project_id
   activate_apis            = var.activate_apis["projecta"]
   labels = {
     env = "prod"
@@ -51,14 +51,14 @@ activation of certain APIs, and a label for billing purposes
 module "owner_projectbated_projects" {
   for_each                 = local.filtered_projectbated_folders
   source                   = "terraform-google-modules/project-factory/google"
-  version                  = "14.2.0"
+  version                  = "14.3.0"
   name                     = each.key
   random_project_id        = true
   random_project_id_length = 3
   org_id                   = var.org_id
   billing_account          = var.billing_account
   folder_id                = each.value
-  svpc_host_project_id     = module.shared_vpc_host_project.project_id
+  svpc_host_project_id     = module.network.project_id
   activate_apis            = var.activate_apis["projectb"]
   labels = {
     env = "prod"
@@ -77,14 +77,14 @@ activation of certain APIs, and a label for billing purposes
 module "owner_projectc_projects" {
   for_each                 = local.filtered_projectc_folders
   source                   = "terraform-google-modules/project-factory/google"
-  version                  = "14.2.0"
+  version                  = "14.3.0"
   name                     = each.key
   random_project_id        = true
   random_project_id_length = 3
   org_id                   = var.org_id
   billing_account          = var.billing_account
   folder_id                = each.value
-  svpc_host_project_id     = module.shared_vpc_host_project.project_id
+  svpc_host_project_id     = module.network.project_id
   activate_apis            = var.activate_apis["projectc"]
   labels = {
     env = "prod"

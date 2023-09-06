@@ -5,7 +5,7 @@
 */
 module "gcp_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "admins@${data.google_organization.org.domain}"
   display_name = "GCP Admins"
   description  = "Group for GCP Administrators"
@@ -23,7 +23,7 @@ Responsible for security settings, such as configuring IAM and organization poli
 */
 module "security_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "security-admins@${data.google_organization.org.domain}"
   display_name = "GCP Security Admins"
   description  = "Group for GCP Security Administrators"
@@ -32,6 +32,7 @@ module "security_admins" {
   members      = []
   owners       = []
 }
+
 /*
 ### 3. Network Admins
 Manages network resources like VPCs, subnets, and firewall rules.
@@ -40,7 +41,7 @@ Manages network resources like VPCs, subnets, and firewall rules.
 */
 module "network_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "network-admins@${data.google_organization.org.domain}"
   display_name = "GCP Network Admins"
   description  = "Group for GCP Network Administrators"
@@ -49,6 +50,7 @@ module "network_admins" {
   members      = []
   owners       = []
 }
+
 /*
 ### 4. Audit Admins
 Has permissions to view all resources and settings for auditing and compliance.
@@ -57,7 +59,7 @@ Has permissions to view all resources and settings for auditing and compliance.
 */
 module "audit_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "audit-admins@${data.google_organization.org.domain}"
   display_name = "GCP Audit Admins"
   description  = "Group for GCP Audit Administrators"
@@ -66,6 +68,7 @@ module "audit_admins" {
   members      = []
   owners       = []
 }
+
 /*
 ### 5. Project Admins
 
@@ -74,7 +77,7 @@ A global grant to manage all projects in the organization. Individual project ma
 */
 module "project_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "project-admins@${data.google_organization.org.domain}"
   display_name = "GCP Project Admins"
   description  = "Group for GCP Project Administrators"

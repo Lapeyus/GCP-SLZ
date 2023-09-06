@@ -3,8 +3,8 @@
 
 This module is responsible for creating a GCP project specifically for billing purposes using the Terraform Google Project Factory module.
 - `source`: The source for the Terraform Google Project Factory module. Set to "terraform-google-modules/project-factory/google".
-- `version`: Specifies the version of the Google Project Factory module. Currently set to "14.2.0".
-- `name`: The name of the billing project. In this case, it is "owner-cor-billing".
+- `version`: Specifies the version of the Google Project Factory module. Currently set to "14.3.0".
+- `name`: The name of the billing project. In this case, it is "${var.owner}-cor-billing".
 - `random_project_id`: If set to `true`, a random project ID is generated.
 - `random_project_id_length`: The length of the generated random project ID. Set to 3.
 - `org_id`: The GCP Organization ID, sourced from a variable.
@@ -14,10 +14,10 @@ This module is responsible for creating a GCP project specifically for billing p
 - `default_service_account`: Default service account settings. Set to "disable" to disable the default service account.
 - `activate_apis`: APIs to activate in the project. Sourced from `var.activate_apis["Billing"]`.
 */
-module "billing_project" {
+module "billing" {
   source                   = "terraform-google-modules/project-factory/google"
-  version                  = "14.2.0"
-  name                     = "owner-cor-billing"
+  version                  = "14.3.0"
+  name                     = "${var.owner}-cor-billing"
   random_project_id        = true
   random_project_id_length = 3
   org_id                   = var.org_id
@@ -39,9 +39,9 @@ Creates a Google Pub/Sub topic forproduction budget alerts.
 - `project`: The ID of the project where the Pub/Sub topic will be created.
 */
 
-resource "google_pubsub_topic" "prod_budget" {
-  name    = "owner-prod-budget-topic-${random_string.suffix.result}"
-  project = module.billing_project.project_id
+resource "google_pubsub_topic" "prod" {
+  name    = "${var.owner}-prod-budget-topic"
+  project = module.billing.project_id
 }
 
 /*
@@ -59,16 +59,16 @@ This module is responsible for setting up budgets for production projects.
 - `credit_types_treatment`: How to treat credit types.
 - `alert_pubsub_topic`: Pub/Sub topic where alerts will be sent.
 */
-module "budget_prod_projects" {
+module "prod_budget" {
   source                 = "terraform-google-modules/project-factory/google//modules/budget"
   version                = "14.3.0"
   billing_account        = var.billing_account
-  projects               = [module.billing_project.project_id]
+  projects               = [module.billing.project_id]
   amount                 = "1000"
-  display_name           = "Budget for ${module.billing_project.project_id}"
+  display_name           = "Budget for ${module.billing.project_id}"
   alert_spent_percents   = [0.5, 0.7, 1.0]
   credit_types_treatment = "INCLUDE_ALL_CREDITS"
-  alert_pubsub_topic     = "projects/${module.billing_project.project_id}/topics/${google_pubsub_topic.prod_budget.name}"
+  alert_pubsub_topic     = "projects/${module.billing.project_id}/topics/${google_pubsub_topic.prod.name}"
   labels = {
     "env" : "prod"
   }
@@ -81,9 +81,9 @@ Creates a Google Pub/Sub topic for pre-production budget alerts.
 - `name`: The name of the Pub/Sub topic.
 - `project`: The ID of the project where the Pub/Sub topic will be created.
 */
-resource "google_pubsub_topic" "preprod_budget" {
-  name    = "owner-preprod-budget-topic-${random_string.suffix.result}"
-  project = module.billing_project.project_id
+resource "google_pubsub_topic" "preprod" {
+  name    = "${var.owner}-preprod-budget-topic"
+  project = module.billing.project_id
 }
 
 /*
@@ -101,16 +101,16 @@ This module is responsible for setting up budgets for pre-production projects.
 - `alert_pubsub_topic`: Pub/Sub topic where alerts will be sent.
 
 */
-module "budget_preprod_projects" {
+module "preprod_budget" {
   source                 = "terraform-google-modules/project-factory/google//modules/budget"
   version                = "14.3.0"
   billing_account        = var.billing_account
-  projects               = [module.billing_project.project_id]
+  projects               = [module.billing.project_id]
   amount                 = "1000"
-  display_name           = "Budget for ${module.billing_project.project_id}"
+  display_name           = "Budget for ${module.billing.project_id}"
   alert_spent_percents   = [0.5, 0.7, 1.0]
   credit_types_treatment = "INCLUDE_ALL_CREDITS"
-  alert_pubsub_topic     = "projects/${module.billing_project.project_id}/topics/${google_pubsub_topic.preprod_budget.name}"
+  alert_pubsub_topic     = "projects/${module.billing.project_id}/topics/${google_pubsub_topic.preprod.name}"
   labels = {
     "env" : "prod"
   }

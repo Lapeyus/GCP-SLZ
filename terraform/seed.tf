@@ -12,9 +12,9 @@ locals {
 
 /*
 ### Org Seed Project
-This Terraform module, `org_seed_project`, is used to create a Google Cloud Project with specific configurations using the Project Factory module, without creating a random project ID, a default service account, or a network, activates all agregated APIs.
+This Terraform module, `seed`, is used to create a Google Cloud Project with specific configurations using the Project Factory module, without creating a random project ID, a default service account, or a network, activates all agregated APIs.
 */
-module "org_seed_project" {
+module "seed" {
   source                  = "terraform-google-modules/project-factory/google"
   version                 = "14.3.0"
   random_project_id       = "true"
@@ -32,13 +32,13 @@ module "org_seed_project" {
 
 /*
 ### Google Service Account
-This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `main` in the project created by the `org_seed_project` module.
+This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `main` in the project created by the `seed` module.
 */
 resource "google_service_account" "main" {
   account_id   = "tf-seed"
   display_name = "Terraform Seed Service Account"
-  project      = module.org_seed_project.project_id
-  depends_on   = [module.org_seed_project]
+  project      = module.seed.project_id
+  depends_on   = [module.seed]
 }
 
 /*
@@ -116,7 +116,7 @@ module "org_iam_bindings" {
 module "project_iam_bindings" {
   source   = "terraform-google-modules/iam/google//modules/projects_iam"
   version  = "7.6.0"
-  projects = [module.org_seed_project.project_id]
+  projects = [module.seed.project_id]
   mode     = "additive"
 
   bindings = {
@@ -139,8 +139,8 @@ This Terraform code creates a new Google Cloud IAM Workload Identity Pool with t
 */
 resource "google_iam_workload_identity_pool" "main" {
   workload_identity_pool_id = "cicd-terraformer"
-  project                   = module.org_seed_project.project_id
-  depends_on                = [module.module.org_seed_project]
+  project                   = module.seed.project_id
+  depends_on                = [module.seed]
 }
 
 /*
@@ -174,14 +174,14 @@ Member repos can impersonate the terraform SA via github actions.
 */
 
 resource "google_service_account_iam_binding" "workload_identity" {
-  service_account_id = google_service_account.service_account.id
+  service_account_id = google_service_account.main.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.main.id}/attribute.repository/${var.owner}/${SLZ-REPO-NAME}",
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.main.id}/attribute.repository/${var.owner}/owner", #${SLZ-REPO-NAME}
 
-    # A: "principalSet://iam.googleapis.com/projects/${module.org_seed_project.project_number}/locations/global/workloadIdentityPools/cicd-terraformer/attribute.repository_owner/${var.owner}",
+    # A: "principalSet://iam.googleapis.com/projects/${module.seed.project_number}/locations/global/workloadIdentityPools/cicd-terraformer/attribute.repository_owner/${var.owner}",
 
-    # B: "serviceAccount:${module.org_seed_project.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
+    # B: "serviceAccount:${module.seed.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
   ]
-  depends_on = [google_service_account.service_account.id, google_iam_workload_identity_pool_provider.github_actions]
+  depends_on = [google_service_account.main, google_iam_workload_identity_pool_provider.github_actions]
 }

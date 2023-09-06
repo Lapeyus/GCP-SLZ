@@ -3,7 +3,7 @@
 
 This module is responsible for creating a GCP project specifically for billing purposes using the Terraform Google Project Factory module.
 - `source`: The source for the Terraform Google Project Factory module. Set to "terraform-google-modules/project-factory/google".
-- `version`: Specifies the version of the Google Project Factory module. Currently set to "14.2.0".
+- `version`: Specifies the version of the Google Project Factory module. Currently set to "14.3.0".
 - `name`: The name of the billing project. In this case, it is "owner-cor-billing".
 - `random_project_id`: If set to `true`, a random project ID is generated.
 - `random_project_id_length`: The length of the generated random project ID. Set to 3.
@@ -17,7 +17,7 @@ This module is responsible for creating a GCP project specifically for billing p
 ```hcl
 module "billing_project" {
   source                   = "terraform-google-modules/project-factory/google"
-  version                  = "14.2.0"
+  version                  = "14.3.0"
   name                     = "owner-cor-billing"
   random_project_id        = true
   random_project_id_length = 3

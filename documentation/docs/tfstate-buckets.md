@@ -30,7 +30,7 @@ module "altus_ingest_projects_tf_state" {
   iam_members = [
     {
       role   = "roles/storage.objectViewer"
-      member = "serviceAccount:${google_service_account.service_account.email}"
+      member = "serviceAccount:${google_service_account.main.email}"
     },
   ]
 }

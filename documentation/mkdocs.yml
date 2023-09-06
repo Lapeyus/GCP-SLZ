@@ -3,6 +3,7 @@ repo_url: https://github.com/66degrees/devops-ve-pod-1-slz
 
 nav:
   - Home: index.md
+  - Best practices and Standards: slz-conventions.md
   - Secure Landing Zone Core:
       - The Seed Project: seed.md
       - Folders Core: slz-folders-core.md
@@ -11,7 +12,7 @@ nav:
       - Organizational Policies: slz-org-policy.md
       - Billing Project: slz-projects-billing.md
       - CI/CD Project: slz-projects-cicd.md
-      - Shared VPC Project: slz-projects-sharedvpc.md
+      - Network: slz-projects-network.md
       - Loggin & Monitoring: slz-projects-log-monitor.md
       - Terraform State Buckets: tfstate-buckets.md
       - FAQs: slz-faqs.md

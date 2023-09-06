@@ -7,7 +7,7 @@ module "projecta_folders" {
   source = "../modules/google_folder"
 
   folders = {
-    "${var.owner}-projecta" = { external_parent_id = module.folders.id["BussinesUnits"] },
+    "${var.owner}-projecta" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projecta-dev" = {
       name             = "dev"
       parent_entry_key = "${var.owner}-projecta"
@@ -44,7 +44,7 @@ module "projectb_folders" {
   source = "../modules/google_folder"
 
   folders = {
-    "${var.owner}-projectb" = { external_parent_id = module.folders.id["BussinesUnits"] },
+    "${var.owner}-projectb" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projectb-dev" = {
       name             = "dev"
       parent_entry_key = "${var.owner}-projectb"
@@ -81,7 +81,7 @@ module "projectc_folders" {
   source = "../modules/google_folder"
 
   folders = {
-    "${var.owner}-projectc" = { external_parent_id = module.folders.id["BussinesUnits"] },
+    "${var.owner}-projectc" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projectc-dev" = {
       name             = "dev"
       parent_entry_key = "${var.owner}-projectc"

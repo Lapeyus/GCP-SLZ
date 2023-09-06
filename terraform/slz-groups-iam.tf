@@ -168,40 +168,40 @@ module "audit-admins" {
 module "project-admins" {
   source  = "terraform-google-modules/iam/google//modules/folders_iam"
   version = "7.6.0"
-  folders = [module.folders.id["BussinesUnits"], module.folders.id["Shared"]]
+  folders = [module.folders.id["BusinessUnits"], module.folders.id["Shared"]]
   mode    = "additive"
 
   bindings = {
     "roles/editor" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/iam.serviceAccountAdmin" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/iam.serviceAccountTokenCreator" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/artifactregistry.admin" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/artifactregistry.repoAdmin" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/resourcemanager.projectIamAdmin" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/storage.admin" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ],
     "roles/compute.admin" = [
-      "serviceAccount:${google_service_account.service_account.email}",
+      "serviceAccount:${google_service_account.main.email}",
       "group:${module.project_admins.id}",
     ]
   }

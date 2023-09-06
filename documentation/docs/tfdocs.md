@@ -42,7 +42,7 @@
 | <a name="module_gcp_admins"></a> [gcp_admins](#module_gcp_admins)                                                                                        | terraform-google-modules/group/google                                | 0.4.0   |
 | <a name="module_network-admins"></a> [network-admins](#module_network-admins)                                                                            | terraform-google-modules/iam/google//modules/organizations_iam       | 7.6.0   |
 | <a name="module_network_admins"></a> [network_admins](#module_network_admins)                                                                            | terraform-google-modules/group/google                                | 0.4.0   |
-| <a name="module_org_seed_project"></a> [org_seed_project](#module_org_seed_project)                                                                      | terraform-google-modules/project-factory/google                      | 14.3.0  |
+| <a name="module_seed"></a> [seed](#module_seed)                                                                      | terraform-google-modules/project-factory/google                      | 14.3.0  |
 | <a name="module_owner_projecta_projects"></a> [owner_projecta_projects](#module_owner_projecta_projects)                                                 | terraform-google-modules/project-factory/google                      | 14.2.0  |
 | <a name="module_owner_projecta_projects_tf_state"></a> [owner_projecta_projects_tf_state](#module_owner_projecta_projects_tf_state)                      | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0  |
 | <a name="module_owner_projectb_projects_tf_state"></a> [owner_projectb_projects_tf_state](#module_owner_projectb_projects_tf_state)                      | terraform-google-modules/cloud-storage/google//modules/simple_bucket | ~> 4.0  |
@@ -109,7 +109,7 @@
 | Name                                                                                                                 | Description                                                                               |
 | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | <a name="output_org_cicd_project"></a> [org_cicd_project](#output_org_cicd_project)                                  | The organization's CI/CD project module. All properties                                   |
-| <a name="output_org_seed_project"></a> [org_seed_project](#output_org_seed_project)                                  | The seeded organization project module. All properties                                    |
+| <a name="output_seed"></a> [seed](#output_seed)                                  | The seeded organization project module. All properties                                    |
 | <a name="output_owner_project_groups"></a> [owner_project_groups](#output_owner_project_groups)                      | The GCP groups associated with each owner project.                                        |
 | <a name="output_owner_projects"></a> [owner_projects](#output_owner_projects)                                        | A merged map of all owner projects: projecta, curated, and trans projects. All properties |
 | <a name="output_preprod_vpc_shared_vpc_host"></a> [preprod_vpc_shared_vpc_host](#output_preprod_vpc_shared_vpc_host) | The shared VPC for the pre-production environment. All properties                         |

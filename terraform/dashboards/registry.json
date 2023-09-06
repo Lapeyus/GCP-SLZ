@@ -1,0 +1,74 @@
+{
+    "dashboard": {
+      "title": "Artifact Registry Monitoring",
+      "widgets": [
+        {
+          "title": "Container Images Uploaded",
+          "type": "metric",
+          "datasource": "cloud_monitoring",
+          "x": 0,
+          "y": 0,
+          "width": 6,
+          "height": 4,
+          "metrics": [
+            {
+              "filter": "metric.type=\"artifactregistry.googleapis.com/repository/image_count\"",
+              "aggregator": "sum",
+              "alignmentPeriod": "3600s"
+            }
+          ]
+        },
+        {
+          "title": "Container Image Pulls",
+          "type": "metric",
+          "datasource": "cloud_monitoring",
+          "x": 6,
+          "y": 0,
+          "width": 6,
+          "height": 4,
+          "metrics": [
+            {
+              "filter": "metric.type=\"artifactregistry.googleapis.com/repository/pull_count\"",
+              "aggregator": "sum",
+              "alignmentPeriod": "3600s"
+            }
+          ]
+        },
+        {
+          "title": "Container Image Vulnerabilities",
+          "type": "metric",
+          "datasource": "cloud_monitoring",
+          "x": 0,
+          "y": 4,
+          "width": 12,
+          "height": 6,
+          "metrics": [
+            {
+              "filter": "metric.type=\"artifactregistry.googleapis.com/repository/vulnerability_count\"",
+              "aggregator": "sum",
+              "alignmentPeriod": "3600s"
+            }
+          ],
+          "options": {
+            "mode": "timeSeries",
+            "thresholds": [
+              {
+                "label": "High",
+                "value": 10
+              },
+              {
+                "label": "Medium",
+                "value": 5
+              }
+            ],
+            "colors": [
+              "#FF0000",
+              "#FFA500",
+              "#FFFF00",
+              "#00FF00"
+            ]
+          }
+        }
+      ]
+    }
+  }

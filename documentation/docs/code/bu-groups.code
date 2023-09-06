@@ -1,10 +1,10 @@
 
 Fetching data about Google Cloud folders that are children
-of the parent folder identified by `module.folders.id["BussinesUnits"]` using the Google provider in Terraform.
+of the parent folder identified by `module.folders.id["BusinessUnits"]` using the Google provider in Terraform.
 
 ```hcl
 data "google_folders" "prj_folders" {
-  parent_id = module.folders.id["BussinesUnits"]
+  parent_id = module.folders.id["BusinessUnits"]
 }
 ```
 

@@ -7,10 +7,10 @@
   - **Security**: Holds security-related configurations and policies.
   - **Network**: For managing network-related resources.
 - **Shared**: A folder hosting shared resources with subfolders for production and non-production environments.
-- **BussinesUnits**: Businnes Unit attachment point. this folder is used to nest all Bussines Units that company has, a Bussines Unit holds project folders, a project has environment folders. see bu-folders.tf.
+- **BusinessUnits**: Businnes Unit attachment point. this folder is used to nest all Bussines Units that company has, a Bussines Unit holds project folders, a project has environment folders. see bu-folders.tf.
 */
 module "folders" {
-  source = "../modules/google_folder"
+  source = "./modules/google_folder"
 
   folders = {
     "Core"               = { external_parent_id = "organizations/${var.org_id}" },
@@ -21,8 +21,8 @@ module "folders" {
     "Shared"             = { external_parent_id = "organizations/${var.org_id}" },
     "Shared-Prod"        = { parent_entry_key = "Shared" },
     "Shared-NonProd"     = { parent_entry_key = "Shared" },
-    "BussinesUnits" = {
-      name               = "BussinesUnits"
+    "BusinessUnits" = {
+      name               = "BusinessUnits"
       external_parent_id = "organizations/${var.org_id}"
     },
   }

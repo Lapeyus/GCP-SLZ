@@ -308,7 +308,7 @@ To add a new VPC, you can create a new instance of the VPC module:
 ```hcl
 module "new_vpc" {
   source                                 = "terraform-google-modules/network/google"
-  project_id                             = module.shared_vpc_host_project.project_id
+  project_id                             = module.network.project_id
   network_name                           = "new-vpc"
   routing_mode                           = "GLOBAL"
   ...

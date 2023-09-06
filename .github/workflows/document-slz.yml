@@ -79,7 +79,7 @@ jobs:
 
       - name: Run Doxygen Scripts
         run: |
-          for tf_file in slz-folders-core seed slz-projects-sharedvpc slz-groups-iam slz-groups slz-org-policy slz-projects-billing slz-projects-cicd slz-projects-log-monitor bu-folders bu-groups bu-projects bu-tfstate-buckets; do
+          for tf_file in slz-folders-core seed slz-projects-network slz-groups-iam slz-groups slz-org-policy slz-projects-billing slz-projects-cicd slz-projects-log-monitor bu-folders bu-groups bu-projects bu-tfstate-buckets; do
             python documentation/docs/scripts/doxygen.py "terraform/${tf_file}.tf" ./documentation/docs/code/
           done
 
