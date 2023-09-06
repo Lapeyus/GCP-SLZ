@@ -1,6 +1,6 @@
-# Altus Project Modules Documentation
+# ${var.owner} Project Modules Documentation
 
-This document explains the Terraform code responsible for managing Altus ingest, curated, and transformation projects within Google Cloud Platform.
+This document explains the Terraform code responsible for managing ${var.owner} ingest, curated, and transformation projects within Google Cloud Platform.
 
 ## Overview
 
@@ -12,18 +12,18 @@ The code starts by defining local variables that filter out folders based on the
 
 ```hcl
 locals {
-  filtered_ingest_folders  = { for k, v in module.ingest_folders.id : k => v if k != "Altus-Ingest" }
-  filtered_curated_folders = { for k, v in module.curated_folders.id : k => v if k != "Altus-Cur" }
-  filtered_trans_folders   = { for k, v in module.trans_folders.id : k => v if k != "Altus-Trans" }
+  filtered_ingest_folders  = { for k, v in module.ingest_folders.id : k => v if k != "${var.owner}-Ingest" }
+  filtered_curated_folders = { for k, v in module.curated_folders.id : k => v if k != "${var.owner}-Cur" }
+  filtered_trans_folders   = { for k, v in module.trans_folders.id : k => v if k != "${var.owner}-Trans" }
 }
 ```
 
-## Altus Ingest Projects Module
+## ${var.owner} Ingest Projects Module
 
 This module handles the creation of ingest projects using the filtered ingest folders.
 
 ```hcl
-module "altus_ingest_projects" {
+module "${var.owner}_ingest_projects" {
   for_each                 = local.filtered_ingest_folders
   source                   = "terraform-google-modules/project-factory/google"
   version                  = "14.3.0"
@@ -34,12 +34,12 @@ module "altus_ingest_projects" {
 }
 ```
 
-## Altus Curated Projects Module
+## ${var.owner} Curated Projects Module
 
 Similar to the ingest module, this module creates curated projects based on the filtered curated folders.
 
 ```hcl
-module "altus_curated_projects" {
+module "${var.owner}_curated_projects" {
   for_each                 = local.filtered_curated_folders
   ...
   labels = {
@@ -48,12 +48,12 @@ module "altus_curated_projects" {
 }
 ```
 
-## Altus Transformation Projects Module
+## ${var.owner} Transformation Projects Module
 
 This module is responsible for the transformation projects, created under the filtered transformation folders.
 
 ```hcl
-module "altus_trans_projects" {
+module "${var.owner}_trans_projects" {
   for_each                 = local.filtered_trans_folders
   ...
   labels = {
@@ -64,7 +64,7 @@ module "altus_trans_projects" {
 
 ## Usage
 
-Apply this code to manage Altus ingest, curated, and transformation projects within your Google Cloud Platform organization.
+Apply this code to manage ${var.owner} ingest, curated, and transformation projects within your Google Cloud Platform organization.
 
 ---
 

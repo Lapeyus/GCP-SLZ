@@ -1,10 +1,10 @@
-# Altus Projects Terraform State Buckets Documentation
+# ${var.owner} Projects Terraform State Buckets Documentation
 
-This document explains the Terraform code responsible for creating and managing Google Cloud Storage buckets for Altus ingest, curated, and transformation projects.
+This document explains the Terraform code responsible for creating and managing Google Cloud Storage buckets for ${var.owner} ingest, curated, and transformation projects.
 
 ## Overview
 
-The code snippet consists of three distinct modules to create buckets for different types of Altus projects. Each module is parameterized to work with filtered folders and specific configurations.
+The code snippet consists of three distinct modules to create buckets for different types of ${var.owner} projects. Each module is parameterized to work with filtered folders and specific configurations.
 
 ## Local Variables
 
@@ -12,18 +12,18 @@ The code begins by defining local variables to filter out specific buckets for i
 
 ```hcl
 locals {
-  filtered_ingest_buckets  = { for k, v in module.ingest_folders.id : k => v if k != "Altus-Ingest" }
-  filtered_curated_buckets = { for k, v in module.curated_folders.id : k => v if k != "Altus-Cur" }
-  filtered_trans_buckets   = { for k, v in module.trans_folders.id : k => v if k != "Altus-Trans" }
+  filtered_ingest_buckets  = { for k, v in module.ingest_folders.id : k => v if k != "${var.owner}-Ingest" }
+  filtered_curated_buckets = { for k, v in module.curated_folders.id : k => v if k != "${var.owner}-Cur" }
+  filtered_trans_buckets   = { for k, v in module.trans_folders.id : k => v if k != "${var.owner}-Trans" }
 }
 ```
 
-## Altus Ingest Projects Terraform State Bucket
+## ${var.owner} Ingest Projects Terraform State Bucket
 
-This module creates Google Cloud Storage buckets for Altus ingest projects, with specific permissions.
+This module creates Google Cloud Storage buckets for ${var.owner} ingest projects, with specific permissions.
 
 ```hcl
-module "altus_ingest_projects_tf_state" {
+module "${var.owner}_ingest_projects_tf_state" {
   for_each                 = local.filtered_ingest_buckets
   ...
   public_access_prevention = "enforced"
@@ -36,12 +36,12 @@ module "altus_ingest_projects_tf_state" {
 }
 ```
 
-## Altus Curated Projects Terraform State Bucket
+## ${var.owner} Curated Projects Terraform State Bucket
 
-This module creates buckets for Altus curated projects, mirroring the configuration used for the ingest projects.
+This module creates buckets for ${var.owner} curated projects, mirroring the configuration used for the ingest projects.
 
 ```hcl
-module "altus_curated_projects_tf_state" {
+module "${var.owner}_curated_projects_tf_state" {
   for_each                 = local.filtered_curated_buckets
   ...
   public_access_prevention = "enforced"
@@ -49,12 +49,12 @@ module "altus_curated_projects_tf_state" {
 }
 ```
 
-## Altus Transformation Projects Terraform State Bucket
+## ${var.owner} Transformation Projects Terraform State Bucket
 
 Similar to the other two modules, this module creates transformation projects' buckets.
 
 ```hcl
-module "altus_trans_projects_tf_state" {
+module "${var.owner}_trans_projects_tf_state" {
   for_each                 = local.filtered_trans_buckets
   ...
   public_access_prevention = "enforced"
@@ -64,7 +64,7 @@ module "altus_trans_projects_tf_state" {
 
 ## Usage
 
-Apply this code to create and manage Altus ingest, curated, and transformation projects' Google Cloud Storage buckets within your Google Cloud Platform organization.
+Apply this code to create and manage ${var.owner} ingest, curated, and transformation projects' Google Cloud Storage buckets within your Google Cloud Platform organization.
 
 ---
 

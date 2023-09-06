@@ -1,6 +1,6 @@
-# Altus-Cor Shared VPC and Networks Configuration
+# ${var.owner}-Cor Shared VPC and Networks Configuration
 
-This Terraform module is designed to set up the Shared VPC host project and network configuration for the Altus-Cor environment, aligned with the Service Landing Zone (SLZ) concept.
+This Terraform module is designed to set up the Shared VPC host project and network configuration for the ${var.owner}-Cor environment, aligned with the Service Landing Zone (SLZ) concept.
 
 ## Usage
 

@@ -11,11 +11,11 @@ The code consists of two main parts:
 
 ### Google Folders
 
-The `google_folders` data block is responsible for retrieving the folders related to the project identified by `module.folders.id["Altus"]`.
+The `google_folders` data block is responsible for retrieving the folders related to the project identified by `module.folders.id["${var.owner}"]`.
 
 ```hcl
 data "google_folders" "my_prj_folders" {
-  parent_id = module.folders.id["Altus"]
+  parent_id = module.folders.id["${var.owner}"]
 }
 ```
 

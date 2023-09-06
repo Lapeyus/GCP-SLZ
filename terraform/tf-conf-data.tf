@@ -1,5 +1,5 @@
 data "google_organization" "org" {
-  domain = "altuspower.com"
+  domain = "owner.com"
 }
 
 resource "random_string" "suffix" {

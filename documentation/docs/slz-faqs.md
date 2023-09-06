@@ -1,6 +1,6 @@
 ### How to add a new folder to the SLZ core folders module
 
-Adding a new folder to the `folders` module with Terraform is straightforward. You can simply add a new key-value pair inside the `folders` map, following the existing structure. this would only be necesary to add a folder to the SLZ, all projects are nested inside the ALtus Folder from alt-folders.tf
+Adding a new folder to the `folders` module with Terraform is straightforward. You can simply add a new key-value pair inside the `folders` map, following the existing structure. this would only be necesary to add a folder to the SLZ, all projects are nested inside the ${var.owner} Folder from alt-folders.tf
 
 Here's an example of how you could add a new folder named "MYCHILDFOLDER" as a child of the Shared Folder:
 
@@ -17,8 +17,8 @@ module "folders" {
     "Shared"             = { external_parent_id = "organizations/${var.org_id}" },
     "Shared-Prod"        = { parent_entry_key = "Shared" },
     "Shared-NonProd"     = { parent_entry_key = "Shared" },
-    "Altus" = {
-      name               = "Altus"
+    "${var.owner}" = {
+      name               = "${var.owner}"
       external_parent_id = "organizations/${var.org_id}"
     },
     "MYROOTFOLDER"        = { "organizations/${var.org_id}" } // New root folder added here
@@ -167,7 +167,7 @@ To add a new budget, you can replicate the pattern used for existing budgets and
 # Development budget topic
 
 resource "google_pubsub_topic" "dev_budget" {
-name = "altus-dev-budget-topic-${random_string.suffix.result}"
+name = "${var.owner}-dev-budget-topic-${random_string.suffix.result}"
 project = module.billing_project.project_id
 }
 
@@ -251,8 +251,8 @@ branch_name = "master"
 
 steps {
 name = "gcr.io/cloud-builders/docker"
-args = ["build", "--tag=us-central1-docker.pkg.dev/${module.cicd.project_id}/altus-docker/my-image:$SHORT_SHA", "."]
-args = ["push", "us-central1-docker.pkg.dev/${module.cicd.project_id}/altus-docker/my-image:$SHORT_SHA"]
+args = ["build", "--tag=us-central1-docker.pkg.dev/${module.cicd.project_id}/${var.owner}-docker/my-image:$SHORT_SHA", "."]
+args = ["push", "us-central1-docker.pkg.dev/${module.cicd.project_id}/${var.owner}-docker/my-image:$SHORT_SHA"]
 }
 }
 ```
@@ -324,7 +324,7 @@ module "preprod_vpc_shared_vpc_host" {
   ...
   subnets = [
     {
-      subnet_name = "altus-trans-dev-us-east4"
+      subnet_name = "${var.owner}-trans-dev-us-east4"
       subnet_ip   = "192.168.100.0/24" # Change the IP range
       ...
     },
