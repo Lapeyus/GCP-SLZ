@@ -4,8 +4,7 @@
 
 ```hcl
 module "projecta_folders" {
-  source = "../modules/google_folder"
-
+  source = "./modules/google_folder"
   folders = {
     "${var.owner}-projecta" = { external_parent_id = module.folders.id["BusinessUnits"] },
     "${var.owner}-projecta-dev" = {
@@ -36,12 +35,13 @@ module "projecta_folders" {
 }
 ```
 
+
 ### Project B
  Creates the required folders for a project: a parent with 6 nested folder environments
 
 ```hcl
 module "projectb_folders" {
-  source = "../modules/google_folder"
+  source = "./modules/google_folder"
 
   folders = {
     "${var.owner}-projectb" = { external_parent_id = module.folders.id["BusinessUnits"] },
@@ -78,7 +78,7 @@ module "projectb_folders" {
 
 ```hcl
 module "projectc_folders" {
-  source = "../modules/google_folder"
+  source = "./modules/google_folder"
 
   folders = {
     "${var.owner}-projectc" = { external_parent_id = module.folders.id["BusinessUnits"] },

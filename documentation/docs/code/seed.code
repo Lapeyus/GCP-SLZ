@@ -36,7 +36,7 @@ module "seed" {
 
 
 ### Google Service Account
-This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `tf_seed` in the project created by the `seed` module.
+This Terraform code creates a Google Cloud Service Account named `Terraform Service Account` with the account ID `main` in the project created by the `seed` module.
 
 ```hcl
 resource "google_service_account" "main" {
@@ -153,7 +153,7 @@ This Terraform code creates a new Google Cloud IAM Workload Identity Pool with t
 resource "google_iam_workload_identity_pool" "main" {
   workload_identity_pool_id = "cicd-terraformer"
   project                   = module.seed.project_id
-  depends_on                = [module.module.seed]
+  depends_on                = [module.seed]
 }
 ```
 
@@ -194,12 +194,12 @@ resource "google_service_account_iam_binding" "workload_identity" {
   service_account_id = google_service_account.main.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.main.id}/attribute.repository/${var.owner}/${SLZ-REPO-NAME}",
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.main.id}/attribute.repository/${var.owner}/owner", #${SLZ-REPO-NAME}
 
     # A: "principalSet://iam.googleapis.com/projects/${module.seed.project_number}/locations/global/workloadIdentityPools/cicd-terraformer/attribute.repository_owner/${var.owner}",
 
     # B: "serviceAccount:${module.seed.project_id}.svc.id.goog[${NAMESPACE}/${var.service_account}]",
   ]
-  depends_on = [google_service_account.main.id, google_iam_workload_identity_pool_provider.github]
+  depends_on = [google_service_account.main, google_iam_workload_identity_pool_provider.github_actions]
 }
 ```

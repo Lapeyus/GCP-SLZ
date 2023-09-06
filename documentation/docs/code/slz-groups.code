@@ -6,7 +6,7 @@
 ```hcl
 module "gcp_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "admins@${data.google_organization.org.domain}"
   display_name = "GCP Admins"
   description  = "Group for GCP Administrators"
@@ -26,7 +26,7 @@ Responsible for security settings, such as configuring IAM and organization poli
 ```hcl
 module "security_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "security-admins@${data.google_organization.org.domain}"
   display_name = "GCP Security Admins"
   description  = "Group for GCP Security Administrators"
@@ -37,6 +37,7 @@ module "security_admins" {
 }
 ```
 
+
 ### 3. Network Admins
 Manages network resources like VPCs, subnets, and firewall rules.
   This group is responsible for the management of network resources such as VPCs,
@@ -45,7 +46,7 @@ Manages network resources like VPCs, subnets, and firewall rules.
 ```hcl
 module "network_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "network-admins@${data.google_organization.org.domain}"
   display_name = "GCP Network Admins"
   description  = "Group for GCP Network Administrators"
@@ -56,6 +57,7 @@ module "network_admins" {
 }
 ```
 
+
 ### 4. Audit Admins
 Has permissions to view all resources and settings for auditing and compliance.
   Members of this group will have permissions to view all resources and settings,
@@ -64,7 +66,7 @@ Has permissions to view all resources and settings for auditing and compliance.
 ```hcl
 module "audit_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "audit-admins@${data.google_organization.org.domain}"
   display_name = "GCP Audit Admins"
   description  = "Group for GCP Audit Administrators"
@@ -75,6 +77,7 @@ module "audit_admins" {
 }
 ```
 
+
 ### 5. Project Admins
 
 A global grant to manage all projects in the organization. Individual project management is delegated to dedicated groups (see alt-groups.tf).  This is a global grant to manage all projects in the ORG.
@@ -83,7 +86,7 @@ A global grant to manage all projects in the organization. Individual project ma
 ```hcl
 module "project_admins" {
   source       = "terraform-google-modules/group/google"
-  version      = "0.4.0"
+  version      = "0.6.0"
   id           = "project-admins@${data.google_organization.org.domain}"
   display_name = "GCP Project Admins"
   description  = "Group for GCP Project Administrators"

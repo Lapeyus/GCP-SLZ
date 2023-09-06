@@ -4,310 +4,365 @@ Prevents the automatic creation of a default network in new projects.
 
 ```hcl
 module "skip_default_network" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.skipDefaultNetworkCreation"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.skipDefaultNetworkCreation"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
-
-### Uniform Bucket Level Access
-Enforces uniform bucket-level access control across all Cloud Storage buckets.
-
+#
+# ### Uniform Bucket Level Access
+# Enforces uniform bucket-level access control across all Cloud Storage buckets.
+#
 ```hcl
 module "uniform_bucket_level_access" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/storage.uniformBucketLevelAccess"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/storage.uniformBucketLevelAccess"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
 
-### Enforce Bucket Public Access Prevention
-Prevents public access to Cloud Storage buckets.
-
+#
+# ### Enforce Bucket Public Access Prevention
+# Prevents public access to Cloud Storage buckets.
+#
 ```hcl
 module "enforce_bucket_public_access_prevention" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/storage.publicAccessPrevention"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/storage.publicAccessPrevention"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Disable VM Serial Ports
-Disables the global serial port access to VM instances.
-
+#
+# ### Disable VM Serial Ports
+# Disables the global serial port access to VM instances.
+#
 ```hcl
 module "disable_vm_serial_ports" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.disableGlobalSerialPortAccess"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.disableGlobalSerialPortAccess"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
 
-### Restrict Shared VPC Project Lien
-Restricts the removal of shared VPC project liens.
-
+#
+# ### Restrict Shared VPC Project Lien
+# Restricts the removal of shared VPC project liens.
+#
 ```hcl
 module "restrict_shared_vpc_project_lien" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = false
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.restrictXpnProjectLienRemoval"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.restrictXpnProjectLienRemoval"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Restrict Public IP CloudSQL
-Disallows public IP addresses for Cloud SQL instances.
-
+#
+# ### Restrict Public IP CloudSQL
+# Disallows public IP addresses for Cloud SQL instances.
+#
 ```hcl
 module "restrict_public_ip_cloudsql" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/sql.restrictPublicIp"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/sql.restrictPublicIp"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Disable VM Nested Virtualization
-Prevents the use of nested virtualization in VM instances.
-
+#
+# ### Disable VM Nested Virtualization
+# Prevents the use of nested virtualization in VM instances.
+#
 ```hcl
 module "disable_vm_nested_virtualization" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.disableNestedVirtualization"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.disableNestedVirtualization"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Disable Guest Attributes Access
-Blocks access to guest attributes in VM instances.
-
+#
+# ### Disable Guest Attributes Access
+# Blocks access to guest attributes in VM instances.
+#
 ```hcl
 module "disable_guest_attributes" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.disableGuestAttributesAccess"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.disableGuestAttributesAccess"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Require OS Login
-Enforces OS login for SSH access to VM instances.
-
+#
+# ### Require OS Login
+# Enforces OS login for SSH access to VM instances.
+#
 ```hcl
 module "require_os_login" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.requireOsLogin"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.requireOsLogin"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules            = []
 }
 ```
 
-
-### Domain Restricted Sharing
-Restricts sharing to specific domains.
-
+#
+# ### Domain Restricted Sharing
+# Restricts sharing to specific domains.
+#
 ```hcl
 module "domain_restricted_sharing" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = false
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/iam.allowedPolicyMemberDomains"
-  policy_type = "list"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/iam.allowedPolicyMemberDomains"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Restrict VM External IP
-Prohibits external IP access for VM instances.
-
+#
+# ### Restrict VM External IP
+# Prohibits external IP access for VM instances.
+#
 ```hcl
 module "restrict_vm_external_ip" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.vmExternalIpAccess"
-  policy_type = "list"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.vmExternalIpAccess"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Restrict VPC Peering
-Limits VPC peering connections.
-
+#
+# ### Restrict VPC Peering
+# Limits VPC peering connections.
+#
 ```hcl
 module "restrict_vpc_peering" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = false
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.restrictVpcPeering"
-  policy_type = "list"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.restrictVpcPeering"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Restrict Shared VPC Host Projects
-Restricts the creation of shared VPC host projects.
-
+#
+# ### Restrict Shared VPC Host Projects
+# Restricts the creation of shared VPC host projects.
+#
 ```hcl
 module "restrict_vpc_host_projects" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = false
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/compute.restrictSharedVpcHostProjects"
-  policy_type = "list"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/compute.restrictSharedVpcHostProjects"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Disable Service Account Key Creation
-Prevents the creation of service account keys.
-
+#
+# ### Disable Service Account Key Creation
+# Prevents the creation of service account keys.
+#
 ```hcl
 module "disable_service_account_key_creation" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/iam.disableServiceAccountKeyCreation"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/iam.disableServiceAccountKeyCreation"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
 
-
-### Disable Service Account Key Upload
-Disallows the upload of service account keys.
-
+#
+# ### Disable Service Account Key Upload
+# Disallows the upload of service account keys.
+#
 ```hcl
 module "disable_service_account_key_upload" {
-  source = "../modules/org-policy"
-
-  policy_root    = "organization"
-  policy_root_id = var.org_id
-  rules = [{
-    enforcement = true
-    allow       = []
-    deny        = []
-    conditions  = []
-  }]
-  constraint  = "constraints/iam.disableServiceAccountKeyUpload"
-  policy_type = "boolean"
+  source           = "terraform-google-modules/org-policy/google//modules/org_policy_v2"
+  version          = "5.2.2"
+  policy_root      = "organization"
+  policy_root_id   = var.org_id
+  constraint       = "constraints/iam.disableServiceAccountKeyUpload"
+  policy_type      = "boolean"
+  exclude_folders  = []
+  exclude_projects = []
+  rules = [
+    {
+      allow       = []
+      conditions  = []
+      deny        = []
+      enforcement = true
+    }
+  ]
 }
 ```
