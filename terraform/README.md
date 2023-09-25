@@ -3,17 +3,17 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | 1.5.6 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.81.0 |
-| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 4.81.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.5.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.6 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 4.81.0 |
+| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | >= 4.81.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.5.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.81.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 4.81.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 3.5.1 |
 
 ## Modules
 
@@ -78,25 +78,25 @@
 
 | Name | Type |
 |------|------|
-| [google_compute_global_address.preprod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_global_address) | resource |
-| [google_compute_global_address.prod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_global_address) | resource |
-| [google_compute_network_peering_routes_config.preprod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_network_peering_routes_config) | resource |
-| [google_compute_network_peering_routes_config.prod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_network_peering_routes_config) | resource |
-| [google_iam_workload_identity_pool.main](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/iam_workload_identity_pool) | resource |
-| [google_iam_workload_identity_pool_provider.github_actions](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/iam_workload_identity_pool_provider) | resource |
-| [google_monitoring_dashboard.main](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/monitoring_dashboard) | resource |
-| [google_pubsub_topic.preprod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/pubsub_topic) | resource |
-| [google_pubsub_topic.prod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/pubsub_topic) | resource |
-| [google_service_account.main](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/service_account) | resource |
-| [google_service_account_iam_binding.workload_identity](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/service_account_iam_binding) | resource |
-| [google_service_account_key.main](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/service_account_key) | resource |
-| [google_service_networking_connection.preprod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/service_networking_connection) | resource |
-| [google_service_networking_connection.prod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/service_networking_connection) | resource |
-| [google_vpc_access_connector.preprod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/vpc_access_connector) | resource |
-| [google_vpc_access_connector.prod](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/vpc_access_connector) | resource |
-| [random_string.suffix](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/string) | resource |
-| [google_folders.prj_folders](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/data-sources/folders) | data source |
-| [google_organization.org](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/data-sources/organization) | data source |
+| [google_compute_global_address.preprod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_global_address) | resource |
+| [google_compute_global_address.prod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_global_address) | resource |
+| [google_compute_network_peering_routes_config.preprod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network_peering_routes_config) | resource |
+| [google_compute_network_peering_routes_config.prod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network_peering_routes_config) | resource |
+| [google_iam_workload_identity_pool.main](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool) | resource |
+| [google_iam_workload_identity_pool_provider.github_actions](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider) | resource |
+| [google_monitoring_dashboard.main](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/monitoring_dashboard) | resource |
+| [google_pubsub_topic.preprod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
+| [google_pubsub_topic.prod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
+| [google_service_account.main](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
+| [google_service_account_iam_binding.workload_identity](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_binding) | resource |
+| [google_service_account_key.main](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_key) | resource |
+| [google_service_networking_connection.preprod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_networking_connection) | resource |
+| [google_service_networking_connection.prod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_networking_connection) | resource |
+| [google_vpc_access_connector.preprod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/vpc_access_connector) | resource |
+| [google_vpc_access_connector.prod](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/vpc_access_connector) | resource |
+| [random_string.suffix](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [google_folders.prj_folders](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/folders) | data source |
+| [google_organization.org](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/organization) | data source |
 
 ## Inputs
 
