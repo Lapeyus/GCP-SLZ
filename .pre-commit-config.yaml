@@ -107,14 +107,14 @@ repos:
           - --args=--framework all
           - --args=--download-external-modules true
       - id: terraform_providers_lock
+      - id: terraform_validate
+        args:
+          - --args=-json
+          - --args=-no-color
+          - --hook-config=--retry-once-with-cleanup=true
       # - id: terraform_tfsec
       # - id: terrascan
       #   args:
       #     - --args=--verbose
       #     - --args=--policy-type=gcp
       #     - --args=--iac_dir=terraform/
-      # - id: terraform_validate
-      #   args:
-      #     - --args=-json
-      #     - --args=-no-color
-      #     - --hook-config=--retry-once-with-cleanup=true

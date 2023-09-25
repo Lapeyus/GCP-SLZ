@@ -145,9 +145,9 @@ limitations under the License.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | 1.5.6 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.81.0 |
-| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 4.81.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.6 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 4.81.0 |
+| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | >= 4.81.0 |
 
 ## Providers
 
@@ -164,12 +164,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [google-beta_google_compute_network_firewall_policy_rule.rules](https://registry.terraform.io/providers/hashicorp/google-beta/4.81.0/docs/resources/google_compute_network_firewall_policy_rule) | resource |
-| [google-beta_google_compute_region_network_firewall_policy_rule.rules](https://registry.terraform.io/providers/hashicorp/google-beta/4.81.0/docs/resources/google_compute_region_network_firewall_policy_rule) | resource |
-| [google_compute_network_firewall_policy.fw_policy](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_network_firewall_policy) | resource |
-| [google_compute_network_firewall_policy_association.vpc_associations](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_network_firewall_policy_association) | resource |
-| [google_compute_region_network_firewall_policy.fw_policy](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_region_network_firewall_policy) | resource |
-| [google_compute_region_network_firewall_policy_association.vpc_associations](https://registry.terraform.io/providers/hashicorp/google/4.81.0/docs/resources/compute_region_network_firewall_policy_association) | resource |
+| [google-beta_google_compute_network_firewall_policy_rule.rules](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_compute_network_firewall_policy_rule) | resource |
+| [google-beta_google_compute_region_network_firewall_policy_rule.rules](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_compute_region_network_firewall_policy_rule) | resource |
+| [google_compute_network_firewall_policy.fw_policy](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network_firewall_policy) | resource |
+| [google_compute_network_firewall_policy_association.vpc_associations](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network_firewall_policy_association) | resource |
+| [google_compute_region_network_firewall_policy.fw_policy](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_region_network_firewall_policy) | resource |
+| [google_compute_region_network_firewall_policy_association.vpc_associations](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_region_network_firewall_policy_association) | resource |
 
 ## Inputs
 
